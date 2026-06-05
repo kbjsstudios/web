@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KBJS Studios — Creative Digital Agency</title>
+  <meta name="description" content="KBJS Studios — Gaming Thumbnails, Discord & Minecraft Dev, Video Editing. Content, Code, Community.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/png" href="logos/kbjslogo.png">
+</head>
+<body>
+
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ===== HEADER ===== -->
+  <header id="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo gradient-text">
+        <img src="logos/kbjslogo.png" class="logo-icon" alt="KBJS Studios">
+        KBJS Studios
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li>
+        <li><a href="discord.html" class="nav-link">Discord</a></li>
+        <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
+        <li><a href="video.html" class="nav-link">Video</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li>
+          <a href="https://discord.gg/XwyF7KcKwb" class="social-icon-btn nav-discord-btn" aria-label="Discord" title="Join our Discord">
+            <img src="logos/discordlogo.png" alt="Discord">
+          </a>
+        </li>
+      </ul>
+      <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle mobile menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span></span>
+          Open for Projects
+        </div>
+        <h1 class="hero-title" id="hero-title">
+          Where <span class="gradient-text minecraft-font">Creativity</span><br>Meets Skills.
+        </h1>
+        <p class="hero-desc">
+          KBJS Studios — custom thumbnails, Discord & Minecraft server development, and professional video editing. We build brands, not just content.
+        </p>
+        <div class="hero-ctas">
+          <a href="index.html#services" class="glow-btn glow-btn-primary" id="hero-explore-btn">
+            View Our Work
+          </a>
+          <a href="about.html" class="glow-btn glow-btn-secondary" id="hero-hire-btn">
+            About Us
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="glowing-globe"></div>
+        <div class="glass-panel console-container" style="--glass-blur: blur(20px);">
+          <div class="console-header">
+            <div class="console-dots">
+              <div class="console-dot red"></div>
+              <div class="console-dot yellow"></div>
+              <div class="console-dot green"></div>
+            </div>
+            <span class="console-title">kbjs@studio:~</span>
+            <span style="font-size:0.7rem; color:var(--text-muted);">bash</span>
+          </div>
+          <div class="console-body" id="console-body"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES SECTION ===== -->
+  <section class="section-wrapper" id="services">
+    <div class="section-header">
+      <div class="section-subtitle">What We Do</div>
+      <h2 class="section-title">Our <span class="gradient-text">Services</span></h2>
+    </div>
+    <div class="services-grid">
+      <a href="thumbnails.html" class="service-card glass-panel">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </div>
+        <h3 class="service-title">Thumbnails</h3>
+        <p class="service-desc">Custom gaming YouTube thumbnails built for creators. Stand out in the feed.</p>
+        <span class="service-arrow">→</span>
+      </a>
+      <a href="discord.html" class="service-card glass-panel">
+        <div class="service-icon">
+          <img src="logos/discordlogo.png" alt="Discord" style="width:36px;height:36px;object-fit:contain;border-radius:4px;">
+        </div>
+        <h3 class="service-title">Discord Servers</h3>
+        <p class="service-desc">Custom Discord server setup, moderation bots, roles, and community management.</p>
+        <span class="service-arrow">→</span>
+      </a>
+      <a href="minecraft.html" class="service-card glass-panel">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+        </div>
+        <h3 class="service-title">Minecraft Servers</h3>
+        <p class="service-desc">Full Minecraft server development — plugins, builds, hosting setup, and management.</p>
+        <span class="service-arrow">→</span>
+      </a>
+      <a href="video.html" class="service-card glass-panel">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <h3 class="service-title">Video Editing</h3>
+        <p class="service-desc">Professional YouTube shorts and long-form video editing. From raw footage to polished content.</p>
+        <span class="service-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== WHY US SECTION ===== -->
+  <section class="section-wrapper" id="why-us" style="background: linear-gradient(to bottom, transparent, rgba(91,79,255,0.03), transparent);">
+    <div class="section-header">
+      <div class="section-subtitle">Why Choose Us</div>
+      <h2 class="section-title">Built by <span class="gradient-text">Creators</span></h2>
+    </div>
+    <div class="why-grid">
+      <div class="glass-panel why-card">
+        <div class="why-number gradient-text">01</div>
+        <h4>Streamlined Workflow</h4>
+        <p>We use cutting-edge tools to craft stunning thumbnails and streamline production.</p>
+      </div>
+      <div class="glass-panel why-card">
+        <div class="why-number gradient-text">02</div>
+        <h4>Full-Stack Creators</h4>
+        <p>We run our own YouTube and Facebook channels — we know what actually works.</p>
+      </div>
+      <div class="glass-panel why-card">
+        <div class="why-number gradient-text">03</div>
+        <h4>One-Stop Shop</h4>
+        <p>Thumbnails, servers, video editing — everything you need to grow your brand.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="index.html" class="logo gradient-text" style="margin-bottom:20px; display:inline-block;"><img src="logos/kbjslogo.png" class="logo-icon" alt="KBJS Studios" style="width:20px;height:20px;vertical-align:middle;"> KBJS Studios</a>
+        <p>Creative digital solutions for the modern creator economy.</p>
+        <div class="social-links">
+          <a href="https://youtube.com/@knockbackkk" class="social-icon-btn" aria-label="Knockbackkk YouTube" id="footer-yt-link">
+            <img src="logos/knockbackkk.png" alt="Knockbackkk">
+          </a>
+          <a href="https://discord.gg/XwyF7KcKwb" class="social-icon-btn" aria-label="Discord" id="footer-dc-link">
+            <img src="logos/discordlogo.png" alt="Discord">
+          </a>
+          <a href="https://youtube.com/@justslayer0" class="social-icon-btn" aria-label="JustSlayer YouTube" id="footer-fb-link">
+            <img src="logos/justslayer.png" alt="JustSlayer">
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="thumbnails.html">Thumbnails</a></li>
+          <li><a href="discord.html">Discord Servers</a></li>
+          <li><a href="minecraft.html">Minecraft Servers</a></li>
+          <li><a href="video.html">Video Editing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Links</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="https://youtube.com/@knockbackkk" id="footer-yt-channel">Knockbackkk</a></li>
+          <li><a href="https://youtube.com/@justslayer0" id="footer-fb-page">JustSlayer</a></li>
+          <li><a href="https://discord.gg/XwyF7KcKwb" id="footer-dc-invite">Discord Server</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">Get in Touch</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 KBJS Studios. All rights reserved.</span>
+      <span>Built with ❤️ & a lot of ☕</span>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
