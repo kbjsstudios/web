@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Now — KBJS Studios</title>
+  <meta name="description" content="Calculate project costs and book custom creative services with KBJS Studios.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/png" href="logos/kbjslogo.png">
+</head>
+<body>
+
+  <canvas id="particle-canvas"></canvas>
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- ===== HEADER ===== -->
+  <header id="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="logo gradient-text">
+        <img src="logos/kbjslogo.png" class="logo-icon" alt="KBJS Studios">
+        KBJS Studios
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li>
+        <li><a href="discord.html" class="nav-link">Discord</a></li>
+        <li><a href="minecraft.html" class="nav-link">Minecraft</a></li>
+        <li><a href="video.html" class="nav-link">Video</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li>
+          <button class="theme-toggle-btn" aria-label="Toggle theme" title="Toggle theme">
+            <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </li>
+        <li>
+          <a href="order.html" class="nav-order-btn active" style="text-decoration:none;">Order Now</a>
+        </li>
+      </ul>
+      <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle mobile menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero" style="min-height: 35vh; padding-top: 130px; padding-bottom: 30px;">
+    <div class="page-hero-content">
+      <div class="section-subtitle">Quote & Booking</div>
+      <h1 class="page-hero-title">Interactive <span class="gradient-text">Studio Configurator</span></h1>
+      <p class="page-hero-desc">Build your project dynamically, calculate a transparent price estimate, and place your order instantly.</p>
+    </div>
+  </section>
+
+  <!-- ===== CONFIGURATOR CONTAINER ===== -->
+  <section class="section-wrapper" style="padding-top: 20px;">
+    <div class="order-container">
+      
+      <!-- Left Configurator Form -->
+      <div class="order-configurator">
+        <div class="glass-panel order-section">
+          <h3><span>1.</span> Select Service Area</h3>
+          <div class="tier-grid">
+            <div class="tier-card selected" data-service="thumbnails">
+              <div class="tier-title">Thumbnails</div>
+              <div class="tier-price">From $10</div>
+            </div>
+            <div class="tier-card" data-service="discord">
+              <div class="tier-title">Discord Setup</div>
+              <div class="tier-price">From $20</div>
+            </div>
+            <div class="tier-card" data-service="minecraft">
+              <div class="tier-title">Minecraft Dev</div>
+              <div class="tier-price">From $35</div>
+            </div>
+            <div class="tier-card" data-service="video">
+              <div class="tier-title">Video Editing</div>
+              <div class="tier-price">From $15</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customizations Section -->
+        <div class="glass-panel order-section" id="customizer-options">
+          <h3><span>2.</span> Customize Options</h3>
+          
+          <!-- THUMBNAIL CONFIGS -->
+          <div class="config-group" id="config-thumbnails">
+            <div>
+              <div class="config-label">
+                <span>Number of Thumbnails:</span>
+                <span class="value-display" id="thumb-qty-val">1</span>
+              </div>
+              <input type="range" min="1" max="15" value="1" class="slider-input" id="thumb-qty">
+            </div>
+            
+            <div>
+              <span class="config-label">Style / Complexity:</span>
+              <div class="tier-grid" style="margin-top: 10px;">
+                <label class="tier-card selected">
+                  <input type="radio" name="thumb-style" value="2d" checked>
+                  <div class="tier-title">2D Graphics</div>
+                  <div class="tier-price">Standard</div>
+                </label>
+                <label class="tier-card">
+                  <input type="radio" name="thumb-style" value="3d">
+                  <div class="tier-title">3D Blender Render</div>
+                  <div class="tier-price">+$10</div>
+                </label>
+                <label class="tier-card">
+                  <input type="radio" name="thumb-style" value="special">
+                  <div class="tier-title">Hand-Drawn / Custom</div>
+                  <div class="tier-price">+$15</div>
+                </label>
+              </div>
+            </div>
+
+            <div class="addons-list">
+              <label class="addon-item">
+                <div class="addon-info">
+                  <input type="checkbox" id="thumb-express">
+                  <span class="addon-name">24 Hour Express Turnaround</span>
+                </div>
+                <span class="addon-price">+$5</span>
+              </label>
+              <label class="addon-item">
+                <div class="addon-info">
+                  <input type="checkbox" id="thumb-source">
+                  <span class="addon-name">Deliver PSD Source File</span>
+                </div>
+                <span class="addon-price">+$10</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- DISCORD CONFIGS -->
+          <div class="config-group" id="config-discord" style="display: none;">
+            <div>
+              <span class="config-label">Build Tier:</span>
+              <div class="tier-grid" style="margin-top: 10px;">
+                <label class="tier-card selected">
+                  <input type="radio" name="discord-tier" value="starter" checked>
+                  <div class="tier-title">Starter Setup</div>
+                  <div class="tier-price">$20</div>
+                </label>
+                <label class="tier-card">
+                  <input type="radio" name="discord-tier" value="pro">
+                  <div class="tier-title">Pro Community</div>
+                  <div class="tier-price">$50</div>
+                </label>
+                <label class="tier-card">
+                  <input type="radio" name="discord-tier" value="ultimate">
+                  <div class="tier-title">Ultimate Hub</div>
+                  <div class="tier-price">$100</div>
+                </label>
+              </div>
+            </div>
+
+            <div class="addons-list">
+              <label class="addon-item">
+                <div class="addon-info">
+                  <input type="checkbox" id="discord-bot">
+                  <span class="addon-name">Custom JS Bot (1 Feature Node)</span>
+                </div>
+                <span class="addon-price">+$25</span>
+              </label>
+              <label class="addon-item">
+                <div class="addon-info">
+                  <input type="checkbox" id="discord-banner">
+                  <span class="addon-name">Server Banner & Icon Designs</span>
+                </div>
+                <span class="addon-price">+$10</span>
+              </label>
+              <label class="addon-item">
+                <div class="addon-info">
+                  <input type="checkbox" id="discord-mod">
+                  <span class="addon-name">Moderator Log / Permissions Sync</span>
+                </div>
+                <span class="addon-price">+$15</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- MINECRAFT CONFIGS -->
+          <div class="config-group" id="config-minecraft" style="display: none;">
+            <div>
+              <span class="config-label">Server Mode:</span>
+              <div class="tier-grid" style="margin-top: 10px;">
+                <label class="tier-card selected">
+                  <input type="radio" name="mc-tier" value="vanilla" checked>
+                  <div class="tier-title">Basic SMP</div>
+                  <div class="tier-price">$35</div>
+                </label>
+                <label class="tier-card">
+                  <input type="radio" name="mc-tier" value="pro">
+                  <div class="tier-title">Pro Skyblock / Lifesteal</div>
+                  <div class="tier-price">$75</div>
+                </label>
+                <label class="tier-card">
+                  <input type="radio" name="mc-tier" value="ultimate">
+                  <div class="tier-title">Bespoke Network</div>
+                  <div class="tier-price">$150</div>
+                </label>
+              </div>
+            </div>
+
+            <div class="addons-list">
+              <label class="addon-item">
+                <div class="addon-info">
+                  <input type="checkbox" id="mc-plugin">
+                  <span class="addon-name">Custom Plugin Coding (Java)</span>
+                </div>
+                <span class="addon-price">+$50</span>
+              </label>
+              <label class="addon-item">
+                <div class="addon-info">
+                  <input type="checkbox" id="mc-bungee">
+                  <span class="addon-name">BungeeCord / Velocity Proxy Setup</span>
+                </div>
+                <span class="addon-price">+$40</span>
+              </label>
+              <label class="addon-item">
+                <div class="addon-info">
+                  <input type="checkbox" id="mc-store">
+                  <span class="addon-name">Web Store Setup (Tebex)</span>
+                </div>
+                <span class="addon-price">+$30</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- VIDEO CONFIGS -->
+          <div class="config-group" id="config-video" style="display: none;">
+            <div>
+              <span class="config-label">Editing Package:</span>
+              <div class="tier-grid" style="margin-top: 10px;">
+                <label class="tier-card selected">
+                  <input type="radio" name="video-tier" value="short" checked>
+                  <div class="tier-title">Single Short / Reel</div>
+                  <div class="tier-price">$15</div>
+                </label>
+                <label class="tier-card">
+                  <input type="radio" name="video-tier" value="shortspack">
+                  <div class="tier-title">Pack of 5 Shorts</div>
+                  <div class="tier-price">$65</div>
+                </label>
+                <label class="tier-card">
+                  <input type="radio" name="video-tier" value="longform">
+                  <div class="tier-title">Long-Form Editing</div>
+                  <div class="tier-price">$45</div>
+                </label>
+              </div>
+            </div>
+            
+            <div>
+              <div class="config-label">
+                <span>Quantity (Videos / Bundles):</span>
+                <span class="value-display" id="video-qty-val">1</span>
+              </div>
+              <input type="range" min="1" max="10" value="1" class="slider-input" id="video-qty">
+            </div>
+
+            <div class="addons-list">
+              <label class="addon-item">
+                <div class="addon-info">
+                  <input type="checkbox" id="video-express">
+                  <span class="addon-name">Fast Turnaround (Within 48 hours)</span>
+                </div>
+                <span class="addon-price">+$20</span>
+              </label>
+              <label class="addon-item">
+                <div class="addon-info">
+                  <input type="checkbox" id="video-motion">
+                  <span class="addon-name">Advanced Motion Graphics & VFX</span>
+                </div>
+                <span class="addon-price">+$15</span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Summary Panel -->
+      <div class="glass-panel invoice-panel">
+        <div class="invoice-header">
+          <div class="invoice-title">Project Summary</div>
+          <span style="font-size: 0.72rem; color: var(--text-muted);">Est. Delivery: <span id="est-delivery" style="color: var(--primary); font-weight:700;">3-5 Days</span></span>
+        </div>
+        
+        <div class="invoice-items" id="invoice-items">
+          <!-- Dynamically generated rows -->
+        </div>
+
+        <div class="invoice-row total">
+          <span>Estimated Price</span>
+          <span class="total-price">$<span id="invoice-total">0</span> USD</span>
+        </div>
+
+        <!-- Intake Form -->
+        <form class="lead-form" id="lead-form">
+          <input type="text" class="form-input" placeholder="Your Full Name" required id="form-name">
+          <input type="email" class="form-input" placeholder="Your Email Address" required id="form-email">
+          <input type="text" class="form-input" placeholder="Your Discord Tag (e.g. knockback)" required id="form-discord">
+          <textarea class="form-input" placeholder="Describe your project, style preferences, reference links..." required id="form-notes"></textarea>
+          
+          <button type="submit" class="glow-btn glow-btn-primary" style="margin-top: 10px; width: 100%;">
+            Transmit Order Request
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== MODAL POPUP ===== -->
+  <div class="modal-overlay" id="success-modal">
+    <div class="glass-panel modal-card">
+      <div class="modal-icon">✓</div>
+      <h3 class="modal-title">Proposal Transmitted!</h3>
+      <p class="modal-desc">Your project details have been successfully logged. To guarantee fast onboarding, copy your order code summary and paste it inside a support ticket in our Discord.</p>
+      
+      <div class="order-summary-box" id="modal-summary-box">
+        <!-- Pre-formatted copy summary -->
+      </div>
+      
+      <div style="display: flex; gap:12px; justify-content: center; flex-wrap:wrap;">
+        <button class="glow-btn glow-btn-secondary" id="modal-copy-btn">Copy Code</button>
+        <a href="https://discord.gg/XwyF7KcKwb" class="glow-btn glow-btn-primary" style="text-decoration:none;" target="_blank">Join Discord Ticket</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a href="index.html" class="logo gradient-text" style="margin-bottom:20px; display:inline-block;"><img src="logos/kbjslogo.png" class="logo-icon" alt="KBJS Studios" style="width:20px;height:20px;vertical-align:middle;"> KBJS Studios</a>
+        <p>Creative digital solutions for the modern creator economy.</p>
+        <div class="social-links">
+          <a href="https://youtube.com/@knockbackkk" class="social-icon-btn" aria-label="Knockbackkk YouTube"><img src="logos/knockbackkk.png" alt="Knockbackkk"></a>
+          <a href="https://discord.gg/XwyF7KcKwb" class="social-icon-btn" aria-label="Discord"><img src="logos/discordlogo.png" alt="Discord"></a>
+          <a href="https://youtube.com/@justslayer0" class="social-icon-btn" aria-label="JustSlayer YouTube"><img src="logos/justslayer.png" alt="JustSlayer"></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="thumbnails.html">Thumbnails</a></li>
+          <li><a href="discord.html">Discord Servers</a></li>
+          <li><a href="minecraft.html">Minecraft Servers</a></li>
+          <li><a href="video.html">Video Editing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Links</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="https://youtube.com/@knockbackkk">Our YouTube Channel</a></li>
+          <li><a href="https://discord.gg/XwyF7KcKwb">Discord Server</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">Get in Touch</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 KBJS Studios. All rights reserved.</span>
+      <span>Built with ❤️ & a lot of ☕</span>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toast-container"></div>
+  <script src="app.js"></script>
+
+  <!-- CALCULATOR STATE & LOGIC SCRIPT -->
+  <script>
+    (function() {
+      // Configuration details
+      let currentService = 'thumbnails';
+      
+      const elements = {
+        tabs: document.querySelectorAll('[data-service]'),
+        configs: {
+          thumbnails: document.getElementById('config-thumbnails'),
+          discord: document.getElementById('config-discord'),
+          minecraft: document.getElementById('config-minecraft'),
+          video: document.getElementById('config-video')
+        },
+        inputs: {
+          // Thumbnails
+          thumbQty: document.getElementById('thumb-qty'),
+          thumbQtyVal: document.getElementById('thumb-qty-val'),
+          thumbStyles: document.getElementsByName('thumb-style'),
+          thumbExpress: document.getElementById('thumb-express'),
+          thumbSource: document.getElementById('thumb-source'),
+          
+          // Discord
+          discordTiers: document.getElementsByName('discord-tier'),
+          discordBot: document.getElementById('discord-bot'),
+          discordBanner: document.getElementById('discord-banner'),
+          discordMod: document.getElementById('discord-mod'),
+          
+          // Minecraft
+          mcTiers: document.getElementsByName('mc-tier'),
+          mcPlugin: document.getElementById('mc-plugin'),
+          mcBungee: document.getElementById('mc-bungee'),
+          mcStore: document.getElementById('mc-store'),
+          
+          // Video
+          videoTier: document.getElementsByName('video-tier'),
+          videoQty: document.getElementById('video-qty'),
+          videoQtyVal: document.getElementById('video-qty-val'),
+          videoExpress: document.getElementById('video-express'),
+          videoMotion: document.getElementById('video-motion')
+        },
+        invoiceItems: document.getElementById('invoice-items'),
+        invoiceTotal: document.getElementById('invoice-total'),
+        estDelivery: document.getElementById('est-delivery'),
+        leadForm: document.getElementById('lead-form'),
+        successModal: document.getElementById('success-modal'),
+        modalSummary: document.getElementById('modal-summary-box'),
+        modalCopyBtn: document.getElementById('modal-copy-btn')
+      };
+
+      // Tab switcher
+      elements.tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          elements.tabs.forEach(t => t.classList.remove('selected'));
+          tab.classList.add('selected');
+          
+          const target = tab.dataset.service;
+          currentService = target;
+          
+          Object.keys(elements.configs).forEach(key => {
+            elements.configs[key].style.display = (key === target) ? 'flex' : 'none';
+          });
+          
+          updateInvoice();
+        });
+      });
+
+      // Slider update label bindings
+      elements.inputs.thumbQty.addEventListener('input', (e) => {
+        elements.inputs.thumbQtyVal.textContent = e.target.value;
+        updateInvoice();
+      });
+      elements.inputs.videoQty.addEventListener('input', (e) => {
+        elements.inputs.videoQtyVal.textContent = e.target.value;
+        updateInvoice();
+      });
+
+      // Bind all forms inputs to recalculate invoice on change
+      const allInputs = [
+        elements.inputs.thumbQty, elements.inputs.thumbExpress, elements.inputs.thumbSource,
+        elements.inputs.discordBot, elements.inputs.discordBanner, elements.inputs.discordMod,
+        elements.inputs.mcPlugin, elements.inputs.mcBungee, elements.inputs.mcStore,
+        elements.inputs.videoQty, elements.inputs.videoExpress, elements.inputs.videoMotion
+      ];
+      
+      allInputs.forEach(input => input.addEventListener('change', updateInvoice));
+      
+      // Radio selections trigger recalculate
+      const radioGroups = [
+        elements.inputs.thumbStyles, elements.inputs.discordTiers, 
+        elements.inputs.mcTiers, elements.inputs.videoTier
+      ];
+      
+      radioGroups.forEach(group => {
+        group.forEach(radio => {
+          radio.addEventListener('change', (e) => {
+            // Manage parent class 'selected' visual toggle for radios
+            const parentGroup = radio.closest('.tier-grid');
+            if (parentGroup) {
+              parentGroup.querySelectorAll('.tier-card').forEach(card => card.classList.remove('selected'));
+            }
+            radio.closest('.tier-card').classList.add('selected');
+            updateInvoice();
+          });
+        });
+      });
+
+      // Sync checkboxes background active state
+      const checkboxes = [
+        elements.inputs.thumbExpress, elements.inputs.thumbSource,
+        elements.inputs.discordBot, elements.inputs.discordBanner, elements.inputs.discordMod,
+        elements.inputs.mcPlugin, elements.inputs.mcBungee, elements.inputs.mcStore,
+        elements.inputs.videoExpress, elements.inputs.videoMotion
+      ];
+      checkboxes.forEach(chk => {
+        chk.addEventListener('change', () => {
+          const item = chk.closest('.addon-item');
+          if (item) {
+            item.classList.toggle('selected', chk.checked);
+          }
+        });
+      });
+
+      // Get Checked Radio Value helper
+      function getRadioVal(group) {
+        let val = '';
+        group.forEach(r => { if (r.checked) val = r.value; });
+        return val;
+      }
+
+      let orderSummaryText = '';
+
+      function updateInvoice() {
+        let total = 0;
+        let invoiceRows = [];
+        let delivery = '3-5 Days';
+
+        if (currentService === 'thumbnails') {
+          const qty = parseInt(elements.inputs.thumbQty.value);
+          const style = getRadioVal(elements.inputs.thumbStyles);
+          const express = elements.inputs.thumbExpress.checked;
+          const source = elements.inputs.thumbSource.checked;
+
+          let basePrice = 10;
+          let styleName = '2D Graphics Style';
+          if (style === '3d') {
+            basePrice = 20;
+            styleName = '3D Blender Render Style';
+          } else if (style === 'special') {
+            basePrice = 25;
+            styleName = 'Hand-Drawn / Custom Style';
+          }
+
+          let itemsTotal = basePrice * qty;
+          invoiceRows.push({ name: `${qty}x Thumbnail (${styleName})`, price: itemsTotal });
+          total += itemsTotal;
+
+          if (express) {
+            invoiceRows.push({ name: '24h Express Delivery addon', price: 5 });
+            total += 5;
+            delivery = '24 Hours';
+          } else {
+            delivery = qty > 5 ? '3-4 Days' : '1-2 Days';
+          }
+
+          if (source) {
+            invoiceRows.push({ name: 'Source file delivery (.PSD)', price: 10 });
+            total += 10;
+          }
+        } 
+        else if (currentService === 'discord') {
+          const tier = getRadioVal(elements.inputs.discordTiers);
+          const hasBot = elements.inputs.discordBot.checked;
+          const hasBanner = elements.inputs.discordBanner.checked;
+          const hasMod = elements.inputs.discordMod.checked;
+
+          let basePrice = 20;
+          let tierName = 'Starter Setup Pack';
+          delivery = '2-3 Days';
+
+          if (tier === 'pro') {
+            basePrice = 50;
+            tierName = 'Pro Community Pack';
+            delivery = '3-5 Days';
+          } else if (tier === 'ultimate') {
+            basePrice = 100;
+            tierName = 'Ultimate Hub Overhaul';
+            delivery = '5-7 Days';
+          }
+
+          invoiceRows.push({ name: `Discord server: ${tierName}`, price: basePrice });
+          total += basePrice;
+
+          if (hasBot) {
+            invoiceRows.push({ name: 'Custom Node.js bot (1 feature)', price: 25 });
+            total += 25;
+          }
+          if (hasBanner) {
+            invoiceRows.push({ name: 'Banner & Icon designs', price: 10 });
+            total += 10;
+          }
+          if (hasMod) {
+            invoiceRows.push({ name: 'Log & Permissions setup sync', price: 15 });
+            total += 15;
+          }
+        }
+        else if (currentService === 'minecraft') {
+          const tier = getRadioVal(elements.inputs.mcTiers);
+          const hasPlugin = elements.inputs.mcPlugin.checked;
+          const hasBungee = elements.inputs.mcBungee.checked;
+          const hasStore = elements.inputs.mcStore.checked;
+
+          let basePrice = 35;
+          let tierName = 'Basic Vanilla SMP Setup';
+          delivery = '3-5 Days';
+
+          if (tier === 'pro') {
+            basePrice = 75;
+            tierName = 'Pro GameMode Setup';
+            delivery = '5-8 Days';
+          } else if (tier === 'ultimate') {
+            basePrice = 150;
+            tierName = 'Bespoke Bungee Network Setup';
+            delivery = '10-14 Days';
+          }
+
+          invoiceRows.push({ name: `Minecraft: ${tierName}`, price: basePrice });
+          total += basePrice;
+
+          if (hasPlugin) {
+            invoiceRows.push({ name: 'Custom Java Plugin Dev', price: 50 });
+            total += 50;
+            delivery = 'Extended (Contact Dev)';
+          }
+          if (hasBungee) {
+            invoiceRows.push({ name: 'BungeeCord proxy structure', price: 40 });
+            total += 40;
+          }
+          if (hasStore) {
+            invoiceRows.push({ name: 'Web Store integration (Tebex)', price: 30 });
+            total += 30;
+          }
+        }
+        else if (currentService === 'video') {
+          const tier = getRadioVal(elements.inputs.videoTier);
+          const qty = parseInt(elements.inputs.videoQty.value);
+          const express = elements.inputs.videoExpress.checked;
+          const motion = elements.inputs.videoMotion.checked;
+
+          let basePrice = 15;
+          let tierName = 'YouTube Short / TikTok';
+          if (tier === 'shortspack') {
+            basePrice = 65;
+            tierName = 'Pack of 5 YouTube Shorts';
+          } else if (tier === 'longform') {
+            basePrice = 45;
+            tierName = 'Long-Form Video Edit';
+          }
+
+          let itemsTotal = basePrice * qty;
+          invoiceRows.push({ name: `${qty}x Video: ${tierName}`, price: itemsTotal });
+          total += itemsTotal;
+
+          if (express) {
+            invoiceRows.push({ name: 'Express turnaround addon (48h)', price: 20 * qty });
+            total += 20 * qty;
+            delivery = 'Within 48h';
+          } else {
+            delivery = qty > 3 ? '4-6 Days' : '2-3 Days';
+          }
+
+          if (motion) {
+            invoiceRows.push({ name: 'Motion Graphics / VFX overlay', price: 15 * qty });
+            total += 15 * qty;
+          }
+        }
+
+        // Ticking Price Animation
+        animateValue(elements.invoiceTotal, parseInt(elements.invoiceTotal.textContent) || 0, total, 350);
+        elements.estDelivery.textContent = delivery;
+
+        // Render Invoice items
+        elements.invoiceItems.innerHTML = '';
+        if (invoiceRows.length === 0) {
+          elements.invoiceItems.innerHTML = '<div class="invoice-empty">Invoice empty</div>';
+        } else {
+          invoiceRows.forEach(row => {
+            const div = document.createElement('div');
+            div.className = 'invoice-row';
+            div.innerHTML = `<span>${row.name}</span><span>$${row.price}</span>`;
+            elements.invoiceItems.appendChild(div);
+          });
+        }
+
+        // Build Order Copy Text
+        let summaryItems = invoiceRows.map(r => `• ${r.name}: $${r.price} USD`).join('\n');
+        orderSummaryText = `👋 NEW INQUIRY CODE GENERATED
+───────────────────────────────
+💼 Requested Service: ${currentService.toUpperCase()}
+📋 Configurations:
+${summaryItems}
+───────────────────────────────
+💰 Estimated Price: $${total} USD
+⏰ Delivery Estimate: ${delivery}
+───────────────────────────────
+🔑 Unique Order Key: KBJS-${Math.floor(1000 + Math.random() * 9000)}`;
+      }
+
+      // Smooth Number Ticker
+      function animateValue(obj, start, end, duration) {
+        if (start === end) return;
+        let startTimestamp = null;
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          obj.innerHTML = Math.floor(progress * (end - start) + start);
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            obj.innerHTML = end;
+          }
+        };
+        window.requestAnimationFrame(step);
+      }
+
+      // Handle checkout submission
+      elements.leadForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const nameVal = document.getElementById('form-name').value;
+        const emailVal = document.getElementById('form-email').value;
+        const discordVal = document.getElementById('form-discord').value;
+        const notesVal = document.getElementById('form-notes').value;
+
+        // Append lead details to copy summary
+        const fullSummary = `${orderSummaryText}
+👤 Client Name: ${nameVal}
+📧 Email Address: ${emailVal}
+👾 Discord Handle: ${discordVal}
+📝 Project Details:
+"${notesVal}"`;
+
+        elements.modalSummary.textContent = fullSummary;
+        
+        // Webhook notification payload
+        const webhookURL = ""; // Empty string, safe fallback. Users can change this in style guide.
+        const payload = {
+          username: "KBJS Lead Sentinel",
+          avatar_url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80",
+          embeds: [{
+            title: "🚀 New Project Configurator lead",
+            color: 0x5b4fff,
+            timestamp: new Date().toISOString(),
+            fields: [
+              { name: "👤 Customer Name", value: nameVal, inline: true },
+              { name: "📧 Email", value: emailVal, inline: true },
+              { name: "🤖 Discord Handle", value: discordVal || "Not Provided", inline: true },
+              { name: "🎯 Chosen Field", value: currentService.toUpperCase(), inline: true },
+              { name: "💰 Total Estimate", value: `$${elements.invoiceTotal.textContent} USD`, inline: true },
+              { name: "⏰ Est. Delivery", value: elements.estDelivery.textContent, inline: true },
+              { name: "📝 Instructions", value: notesVal || "No instructions provided" }
+            ],
+            footer: {
+              text: "KBJS Studios Portal Systems",
+              icon_url: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=150&q=80"
+            }
+          }]
+        };
+
+        // If webhook URL exists in console/settings, post it
+        if (webhookURL) {
+          fetch(webhookURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          })
+          .then(() => showToast('Order logged and sent to Discord Webhook!', 'success'))
+          .catch(() => showToast('Failed to reach Discord Webhook (Offline).', 'error'));
+        } else {
+          // Fallback console log for safety
+          console.log("SIMULATED DISCORD WEBHOOK LOG:", payload);
+        }
+
+        // Trigger interactive confetti and show modal
+        window.triggerConfetti();
+        elements.successModal.classList.add('active');
+        showToast('Lead transmitted successfully!', 'success');
+
+        // Save order logic in localStorage for user order history tracking
+        const pastOrders = JSON.parse(localStorage.getItem('kbjs_orders') || '[]');
+        pastOrders.push({
+          date: new Date().toLocaleDateString(),
+          service: currentService,
+          price: elements.invoiceTotal.textContent,
+          status: 'Pending review'
+        });
+        localStorage.setItem('kbjs_orders', JSON.stringify(pastOrders));
+      });
+
+      // Handle summary copy button click
+      elements.modalCopyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(elements.modalSummary.textContent)
+          .then(() => {
+            showToast('Order code copied to clipboard!', 'success');
+            elements.modalCopyBtn.textContent = 'Copied! ✓';
+            setTimeout(() => { elements.modalCopyBtn.textContent = 'Copy Code'; }, 2000);
+          })
+          .catch(() => showToast('Failed to copy code. Please select manually.', 'error'));
+      });
+
+      // Close success modal on overlay click
+      elements.successModal.addEventListener('click', (e) => {
+        if (e.target === elements.successModal) {
+          elements.successModal.classList.remove('active');
+          elements.leadForm.reset();
+          updateInvoice();
+        }
+      });
+
+      // Initial execution
+      updateInvoice();
+    })();
+  </script>
+
+</body>
+</html>
