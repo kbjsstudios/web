@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="dcGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5865f2"/>
+      <stop offset="100%" stop-color="#4752c4"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="50" fill="url(#dcGrad)"/>
+  <path d="M140 58c-12-5.4-24-8.4-37-9.4l-1.6 3.2c-16 0-32 6-32 6s-14 6.4-20 19.2c-6.4 12.8-8 28.8-8 28.8s4.8 20.8 17.6 30.4c4.2 3.2 9 5.6 14.4 7.2l3.2-4c-6-2-11.6-5-16.8-9" fill="white" opacity="0.05"/>
+  <path d="M90 98a8 8 0 100-16 8 8 0 000 16zm20 0a8 8 0 100-16 8 8 0 000 16z" fill="white" opacity="0.3"/>
+  <ellipse cx="100" cy="100" rx="30" ry="28" fill="white" opacity="0.1"/>
+  <path d="M78 108c4 6 12 10 22 10s18-4 22-10" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M130 62c-12-5-24-8-37-9" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <text x="100" y="180" text-anchor="middle" fill="white" font-family="'Segoe UI',Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="3" opacity="0.6">DISCORD</text>
+</svg>

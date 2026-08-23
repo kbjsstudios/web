@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="jsGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+    <linearGradient id="jsBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a0f0f"/>
+      <stop offset="100%" stop-color="#0d0707"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="50" fill="url(#jsBg)" stroke="url(#jsGrad)" stroke-width="3"/>
+  <path d="M130 50l-8 8m-44 84l-8-8m8-76l-6 10m42 76l6-10" stroke="url(#jsGrad)" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+  <text x="100" y="80" text-anchor="middle" fill="url(#jsGrad)" font-family="'Segoe UI',Arial,sans-serif" font-size="32" font-weight="900" letter-spacing="2">JS</text>
+  <text x="100" y="116" text-anchor="middle" fill="white" font-family="'Segoe UI',Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="3">JUST SLAYER</text>
+  <text x="100" y="140" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="'Segoe UI',Arial,sans-serif" font-size="11" font-weight="400" letter-spacing="2">CREATIVE</text>
+  <path d="M60 160h80" stroke="url(#jsGrad)" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+</svg>
