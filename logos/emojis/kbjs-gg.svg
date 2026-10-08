@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="ggbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2a2417"/><stop offset="100%" stop-color="#191d2b"/>
+    </linearGradient>
+    <linearGradient id="gggold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5d78e"/><stop offset="100%" stop-color="#cfa968"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#ggbg)"/>
+  <rect x="4" y="4" width="120" height="120" rx="25" fill="none" stroke="url(#gggold)" stroke-width="3" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.2s" repeatCount="indefinite"/>
+  </rect>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="2.4s" repeatCount="indefinite"/>
+    <text x="64" y="86" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="56" fill="url(#gggold)">GG</text>
+  </g>
+</svg>

@@ -1,0 +1,68 @@
+{
+ "resource_packs": [
+  {
+   "name": "PVP zegarn+Anime sky",
+   "desc": "Minimalistic PvP pack with dark UI, custom sky, clean HUD & crosshair, small fire, and refined visuals.",
+   "ver": "1.3.5 \u00b7 1.21.11+",
+   "link": "https://cdn.modrinth.com/data/8kTnLnGL/versions/zLPP8iyU/%C2%A77%C2%A7lPVP-zegarn%20%281.21.9-1.26%29.zip",
+   "img": "https://cdn.modrinth.com/data/8kTnLnGL/cc671ceac1c638be50556afd3faa74ad516cb116_96.webp"
+  },
+  {
+   "name": "SMP PvP Essentials",
+   "desc": "Low fire, low shield, small items, non-obstructive particles, and red knockback 1 sword.",
+   "ver": "1.2 \u00b7 1.19.4+",
+   "link": "https://cdn.modrinth.com/data/fmp1TQop/versions/rLysjIRr/%21%20%20%C2%A78SMP%20Essentials.zip",
+   "img": "https://cdn.modrinth.com/data/fmp1TQop/68be7248574b50a07acdc19493e33ccd23572b92_96.webp"
+  },
+  {
+   "name": "Smooth SMP pack",
+   "desc": "Lightweight pack that removes/simplifies particle effects for a cleaner, vanilla-friendly experience.",
+   "ver": "1.21-1.21.11 \u00b7 1.19+",
+   "link": "https://cdn.modrinth.com/data/5DkfFqi0/versions/G9S3Ray0/%21%20%20%20%20%20%20%20%20%C2%A7f%C2%A7lSMOOTH%20SMP%20PACK%20%21%21.zip",
+   "img": "https://cdn.modrinth.com/data/5DkfFqi0/64d47312cf760775cf4855f029fe9d3f6ec602de_96.webp"
+  },
+  {
+   "name": "AZURYX 16x PvP Pack",
+   "desc": "Clean and competitive 16x PvP pack with smooth animations, sharp combat particles, and simplified blocks.",
+   "ver": "1.21.9 \u00b7 1.21+",
+   "link": "https://cdn.modrinth.com/data/nwRvUms3/versions/VjOgBKQV/%21%20AZURYX%20PvP%20%5BNeon%2016x%5D%201.21.9%2B.zip",
+   "img": "https://cdn.modrinth.com/data/nwRvUms3/c6e7004c508d224675c5bc6593ba844127531f23_96.webp"
+  },
+  {
+   "name": "Blue16x",
+   "desc": "Clean blue-themed PvP pack with short swords, smooth textures, and FPS-optimized performance.",
+   "ver": "v2.2.1 \u00b7 1.21+",
+   "link": "https://cdn.modrinth.com/data/QXt7jN7l/versions/omxvOiwM/Blue%2016x.zip",
+   "img": "https://cdn.modrinth.com/data/QXt7jN7l/ce1ff553dea01f51ef0a071d73582f14fb114e64_96.webp"
+  },
+  {
+   "name": "Low On Fire",
+   "desc": "Low fire on your screen! Vanilla Friendly - covers only a small fraction when on fire.",
+   "ver": "1.5 x 1.8+",
+   "link": "https://cdn.modrinth.com/data/RRxvWKNC/versions/vWFpZjNP/LowOnFire%20v1.21.11%C2%A78.zip",
+   "img": "https://cdn.modrinth.com/data/RRxvWKNC/06a7e7691a6da41798c255108a8563d7ffea171d.png"
+  },
+  {
+   "name": "Bare Bones",
+   "desc": "Minecraft with the style of the trailers x a simplistic and vibrant pack.",
+   "ver": "1.4.12 x 1.21+",
+   "link": "https://cdn.modrinth.com/data/rox3U8B6/versions/jQBWn2Q3/Bare%20Bones%201.21.11.zip",
+   "img": "https://cdn.modrinth.com/data/rox3U8B6/b502bd8b2a6048f635230da8e8a66eeb4383874b_96.webp"
+  },
+  {
+   "name": "Low Shield",
+   "desc": "Lower your shield for a visible view! Reduces shield height in first-person.",
+   "ver": "3.1.0 x 1.20+",
+   "link": "https://cdn.modrinth.com/data/CZrLuVQo/versions/4LeYKTYX/Low%20Shield.zip",
+   "img": "https://cdn.modrinth.com/data/CZrLuVQo/4ae626dba10d5bcc73f9a7b0a50c22e572075b6b.png"
+  },
+  {
+   "name": "Prime&#39;s HD Textures FREE (32x)",
+   "desc": "Minecraft&#39;s vanilla textures faithfully re-imagined in full HD with complete PBR support.",
+   "ver": "53.1 - 1.21+",
+   "link": "https://cdn.modrinth.com/data/PTSGmxET/versions/IRegxm9S/Prime%27s%20HD%20Textures%20%2832x%29.zip",
+   "img": "https://cdn.modrinth.com/data/PTSGmxET/d21d4782cf1582750602eb47905429acccb65fab_96.webp"
+  }
+ ],
+ "plugins": []
+}

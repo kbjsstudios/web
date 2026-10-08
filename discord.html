@@ -1,1 +1,215 @@
-﻿﻿<!DOCTYPE html><html lang="en"><head>  <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>Discord Servers — KBJS Studios</title>  <meta name="description" content="Custom Discord server development — setup, bots, moderation, community management."><meta property="og:title" content="Discord Servers — KBJS Studios"><meta property="og:description" content="Custom Discord server development — setup, bots, moderation, community management."><meta property="og:type" content="website"><meta property="og:url" content="https://kbjsstudios.qzz.io/discord.html"><meta property="og:image" content="https://kbjsstudios.qzz.io/logos/kbjslogo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Discord Servers — KBJS Studios"><meta name="twitter:description" content="Custom Discord server development — setup, bots, moderation, community management."><meta name="twitter:image" content="https://kbjsstudios.qzz.io/logos/kbjslogo.png">  <link rel="stylesheet" href="style.css"><script>try{var k=localStorage.getItem('kbjs_theme');if(k==='light'||(!k&&window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)){document.documentElement.className+=' theme-light';}}catch(e){}</script>  <link rel="preconnect" href="https://fonts.googleapis.com">  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link rel="icon" type="image/png" href="logos/kbjslogo.png">  <script type="application/ld+json">  {    "@context": "https://schema.org",    "@type": "Organization",    "name": "KBJS Studios",    "url": "https://kbjsstudios.com",    "logo": "https://kbjsstudios.com/logos/kbjslogo.png",    "description": "Creative digital agency offering custom thumbnails, Discord server setup, Minecraft server development, and video editing.",    "contactPoint": {      "@type": "ContactPoint",      "contactType": "customer service",      "email": "kbjsstudios@gmail.com"    },    "sameAs": [      "https://youtube.com/@knockbackkk",      "https://youtube.com/@justslayer0",      "https://discord.gg/2QPMk6jvpV"    ]  }  </script>  <script src="firebase-config.js"></script></head><body>  <canvas id="particle-canvas"></canvas>  <header id="site-header">    <div class="nav-container">      <a href="index.html" class="logo">        <img src="logos/kbjslogo.png" class="logo-icon" alt="KBJS Studios">        KBJS Studios      </a>      <ul class="nav-links" id="nav-links">        <li><a href="thumbnails.html">Thumbnails</a></li>        <li><a href="discord.html" class="active">Discord</a></li>        <li><a href="minecraft.html">Minecraft</a></li>        <li><a href="video.html">Video</a></li>        <li><a href="about.html">About</a></li>        <li><a href="contact.html">Contact</a></li>        <li>          <button class="theme-toggle-btn" aria-label="Toggle theme">            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/><path d="M19 3v4"/><path d="M21 5h-4"/></svg>          </button>        </li>        <li><button class="more-toggle-btn" id="more-sidebar-toggle" aria-label="More links">MORE</button></li>      </ul>      <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle mobile menu">        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M8 18h12"/></svg>      </button>    </div>  </header>  <section class="page-hero">    <div class="page-hero-content">      <div class="section-subtitle">Service</div>      <h1 class="page-hero-title">Discord <span class="gradient-text">Servers</span></h1>      <p class="page-hero-desc">Custom Discord server development — from brand-new setups to full community overhauls. We handle everything.</p>    </div>  </section>  <section class="section-wrapper">    <div class="section-header">      <div class="section-subtitle">What We Offer</div>      <h2 class="section-title">Server <span class="gradient-text">Features</span></h2>    </div>    <div class="services-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">      <div class="service-card">        <div class="service-icon" style="color:var(--primary);"><img loading="lazy" decoding="async" src="logos/icons/tv.svg" alt="" style="width:36px;height:36px;"></div>        <h3 class="service-title">YT Notifier</h3>        <p class="service-desc">Auto-posts YouTube uploads to your server the moment a video goes live.</p>      </div>      <div class="service-card">        <div class="service-icon" style="color:var(--accent);"><img loading="lazy" decoding="async" src="logos/icons/ticket.svg" alt="" style="width:36px;height:36px;"></div>        <h3 class="service-title">Ticket Tool</h3>        <p class="service-desc">Private support tickets with custom categories, transcripts, and staff assignments.</p>      </div>      <div class="service-card">        <div class="service-icon" style="color:var(--primary);"><img loading="lazy" decoding="async" src="logos/icons/music.svg" alt="" style="width:36px;height:36px;"></div>        <h3 class="service-title">Music Bot</h3>        <p class="service-desc">High-quality music playback from YouTube, Spotify, and more with queue controls.</p>      </div>      <div class="service-card">        <div class="service-icon" style="color:var(--secondary);"><img loading="lazy" decoding="async" src="logos/icons/owl.svg" alt="" style="width:36px;height:36px;"></div>        <h3 class="service-title">OwO Bot</h3>        <p class="service-desc">Fun economy, battle, hunting, and levelling commands to boost engagement.</p>      </div>      <div class="service-card">        <div class="service-icon" style="color:var(--accent);"><img loading="lazy" decoding="async" src="logos/icons/label.svg" alt="" style="width:36px;height:36px;"></div>        <h3 class="service-title">Custom Roles</h3>        <p class="service-desc">Personalised role sets with custom colours, hierarchies, and permission presets.</p>      </div>      <div class="service-card">        <div class="service-icon" style="color:var(--primary);"><img loading="lazy" decoding="async" src="logos/icons/folder.svg" alt="" style="width:36px;height:36px;"></div>        <h3 class="service-title">Channel Management</h3>        <p class="service-desc">Structured channel layouts — text, voice, stage, forum, and announcement channels.</p>      </div>      <div class="service-card">        <div class="service-icon" style="color:var(--secondary);"><img loading="lazy" decoding="async" src="logos/icons/folder-open.svg" alt="" style="width:36px;height:36px;"></div>        <h3 class="service-title">Category Management</h3>        <p class="service-desc">Organised category grouping with permission syncing and clean separation.</p>      </div>      <div class="service-card">        <div class="service-icon" style="color:var(--accent);"><img loading="lazy" decoding="async" src="logos/icons/wave.svg" alt="" style="width:36px;height:36px;"></div>        <h3 class="service-title">Welcomer Bot</h3>        <p class="service-desc">Custom join/leave messages, auto-roles, and onboarding for new members.</p>      </div>      <div class="service-card">        <div class="service-icon" style="color:var(--primary);"><img loading="lazy" decoding="async" src="logos/icons/lock.svg" alt="" style="width:36px;height:36px;"></div>        <h3 class="service-title">Permission Management</h3>        <p class="service-desc">Fine-grained permission setups for roles, channels, and servers.</p>      </div>      <div class="service-card">        <div class="service-icon" style="color:var(--secondary);"><img loading="lazy" decoding="async" src="logos/icons/shield.svg" alt="" style="width:36px;height:36px;"></div>        <h3 class="service-title">Custom Discord Server</h3>        <p class="service-desc">Complete bespoke server builds — branding, bots, layout, and automation included.</p>      </div>    </div>  </section>  <section class="section-wrapper" style="padding-top:0;">    <div class="cta-section">      <h2 class="section-title" style="margin-bottom:16px;">Ready to Build Your <span class="gradient-text">Community</span>?</h2>      <p style="color:var(--text-muted); margin-bottom:32px; max-width:480px; margin-left:auto; margin-right:auto;">Whether you're starting fresh or revamping, we'll build a Discord server your members will love.</p>      <a href="contact.html" class="glow-btn glow-btn-primary">Get in Touch</a>    </div>  </section>  <footer>    <div class="footer-grid">      <div class="footer-col">        <a href="index.html" class="logo"><img src="logos/kbjslogo.png" class="logo-icon" alt="KBJS Studios" style="width:20px;height:20px;vertical-align:middle;"> KBJS Studios</a>        <p>Creative digital solutions for the modern creator economy.</p>        <div class="social-links">          <a href="https://youtube.com/@knockbackkk" class="social-icon-btn" aria-label="Knockbackkk YouTube"><img loading="lazy" decoding="async" src="logos/knockbackkk.png" alt="Knockbackkk"></a>          <a href="https://discord.gg/2QPMk6jvpV" class="social-icon-btn" aria-label="Discord"><img loading="lazy" decoding="async" src="logos/discordlogo.png" alt="Discord"></a>          <a href="https://youtube.com/@justslayer0" class="social-icon-btn" aria-label="JustSlayer YouTube"><img loading="lazy" decoding="async" src="logos/justslayer.png" alt="JustSlayer"></a>        </div>      </div>      <div class="footer-col">        <h4>Services</h4>        <ul class="footer-links">          <li><a href="thumbnails.html">Thumbnails</a></li>          <li><a href="discord.html">Discord Servers</a></li>          <li><a href="minecraft.html">Minecraft Servers</a></li>          <li><a href="video.html">Video Editing</a></li>        </ul>      </div>      <div class="footer-col">        <h4>Links</h4>        <ul class="footer-links">          <li><a href="about.html">About Us</a></li>          <li><a href="contact.html">Contact</a></li>          <li><a href="yt-stuff.html">YT Stuff</a></li>          <li><a href="resource-packs.html">Resource Packs</a></li>          <li><a href="free-assets.html">Free Assets</a></li>          <li><a href="minecraft-plugins.html">Minecraft Plugins</a></li>          <li><a href="privacy.html">Privacy Policy</a></li>          <li><a href="terms.html">Terms of Service</a></li>        </ul>      </div>      <div class="footer-col">        <h4>Contact</h4>        <ul class="footer-links">          <li><a href="contact.html">Get in Touch</a></li>          <li><a href="https://discord.gg/2QPMk6jvpV">Discord Server</a></li>          <li><a href="https://youtube.com/@knockbackkk">YouTube Channel</a></li>        </ul>      </div>    </div>    <div class="footer-bottom">      <span>&copy; 2026 KBJS Studios. All rights reserved.</span>      <span>KBJS Studios operates as a registered creative agency.</span>    </div>  </footer>  <!-- ===== MORE SIDEBAR ===== -->  <div class="more-sidebar-overlay" id="more-sidebar-overlay"></div>  <aside class="more-sidebar" id="more-sidebar">    <div class="more-sidebar-header">      <h3>MORE</h3>      <button class="more-sidebar-close" id="more-sidebar-close" aria-label="Close sidebar">        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>      </button>    </div>    <div class="more-sidebar-body">      <div class="more-sidebar-section">        <h4 class="more-sidebar-section-title">Downloads</h4>        <p class="more-sidebar-desc">Resource packs, assets, and tools.</p>        <div class="more-sidebar-links">          <a href="resource-packs.html" class="more-sidebar-link">Resource Packs</a>          <a href="free-assets.html" class="more-sidebar-link">Free Assets</a>          <a href="minecraft-plugins.html" class="more-sidebar-link">Minecraft Plugins</a>        </div>      </div>      <div class="more-sidebar-section">        <h4 class="more-sidebar-section-title">Mini Games</h4>        <p class="more-sidebar-desc">Fun browser games to play.</p>        <div class="more-sidebar-links">          <a href="mini-games.html" class="more-sidebar-link">Mini Games</a>          <a href="aim-trainer.html" class="more-sidebar-link">Aim Trainer</a>          <a href="target-rush.html" class="more-sidebar-link">Target Rush</a>          <a href="reaction-shot.html" class="more-sidebar-link">Reaction Shot</a>          <a href="precision-range.html" class="more-sidebar-link">Precision Range</a>          <a href="tracking-trial.html" class="more-sidebar-link">Tracking Trial</a>        </div>      </div>      <div class="more-sidebar-section">        <h4 class="more-sidebar-section-title">Quick Links</h4>        <div class="more-sidebar-links">          <a href="contact.html" class="more-sidebar-link">Contact Us</a>          <a href="about.html" class="more-sidebar-link">About KBJS</a>          <a href="privacy.html" class="more-sidebar-link">Privacy Policy</a>          <a href="terms.html" class="more-sidebar-link">Terms of Service</a>        </div>      </div>    </div>  </aside>  <div class="toast-container" id="toast-container"></div>  <script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discord Server Setup &amp; Community Development | KBJS</title>
+<meta name="description" content="Discord server creation, community design, bot setup and infrastructure by KBJS Studios — roles, channels, tickets, music and custom emoji packs.">
+<link rel="canonical" href="https://kbjsstudios.qzz.io/discord.html">
+<meta name="theme-color" content="#070912" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f8fc" media="(prefers-color-scheme: light)">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="dark light">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KBJS Studios">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Discord Server Setup &amp; Community Development | KBJS">
+<meta property="og:description" content="Discord server creation, community design, bot setup and infrastructure by KBJS Studios — roles, channels, tickets, music and custom emoji packs.">
+<meta property="og:url" content="https://kbjsstudios.qzz.io/discord.html">
+<meta property="og:image" content="https://kbjsstudios.qzz.io/logos/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KBJS Studios — Minecraft servers, Discord communities, thumbnails and Shorts">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image:alt" content="KBJS Studios — Minecraft servers, Discord communities, thumbnails and Shorts">
+<meta name="twitter:title" content="Discord Server Setup &amp; Community Development | KBJS">
+<meta name="twitter:description" content="Discord server creation, community design, bot setup and infrastructure by KBJS Studios — roles, channels, tickets, music and custom emoji packs.">
+<meta name="twitter:image" content="https://kbjsstudios.qzz.io/logos/og-image.jpg">
+<link rel="icon" type="image/png" href="logos/kbjslogo.png">
+<link rel="apple-touch-icon" href="logos/kbjslogo.png">
+<link rel="preload" href="fonts/Inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="logos/webp/kbjslogo.webp" as="image" type="image/webp">
+<link rel="stylesheet" href="style.css">
+<script>try{var k=localStorage.getItem('kbjs_theme');if(k==='light'||(!k&&matchMedia('(prefers-color-scheme: light)').matches))document.documentElement.classList.add('theme-light');}catch(e){}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "@id": "https://kbjsstudios.qzz.io/#organization", "name": "KBJS Studios", "url": "https://kbjsstudios.qzz.io/", "logo": {"@type": "ImageObject", "url": "https://kbjsstudios.qzz.io/logos/kbjslogo.png", "width": 1254, "height": 1254}, "description": "Creative digital studio building gaming thumbnails, Minecraft servers, Discord communities and video editing for creators.", "email": "kbjsstudios@gmail.com", "founder": [{"@type": "Person", "name": "Knockbackkk", "url": "https://youtube.com/@knockbackkk"}, {"@type": "Person", "name": "JustSlayer", "url": "https://youtube.com/@justslayer0"}], "sameAs": ["https://youtube.com/@knockbackkk", "https://youtube.com/@justslayer0", "https://discord.gg/2QPMk6jvpV"], "knowsAbout": ["Minecraft server development", "Custom Minecraft plugins", "Discord server setup", "YouTube thumbnail design", "Short-form video editing"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "@id": "https://kbjsstudios.qzz.io/#website", "name": "KBJS Studios", "url": "https://kbjsstudios.qzz.io/", "publisher": {"@id": "https://kbjsstudios.qzz.io/#organization"}, "inLanguage": "en-US"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kbjsstudios.qzz.io/"}, {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://kbjsstudios.qzz.io/index.html#services"}, {"@type": "ListItem", "position": 3, "name": "Discord Servers", "item": "https://kbjsstudios.qzz.io/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Discord Server Setup", "description": "Custom Discord server development including bots, moderation, roles and community management.", "url": "https://kbjsstudios.qzz.io/discord.html", "provider": {"@id": "https://kbjsstudios.qzz.io/#organization"}, "areaServed": "Worldwide", "serviceType": "Discord Server Setup"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do you set up bots and moderation?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Music, ticket, welcomer, YouTube notifier and moderation bots, with permissions tuned to your server rather than left at defaults."}}, {"@type": "Question", "name": "Can you revamp my existing server?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Full overhauls of layout, roles and automation, keeping your members, messages and history intact."}}, {"@type": "Question", "name": "Do you build custom emoji packs?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Community builds ship with a bespoke animated emoji set in your colours. You can see the KBJS pack on this page."}}, {"@type": "Question", "name": "How do I start?", "acceptedAnswer": {"@type": "Answer", "text": "Send us your community size, what it is for, and anything you already have set up via the contact page or Discord."}}]}</script>
+</head>
+<body class="dark-theme" data-galaxy="pending">
+<a class="skip-link" href="#main">Skip to content</a>
+<canvas id="galaxy-canvas" aria-hidden="true"></canvas>
+<div class="galaxy-vignette" aria-hidden="true"></div>
+
+<header class="site-header">
+<div class="nav-shell" data-scrolled="false">
+  <nav class="navbar" aria-label="Primary">
+    <a class="nav-logo" href="index.html">
+      <picture><source srcset="logos/webp/kbjslogo.webp" type="image/webp">
+      <img width="34" height="34" loading="eager" fetchpriority="high" decoding="async" src="logos/kbjslogo.png" alt="" aria-hidden="true"></picture>
+      <span>KBJS Studios</span>
+    </a>
+    <ul class="nav-links"><li><a class="nav-link" href="index.html">Home</a></li>
+<li><a class="nav-link" href="thumbnails.html">Thumbnails</a></li>
+<li><a class="nav-link" href="discord.html">Discord</a></li>
+<li><a class="nav-link" href="minecraft.html">Minecraft</a></li>
+<li><a class="nav-link" href="video.html">Video</a></li>
+<li><a class="nav-link" href="about.html">About</a></li></ul>
+    <div class="nav-actions">
+      <button class="icon-btn theme-toggle-btn" type="button" aria-label="Toggle colour theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+      <a class="btn btn-primary" href="contact.html">Get Started</a>
+      <button class="icon-btn mobile-toggle" id="mobile-toggle" type="button"
+              aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+    </div>
+  </nav>
+</div>
+
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+  <ul class="nav-drawer-list"><li><a href="index.html">Home</a></li>
+<li><a href="thumbnails.html">Thumbnails</a></li>
+<li><a href="discord.html" aria-current="page">Discord</a></li>
+<li><a href="minecraft.html">Minecraft</a></li>
+<li><a href="video.html">Video</a></li>
+<li><a href="about.html">About</a></li></ul>
+  <a class="btn btn-primary" href="contact.html">Get Started</a>
+</div>
+</header>
+
+<main id="main">
+<nav aria-label="Breadcrumb" class="breadcrumbs"><ol><li><a href="index.html">Home</a></li><li aria-hidden="true">&rsaquo;</li><li><a href="index.html#services">Services</a></li><li aria-hidden="true">&rsaquo;</li><li aria-current="page">Discord Servers</li></ol></nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-content">
+      <p class="section-subtitle">Service</p>
+      <h1 class="page-hero-title">Discord <span class="gradient-text">Servers</span></h1>
+      <p class="page-hero-desc">Discord server creation, community design, bot setup and infrastructure for creators and gaming communities.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section"><div class="container">
+  <div class="section-head"><p class="section-subtitle">What we offer</p>
+  <h2 class="section-title" data-ghost="Server features" style="--ghost-size:10.34vw">Server <span class="gradient-text">features</span></h2></div>
+  <div class="grid grid-3"><article class="service-card">
+<div class="service-icon"><img width="30" height="30" loading="lazy" decoding="async" src="logos/emojis/kbjs-live.svg" alt="" aria-hidden="true"></div>
+<h3 class="service-title">YT Notifier</h3><p class="service-desc">Auto-posts YouTube uploads to your server the moment a video goes live.</p></article><article class="service-card">
+<div class="service-icon"><img width="30" height="30" loading="lazy" decoding="async" src="logos/emojis/kbjs-ticket.svg" alt="" aria-hidden="true"></div>
+<h3 class="service-title">Ticket Tool</h3><p class="service-desc">Private support tickets with custom categories, transcripts, and staff assignments.</p></article><article class="service-card">
+<div class="service-icon"><img width="30" height="30" loading="lazy" decoding="async" src="logos/emojis/kbjs-music.svg" alt="" aria-hidden="true"></div>
+<h3 class="service-title">Music Bot</h3><p class="service-desc">High-quality music playback from YouTube, Spotify, and more with queue controls.</p></article><article class="service-card">
+<div class="service-icon"><img width="30" height="30" loading="lazy" decoding="async" src="logos/emojis/kbjs-hype.svg" alt="" aria-hidden="true"></div>
+<h3 class="service-title">OwO Bot</h3><p class="service-desc">Fun economy, battle, hunting, and levelling commands to boost engagement.</p></article><article class="service-card">
+<div class="service-icon"><img width="30" height="30" loading="lazy" decoding="async" src="logos/emojis/kbjs-w.svg" alt="" aria-hidden="true"></div>
+<h3 class="service-title">Custom Roles</h3><p class="service-desc">Personalised role sets with custom colours, hierarchies, and permission presets.</p></article><article class="service-card">
+<div class="service-icon"><img width="30" height="30" loading="lazy" decoding="async" src="logos/emojis/kbjs-grind.svg" alt="" aria-hidden="true"></div>
+<h3 class="service-title">Channel Management</h3><p class="service-desc">Structured channel layouts — text, voice, stage, forum, and announcement channels.</p></article><article class="service-card">
+<div class="service-icon"><img width="30" height="30" loading="lazy" decoding="async" src="logos/emojis/kbjs-clip.svg" alt="" aria-hidden="true"></div>
+<h3 class="service-title">Category Management</h3><p class="service-desc">Organised category grouping with permission syncing and clean separation.</p></article><article class="service-card">
+<div class="service-icon"><img width="30" height="30" loading="lazy" decoding="async" src="logos/emojis/kbjs-welcome.svg" alt="" aria-hidden="true"></div>
+<h3 class="service-title">Welcomer Bot</h3><p class="service-desc">Custom join/leave messages, auto-roles, and onboarding for new members.</p></article><article class="service-card">
+<div class="service-icon"><img width="30" height="30" loading="lazy" decoding="async" src="logos/emojis/kbjs-mod.svg" alt="" aria-hidden="true"></div>
+<h3 class="service-title">Permission Management</h3><p class="service-desc">Fine-grained permission setups for roles, channels, and servers.</p></article><article class="service-card">
+<div class="service-icon"><img width="30" height="30" loading="lazy" decoding="async" src="logos/emojis/kbjs-gg.svg" alt="" aria-hidden="true"></div>
+<h3 class="service-title">Custom Discord Server</h3><p class="service-desc">Complete bespoke server builds — branding, bots, layout, and automation included.</p></article></div>
+</div></section>
+<section class="section" id="emojis"><div class="container">
+  <div class="section-head center"><p class="section-subtitle">Custom emojis</p>
+  <h2 class="section-title" data-ghost="An emoji pack that matches your server" style="--ghost-size:4.08vw">An emoji pack that <span class="gradient-text">matches your server</span></h2>
+  <p class="lead">Every community build ships with a bespoke emoji set. Below is the KBJS pack —
+  click any emoji to copy its name, then upload the files under Server Settings &rarr; Emoji.</p></div>
+  <div class="emoji-grid"><button type="button" class="emoji-card" data-emoji=":kbjs_gg:" aria-label="Copy :kbjs_gg: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-gg.svg" alt="KBJS Studios custom GG — celebrate a win emoji"><span class="emoji-code">:kbjs_gg:</span><span class="emoji-label">GG — celebrate a win</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_w:" aria-label="Copy :kbjs_w: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-w.svg" alt="KBJS Studios custom W — take the dub emoji"><span class="emoji-code">:kbjs_w:</span><span class="emoji-label">W — take the dub</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_l:" aria-label="Copy :kbjs_l: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-l.svg" alt="KBJS Studios custom L — playful roast emoji"><span class="emoji-code">:kbjs_l:</span><span class="emoji-label">L — playful roast</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_ez:" aria-label="Copy :kbjs_ez: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-ez.svg" alt="KBJS Studios custom EZ — easy clutch emoji"><span class="emoji-code">:kbjs_ez:</span><span class="emoji-label">EZ — easy clutch</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_hype:" aria-label="Copy :kbjs_hype: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-hype.svg" alt="KBJS Studios custom HYPE — start the party emoji"><span class="emoji-code">:kbjs_hype:</span><span class="emoji-label">HYPE — start the party</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_live:" aria-label="Copy :kbjs_live: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-live.svg" alt="KBJS Studios custom LIVE — stream is on emoji"><span class="emoji-code">:kbjs_live:</span><span class="emoji-label">LIVE — stream is on</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_welcome:" aria-label="Copy :kbjs_welcome: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-welcome.svg" alt="KBJS Studios custom Welcome new members emoji"><span class="emoji-code">:kbjs_welcome:</span><span class="emoji-label">Welcome new members</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_ticket:" aria-label="Copy :kbjs_ticket: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-ticket.svg" alt="KBJS Studios custom Support tickets emoji"><span class="emoji-code">:kbjs_ticket:</span><span class="emoji-label">Support tickets</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_music:" aria-label="Copy :kbjs_music: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-music.svg" alt="KBJS Studios custom Music queue emoji"><span class="emoji-code">:kbjs_music:</span><span class="emoji-label">Music queue</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_mod:" aria-label="Copy :kbjs_mod: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-mod.svg" alt="KBJS Studios custom Mod approved emoji"><span class="emoji-code">:kbjs_mod:</span><span class="emoji-label">Mod approved</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_clip:" aria-label="Copy :kbjs_clip: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-clip.svg" alt="KBJS Studios custom Clip it emoji"><span class="emoji-code">:kbjs_clip:</span><span class="emoji-label">Clip it</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_grind:" aria-label="Copy :kbjs_grind: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-grind.svg" alt="KBJS Studios custom Grind mode emoji"><span class="emoji-code">:kbjs_grind:</span><span class="emoji-label">Grind mode</span></button></div>
+  <p class="seo-intro" style="margin-top:var(--sp-6)"><span id="emoji-copy-hint">
+  Want one in your own colours or theme? <a href="contact.html">Ask about custom Discord emojis</a> when you order a build.</span></p>
+</div></section>
+<section class="section"><div class="container">
+  <div class="section-head center"><p class="section-subtitle">Process</p>
+  <h2 class="section-title" data-ghost="Our workflow" style="--ghost-size:11.5vw">Our <span class="gradient-text">workflow</span></h2></div>
+  <div class="grid grid-3">
+    <div class="workflow-step"><span class="step-num">01</span><h3>Plan</h3>
+      <p>Tell us what the community is for — gaming, a YouTube audience, or a creator hub — and we map roles, channels and bots.</p></div>
+    <div class="workflow-step"><span class="step-num">02</span><h3>Build</h3>
+      <p>Categories, permissions, welcomers, tickets, notifiers and music configured and tested. Pair with a
+      <a href="minecraft.html">Minecraft server</a> for a complete gaming hub.</p></div>
+    <div class="workflow-step"><span class="step-num">03</span><h3>Support</h3>
+      <p>Mod onboarding, documentation and handover. Ongoing community management available.</p></div>
+  </div>
+</div></section>
+
+<section class="section section-tight" id="faq">
+  <div class="container">
+    <div class="section-head center">
+      <p class="section-subtitle">FAQ</p>
+      <h2 class="section-title">Discord FAQs</h2>
+    </div>
+    <div class="faq-list"><div class="faq-item"><h3 class="faq-question"><span>Do you set up bots and moderation?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></h3><div class="faq-answer"><p>Yes. Music, ticket, welcomer, YouTube notifier and moderation bots, with permissions tuned to your server rather than left at defaults.</p></div></div><div class="faq-item"><h3 class="faq-question"><span>Can you revamp my existing server?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></h3><div class="faq-answer"><p>Yes. Full overhauls of layout, roles and automation, keeping your members, messages and history intact.</p></div></div><div class="faq-item"><h3 class="faq-question"><span>Do you build custom emoji packs?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></h3><div class="faq-answer"><p>Yes. Community builds ship with a bespoke animated emoji set in your colours. You can see the KBJS pack on this page.</p></div></div><div class="faq-item"><h3 class="faq-question"><span>How do I start?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></h3><div class="faq-answer"><p>Send us your community size, what it is for, and anything you already have set up via the <a href="contact.html">contact page</a> or Discord.</p></div></div></div>
+  </div>
+</section>
+
+
+<section class="section section-tight">
+  <div class="container">
+    <div class="cta-section">
+      <h2 class="section-title">Ready to build your community?</h2>
+      <p>Whether you are starting fresh or revamping, we will build a Discord server your members want to stay in.</p>
+      <div class="hero-cta" style="justify-content:center;margin-bottom:0">
+        <a class="btn btn-primary" href="contact.html">Start a project</a>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+
+<div class="more-sidebar-overlay" id="more-sidebar-overlay"></div>
+<aside class="more-sidebar" id="more-sidebar" aria-hidden="true" aria-label="More links">
+  <div class="more-sidebar-header">
+    <p class="more-sidebar-header-title">More</p>
+    <button class="more-sidebar-close" id="more-sidebar-close" type="button" aria-label="Close menu">&times;</button>
+  </div>
+  <div class="more-sidebar-body"><div class="more-sidebar-section"><p class="more-sidebar-section-title">Downloads</p><p class="more-sidebar-desc">Resource packs, assets, and tools.</p><div class="more-sidebar-links"><a href="resource-packs.html" class="more-sidebar-link">Resource Packs</a><a href="free-assets.html" class="more-sidebar-link">Free Assets</a><a href="minecraft-plugins.html" class="more-sidebar-link">Minecraft Plugins</a></div></div>
+<div class="more-sidebar-section"><p class="more-sidebar-section-title">Mini Games</p><p class="more-sidebar-desc">Free browser games, no download.</p><div class="more-sidebar-links"><a href="mini-games.html" class="more-sidebar-link">Mini Games</a><a href="aim-trainer.html" class="more-sidebar-link">Aim Trainer</a><a href="target-rush.html" class="more-sidebar-link">Target Rush</a><a href="reaction-shot.html" class="more-sidebar-link">Reaction Shot</a><a href="precision-range.html" class="more-sidebar-link">Precision Range</a><a href="tracking-trial.html" class="more-sidebar-link">Tracking Trial</a></div></div>
+<div class="more-sidebar-section"><p class="more-sidebar-section-title">More</p><p class="more-sidebar-desc">Company and legal.</p><div class="more-sidebar-links"><a href="yt-stuff.html" class="more-sidebar-link">YT Stuff</a><a href="about.html" class="more-sidebar-link">About KBJS</a><a href="contact.html" class="more-sidebar-link">Contact Us</a><a href="privacy.html" class="more-sidebar-link">Privacy Policy</a><a href="terms.html" class="more-sidebar-link">Terms of Service</a></div></div></div>
+</aside>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col footer-brand">
+      <a class="nav-logo" href="index.html">
+        <picture><source srcset="logos/webp/kbjslogo.webp" type="image/webp">
+        <img width="34" height="34" loading="lazy" decoding="async" src="logos/kbjslogo.png" alt="" aria-hidden="true"></picture>
+        <span>KBJS Studios</span>
+      </a>
+      <p>Creative digital studio building Minecraft servers, Discord communities, gaming thumbnails and video for creators.</p>
+      <ul class="social-links">
+        <li><a class="social-icon-btn" href="https://youtube.com/@knockbackkk" rel="noopener" target="_blank" aria-label="KBJS Studios on YouTube">
+          <picture><source srcset="logos/webp/knockbackkk.webp" type="image/webp">
+          <img width="20" height="20" loading="lazy" decoding="async" src="logos/knockbackkk.png" alt="" aria-hidden="true"></picture></a></li>
+        <li><a class="social-icon-btn" href="https://discord.gg/2QPMk6jvpV" rel="noopener" target="_blank" aria-label="KBJS Studios on Discord">
+          <picture><source srcset="logos/webp/discordlogo.webp" type="image/webp">
+          <img width="20" height="20" loading="lazy" decoding="async" src="logos/discordlogo.png" alt="" aria-hidden="true"></picture></a></li>
+        <li><a class="social-icon-btn" href="https://youtube.com/@justslayer0" rel="noopener" target="_blank" aria-label="JustSlayer on YouTube">
+          <picture><source srcset="logos/webp/justslayer.webp" type="image/webp">
+          <img width="20" height="20" loading="lazy" decoding="async" src="logos/justslayer.png" alt="" aria-hidden="true"></picture></a></li>
+      </ul>
+    </div>
+<div class="footer-col"><h2 class="footer-heading">Services</h2><ul class="footer-links"><li><a href="thumbnails.html">Gaming Thumbnails</a></li><li><a href="discord.html">Discord Servers</a></li><li><a href="minecraft.html">Minecraft Servers</a></li><li><a href="video.html">Video Editing</a></li></ul></div>
+<div class="footer-col"><h2 class="footer-heading">Resources</h2><ul class="footer-links"><li><a href="yt-stuff.html">YT Stuff</a></li><li><a href="resource-packs.html">Resource Packs</a></li><li><a href="free-assets.html">Free Assets</a></li><li><a href="minecraft-plugins.html">Minecraft Plugins</a></li><li><a href="mini-games.html">Mini Games</a></li></ul></div>
+<div class="footer-col"><h2 class="footer-heading">Company</h2><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li><li><a href="yt-stuff.html">YouTube</a></li><li><a href="discord.html">Discord</a></li></ul></div>
+<div class="footer-col"><h2 class="footer-heading">Legal</h2><ul class="footer-links"><li><a href="privacy.html">Privacy Policy</a></li><li><a href="terms.html">Terms of Service</a></li><li><a href="contact.html">Get in Touch</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 KBJS Studios. All rights reserved.</span>
+    <span>Independent creative studio &middot; <a href="mailto:kbjsstudios@gmail.com">kbjsstudios@gmail.com</a></span>
+  </div>
+</footer>
+<div class="toast-container" id="toast-container"></div>
+
+<script src="firebase-config.js" defer></script>
+<script type="module" src="galaxy/index.js"></script>
+<script src="app.js" defer></script>
+</body>
+</html>

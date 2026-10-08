@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="ezbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#211f4d"/><stop offset="100%" stop-color="#191d2b"/>
+    </linearGradient>
+    <linearGradient id="ezpur" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c7c2ff"/><stop offset="100%" stop-color="#635bff"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#ezbg)"/>
+  <rect x="4" y="4" width="120" height="120" rx="25" fill="none" stroke="url(#ezpur)" stroke-width="3" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="1.9s" repeatCount="indefinite"/>
+  </rect>
+  <g opacity="1">
+    <animate attributeName="opacity" values="1;0.75;1" dur="1.9s" repeatCount="indefinite"/>
+    <text x="64" y="84" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="48" fill="url(#ezpur)">EZ</text>
+  </g>
+</svg>

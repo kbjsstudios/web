@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="mubg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#211f4d"/><stop offset="100%" stop-color="#191d2b"/>
+    </linearGradient>
+    <linearGradient id="munote" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d6d1ff"/><stop offset="100%" stop-color="#635bff"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#mubg)"/>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -4;0 0" dur="1.8s" repeatCount="indefinite"/>
+    <path d="M78 34v44" fill="none" stroke="url(#munote)" stroke-width="6" stroke-linecap="round"/>
+    <ellipse cx="68" cy="80" rx="14" ry="11" fill="none" stroke="url(#munote)" stroke-width="6"/>
+    <path d="M78 40l22-6" fill="none" stroke="url(#munote)" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

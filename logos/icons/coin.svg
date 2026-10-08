@@ -1,6 +1,6 @@
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <rect width="100" height="100" rx="20" fill="#1a1a2e"/>
-  <circle cx="50" cy="50" r="32" fill="none" stroke="white" stroke-width="2"/>
-  <circle cx="50" cy="50" r="28" fill="none" stroke="white" stroke-width="1.5" stroke-dasharray="4 3"/>
-  <text x="50" y="58" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="34" font-weight="bold">$</text>
-</svg>
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="kbjsa" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fde68a"/><stop offset="100%" stop-color="#cfa968"/></linearGradient></defs>
+  <rect width="100" height="100" rx="20" fill="#1a1a2e"><animate attributeName="opacity" values="1;0.82;1" dur="2.2s" repeatCount="indefinite"/></rect><g><animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="2.2s" repeatCount="indefinite"/>
+  <circle cx="50" cy="50" r="32" fill="none" stroke="url(#kbjsa)" stroke-width="2"/>
+  <circle cx="50" cy="50" r="28" fill="none" stroke="url(#kbjsa)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="50" y="58" text-anchor="middle" fill="url(#kbjsa)" font-family="Arial,sans-serif" font-size="34" font-weight="bold">$</text>
+</g></svg>

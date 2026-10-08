@@ -1,0 +1,31 @@
+# Editor / OS cruft
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Internal documents — not part of the deployed site.
+# SEO audit report is disallowed in robots.txt and is a working doc.
+KBJS_Studios_SEO_Audit_Report.pdf
+*.pdf
+
+# Build / tooling output
+node_modules/
+.cache/
+*.log
+npm-debug.log*
+
+# NOTE: two files below look like config but MUST be committed —
+# they are loaded by the browser at runtime, so they are public by
+# definition and git cannot make them any less so.
+#
+#   firebase-config.js  Firebase web config. Firebase web API keys are
+#                       designed to be client-visible; access is controlled
+#                       by Realtime Database rules, not by hiding the key.
+#
+#   ! firebase-config.js is NOT ignored — see the security notes in README.md
+#                       before adding a Discord webhook URL to it. A webhook
+#                       pasted there is readable by anyone and can be used to
+#                       spam your Discord channel.
