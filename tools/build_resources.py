@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 import sys, json, pathlib
-sys.path.insert(0, "/tmp/opencode/gen")
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from common import *   # noqa
 import build_home as H   # reuse page_hero/crumbs_nav/faq_block/cta_block
 
-DATA = json.loads(pathlib.Path("/tmp/opencode/gen/data.json").read_text())
+DATA = json.loads((pathlib.Path(__file__).resolve().parent / "data.json").read_text())
 
 # ═══════════════ FREE ASSETS ═══════════════
 FA_FAQ = [
@@ -75,9 +75,16 @@ for p in DATA["resource_packs"]:
     if img:
         webp = img.replace("_96.webp", "_160.webp").replace("_96.png", "_160.png")
     src = f'<img width="96" height="96" loading="lazy" decoding="async" src="{img}" alt="{p["name"]} Minecraft resource pack icon">' if img else ""
-    rp_cards += f"""<article class="download-card" data-cats="community">
+    tags = p.get("tags") or []
+    tags_html = ""
+    if tags:
+        chips = "".join(f'<span class="pack-tag">{t}</span>' for t in tags)
+        tags_html = f'<div class="pack-tags">{chips}</div>'
+    cats = "community" + "".join(" " + t.lower() for t in tags)
+    rp_cards += f"""<article class="download-card" data-cats="{cats}">
 {src}
 <h3>{p['name']}</h3><p class="card-desc">{p['desc']}</p>
+{tags_html}
 <span class="card-version">{p['ver']}</span>
 <a class="btn btn-secondary" href="{p['link']}" rel="noopener" target="_blank" download>Download</a>
 </article>"""
@@ -90,6 +97,7 @@ rp = f"""{H.crumbs_nav([("Home","index.html"),("Resources",None),("Resource Pack
   <div class="filter-bar" role="tablist" aria-label="Filter packs" data-target=".download-card">
     <button class="category-tab active" type="button" data-filter="all" aria-selected="true">All</button>
     <button class="category-tab" type="button" data-filter="community" aria-selected="false">Community picks</button>
+    <button class="category-tab" type="button" data-filter="knockback" aria-selected="false">Knockback</button>
   </div>
   <div class="downloads-grid">{rp_cards}</div>
 </div></section>

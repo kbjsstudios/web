@@ -16,6 +16,8 @@ node_modules/
 .cache/
 *.log
 npm-debug.log*
+__pycache__/
+*.pyc
 
 # NOTE: two files below look like config but MUST be committed —
 # they are loaded by the browser at runtime, so they are public by

@@ -2,7 +2,7 @@
 import pathlib
 BASE = pathlib.Path("/home/adityakhase/Downloads/web-main") if False else pathlib.Path("/home/adityakhawase/Downloads/web-main")
 SITE = "https://kbjsstudios.qzz.io"
-TODAY = "2026-10-08"
+TODAY = "2026-10-11"
 
 PAGES = [
     ("/", 1.0, "weekly"),

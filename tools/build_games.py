@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 import sys, json, pathlib
-sys.path.insert(0, "/tmp/opencode/gen")
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from common import *   # noqa
 import build_home as H
 
-GAMES = json.loads(pathlib.Path("/tmp/opencode/gen/games.json").read_text())
+GAMES = json.loads((pathlib.Path(__file__).resolve().parent / "games.json").read_text())
 
 def gi_modal(title, desc, controls):
     return f"""<div class="gi-btn" id="gi-btn" role="button" tabindex="0" aria-label="How to play">?</div>
