@@ -159,10 +159,10 @@ def head(title, desc, url, schemas, og_type="website", og_image=None):
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{SITE}/{url}">
-<meta name="theme-color" content="#070912" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f6f8fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#F6F8FC">
+<meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="light dark">
 <meta property="og:type" content="{og_type}">
 <meta property="og:site_name" content="KBJS Studios">
 <meta property="og:locale" content="en_US">
@@ -180,30 +180,64 @@ def head(title, desc, url, schemas, og_type="website", og_image=None):
 <meta name="twitter:image" content="{img}">
 <link rel="icon" type="image/png" href="logos/kbjslogo.png">
 <link rel="apple-touch-icon" href="logos/kbjslogo.png">
-<link rel="preload" href="fonts/Inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preload" href="logos/webp/kbjslogo.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="style.css">
-<script>try{{var k=localStorage.getItem('kbjs_theme');if(k==='light'||(!k&&matchMedia('(prefers-color-scheme: light)').matches))document.documentElement.classList.add('theme-light');}}catch(e){{}}</script>
+<link rel="stylesheet" href="styles.css">
 {s}
 </head>
 """
 
-ICON_SUN = '<svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>'
-ICON_MOON = '<svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>'
 ICON_MENU = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>'
-ICON_DOWNLOAD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11"/><path d="m7 10 5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>'
+ICON_CHEV = '<span class="mega-chev" aria-hidden="true">&#9662;</span>'
+
+RESOURCES = [
+    ("Downloads", "Resource packs, assets, and tools.",
+     [("resource-packs.html", "Resource Packs"), ("free-assets.html", "Free Assets"),
+      ("minecraft-plugins.html", "Minecraft Plugins")]),
+    ("Mini Games", "Mini Games, Aim Trainer, Target Rush, Reaction Shot, Precision Range, Tracking Trial.",
+     [("mini-games.html", "Mini Games"), ("aim-trainer.html", "Aim Trainer"),
+      ("target-rush.html", "Target Rush"), ("reaction-shot.html", "Reaction Shot"),
+      ("precision-range.html", "Precision Range"), ("tracking-trial.html", "Tracking Trial")]),
+    ("Company", "YT Stuff, About KBJS, Contact Us, Privacy Policy, Terms of Service.",
+     [("yt-stuff.html", "YT Stuff"), ("about.html", "About KBJS"),
+      ("contact.html", "Contact Us"), ("privacy.html", "Privacy Policy"),
+      ("terms.html", "Terms of Service")]),
+]
+
+def mega_menu():
+    groups = "\n".join(
+        f'<div class="mega-group"><p class="mega-group-title">{title}</p>'
+        f'<p class="mega-group-desc">{desc}</p><div class="mega-group-links">'
+        + "".join(f'<a href="{h}" class="mega-link">{t}</a>' for h, t in links)
+        + '</div></div>'
+        for title, desc, links in RESOURCES)
+    return f"""
+<div class="mega-wrap">
+  <button class="mega-btn" id="mega-btn" type="button"
+          aria-expanded="false" aria-controls="mega-panel" aria-haspopup="true">More{ICON_CHEV}</button>
+  <div class="mega-panel" id="mega-panel" role="menu" aria-label="More pages">{groups}</div>
+</div>
+"""
+
+def drawer_groups():
+    return "\n".join(
+        f'<div class="mega-group"><p class="mega-group-title">{title}</p><div class="mega-group-links">'
+        + "".join(f'<a href="{h}" class="mega-link">{t}</a>' for h, t in links)
+        + '</div></div>'
+        for title, _desc, links in RESOURCES)
 
 def nav(active):
     links = "\n".join(
         f'<li><a class="nav-link" href="{h}">{t}</a></li>'
         for h, t in NAV)
+    links += f'\n<li class="mega-wrap">{mega_menu()}</li>'
     drawer = "\n".join(
         f'<li><a href="{h}"{" aria-current=\"page\"" if h == active else ""}>{t}</a></li>'
         for h, t in NAV)
     return f"""
 <a class="skip-link" href="#main">Skip to content</a>
-<canvas id="galaxy-canvas" aria-hidden="true"></canvas>
-<div class="galaxy-vignette" aria-hidden="true"></div>
 
 <header class="site-header">
 <div class="nav-shell" data-scrolled="false">
@@ -215,10 +249,6 @@ def nav(active):
     </a>
     <ul class="nav-links">{links}</ul>
     <div class="nav-actions">
-      <button class="icon-btn theme-toggle-btn" type="button" aria-label="Toggle colour theme" title="Toggle theme">{ICON_SUN}{ICON_MOON}</button>
-      <button class="icon-btn" id="more-sidebar-toggle" type="button"
-              aria-label="Downloads and more" title="Downloads &amp; more"
-              aria-expanded="false" aria-controls="more-sidebar">{ICON_DOWNLOAD}</button>
       <a class="btn btn-primary" href="contact.html">Get Started</a>
       <button class="icon-btn mobile-toggle" id="mobile-toggle" type="button"
               aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer">{ICON_MENU}</button>
@@ -227,44 +257,12 @@ def nav(active):
 </div>
 
 <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+  <button class="nav-drawer-close" id="nav-drawer-close" type="button" aria-label="Close menu">&times;</button>
   <ul class="nav-drawer-list">{drawer}</ul>
+  <div class="nav-drawer-groups">{drawer_groups()}</div>
   <a class="btn btn-primary" href="contact.html">Get Started</a>
 </div>
 </header>
-"""
-
-RESOURCES = [
-    ("Downloads", "Resource packs, assets, and tools.",
-     [("resource-packs.html", "Resource Packs"), ("free-assets.html", "Free Assets"),
-      ("minecraft-plugins.html", "Minecraft Plugins")]),
-    ("Mini Games", "Free browser games, no download.",
-     [("mini-games.html", "Mini Games"), ("aim-trainer.html", "Aim Trainer"),
-      ("target-rush.html", "Target Rush"), ("reaction-shot.html", "Reaction Shot"),
-      ("precision-range.html", "Precision Range"), ("tracking-trial.html", "Tracking Trial")]),
-    ("More", "Company and legal.",
-     [("yt-stuff.html", "YT Stuff"), ("about.html", "About KBJS"),
-      ("contact.html", "Contact Us"), ("privacy.html", "Privacy Policy"),
-      ("terms.html", "Terms of Service")]),
-]
-
-def resources_drawer():
-    # Section labels are UI chrome for a hidden nav widget, not document
-    # structure — using <p> keeps the page's heading outline clean.
-    secs = "\n".join(
-        f'<div class="more-sidebar-section"><p class="more-sidebar-section-title">{title}</p>'
-        f'<p class="more-sidebar-desc">{desc}</p><div class="more-sidebar-links">'
-        + "".join(f'<a href="{h}" class="more-sidebar-link">{t}</a>' for h, t in links)
-        + '</div></div>'
-        for title, desc, links in RESOURCES)
-    return f"""
-<div class="more-sidebar-overlay" id="more-sidebar-overlay"></div>
-<aside class="more-sidebar" id="more-sidebar" aria-hidden="true" aria-label="More links">
-  <div class="more-sidebar-header">
-    <p class="more-sidebar-header-title">More</p>
-    <button class="more-sidebar-close" id="more-sidebar-close" type="button" aria-label="Close menu">&times;</button>
-  </div>
-  <div class="more-sidebar-body">{secs}</div>
-</aside>
 """
 
 def footer():
@@ -316,37 +314,22 @@ def footer():
 <div class="toast-container" id="toast-container"></div>
 """
 
-# Pages dense with paragraphs, FAQ text or legal copy cap the galaxy
-# at the medium tier. Detection may only ever go lower than this.
-DENSE_PAGES = {"privacy.html", "terms.html", "contact.html", "about.html",
-               "free-assets.html", "resource-packs.html", "minecraft-plugins.html",
-               "yt-stuff.html", "mini-games.html", "404.html"}
-
-
 def page(fname, title, desc, body, schemas, active=None, extra_class=""):
     content = head(title, desc, fname, [ORG, WEBSITE] + schemas)
-    ceiling = ' data-galaxy-max="medium"' if fname in DENSE_PAGES else ""
-    content += (f'<body class="dark-theme{(" " + extra_class) if extra_class else ""}"'
-                f'{ceiling} data-galaxy="pending">')
+    content += (f'<body{(" class=\"" + extra_class + "\"") if extra_class else ""}>')
     content += nav(active or fname)
 
     content += f'\n<main id="main">\n{body}\n</main>\n'
-    content += resources_drawer()
     content += footer()
 
-    # Section headings were emitted bare, so they fell through to the global
-    # h2 rule instead of picking up .section-title — the class the stylesheet
-    # actually targets, and the hook ghost text hangs off. Footer headings
-    # already carry .footer-heading, so a bare <h2> is either a section title
-    # or the CTA band; the CTA stays unclassed on purpose because it sits
-    # inside a bordered card where an oversized ghost would overflow.
+    # Bare <h2> elements are section titles everywhere except the CTA
+    # band, which keeps its own sizing inside the gradient panel.
     content = content.replace('<h2>', '<h2 class="section-title">')
     content = content.replace('<div class="cta-section"><h2 class="section-title">',
                               '<div class="cta-section"><h2>')
     content += f"""
 <script src="firebase-config.js" defer></script>
-<script type="module" src="galaxy/index.js"></script>
-<script src="app.js" defer></script>
+<script src="script.js" defer></script>
 </body>
 </html>
 """

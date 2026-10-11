@@ -22,31 +22,9 @@
     }
   }
 
-  /* ---------- 01 THEME ---------- */
-  // Applied by an inline head script to avoid a flash; reasserted here so
-  // the <body> classes the stylesheet keys off always exist.
-  guard('theme', function () {
-    var saved = null;
-    try { saved = localStorage.getItem('kbjs_theme'); } catch (e) {}
-    var prefersLight = win.matchMedia &&
-      win.matchMedia('(prefers-color-scheme: light)').matches;
-    var light = saved === 'light' || (!saved && prefersLight);
-
-    doc.body.classList.toggle('light-theme', light);
-    doc.body.classList.toggle('dark-theme', !light);
-    doc.documentElement.classList.toggle('theme-light', light);
-
-    $$('.theme-toggle-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var next = !doc.body.classList.contains('light-theme');
-        doc.body.classList.toggle('light-theme', next);
-        doc.body.classList.toggle('dark-theme', !next);
-        doc.documentElement.classList.toggle('theme-light', next);
-        try { localStorage.setItem('kbjs_theme', next ? 'light' : 'dark'); } catch (e) {}
-        showToast(next ? 'Light mode' : 'Dark mode');
-      });
-    });
-  });
+  /* ---------- 01 THEME ----------
+     Light by default; dark follows the OS via the
+     prefers-color-scheme media query in styles.css — no script needed. */
 
   /* ---------- 02 TOAST ---------- */
   var showToast = function (message, type) {
@@ -121,6 +99,8 @@
     toggle.addEventListener('click', function () {
       setOpen(!drawer.classList.contains('open'));
     });
+    var closer = $('#nav-drawer-close', drawer);
+    if (closer) closer.addEventListener('click', function () { setOpen(false); });
     $$('a', drawer).forEach(function (a) {
       a.addEventListener('click', function () { setOpen(false); });
     });
@@ -130,31 +110,35 @@
     TEARDOWN.push(function () { doc.body.style.overflow = ''; });
   });
 
-  /* ---------- 05 RESOURCES DRAWER (legacy "MORE") ---------- */
-  guard('resources', function () {
-    var toggle = $('#more-sidebar-toggle');
-    var sidebar = $('#more-sidebar');
-    var overlay = $('#more-sidebar-overlay');
-    var closeBtn = $('#more-sidebar-close');
-    if (!toggle || !sidebar || !overlay) return;
+  /* ---------- 05 MEGA MENU ----------
+     Desktop "More" dropdown. Keyboard-operable: Enter/Space toggles,
+     Escape closes and returns focus, click-outside closes. */
+  guard('megamenu', function () {
+    var btn = $('#mega-btn');
+    var panel = $('#mega-panel');
+    if (!btn || !panel) return;
 
     var setOpen = function (open) {
-      sidebar.classList.toggle('open', open);
-      overlay.classList.toggle('open', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      sidebar.setAttribute('aria-hidden', open ? 'false' : 'true');
-      doc.body.style.overflow = open ? 'hidden' : '';
-      if (open && closeBtn) closeBtn.focus();
+      panel.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) {
+        var first = panel.querySelector('a');
+        if (first) first.focus();
+      }
     };
 
-    toggle.addEventListener('click', function (e) {
+    btn.addEventListener('click', function (e) {
       e.stopPropagation();
-      setOpen(!sidebar.classList.contains('open'));
+      setOpen(!panel.classList.contains('open'));
     });
-    if (closeBtn) closeBtn.addEventListener('click', function () { setOpen(false); });
-    overlay.addEventListener('click', function () { setOpen(false); });
+    doc.addEventListener('click', function (e) {
+      if (panel.classList.contains('open') && !panel.contains(e.target)) setOpen(false);
+    });
     doc.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Escape' && panel.classList.contains('open')) {
+        setOpen(false);
+        btn.focus();
+      }
     });
   });
 
@@ -317,118 +301,6 @@
     });
   });
 
-  /* ---------- 10 STATS + LIKES ---------- */
-  guard('stats', function () {
-    var cfg = win.FIREBASE_CONFIG;
-    var useFirebase = cfg && cfg.databaseURL;
-    var KEY = 'kbjs_stats', LIKED = 'kbjs_liked', VIEWED = 'kbjs_viewed';
-
-    var state = { views: 0, likes: 0, liked: false };
-    try { state.liked = localStorage.getItem(LIKED) === 'true'; } catch (e) {}
-
-    var widget = doc.createElement('div');
-    widget.className = 'stats-widget';
-
-    var dot = doc.createElement('span');
-    dot.className = 'stats-dot';
-    widget.appendChild(dot);
-
-    var views = doc.createElement('span');
-    views.className = 'stat-item';
-    views.textContent = '—';
-    widget.appendChild(views);
-
-    var sep = doc.createElement('span');
-    sep.className = 'stat-sep';
-    sep.textContent = '·';
-    widget.appendChild(sep);
-
-    var likeBtn = doc.createElement('button');
-    likeBtn.type = 'button';
-    likeBtn.className = 'like-btn-stats' + (state.liked ? ' liked' : '');
-    likeBtn.setAttribute('aria-label', 'Like this site');
-    var heart = doc.createElement('span');
-    heart.className = 'heart-icon';
-    var likes = doc.createElement('span');
-    likes.className = 'stat-count';
-    likes.textContent = '—';
-    likeBtn.appendChild(heart);
-    likeBtn.appendChild(likes);
-    widget.appendChild(likeBtn);
-
-    // Screen-reader friendly, avoids shipping two inline SVGs
-    var HEART = { on: 'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z',
-                 off: 'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5 2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z' };
-    var paint = function (on) {
-      heart.textContent = on ? '♥' : '♡';
-      heart.style.color = on ? 'var(--rose)' : '';
-    };
-    paint(state.liked);
-    doc.body.appendChild(widget);
-
-    var write = function () {
-      views.textContent = state.views.toLocaleString();
-      likes.textContent = state.likes.toLocaleString();
-      likeBtn.classList.toggle('liked', state.liked);
-      paint(state.liked);
-    };
-
-    var bump = function (ref, key) {
-      if (state.liked && key === 'likes') return;
-      if (key === 'likes') { state.liked = true; try { localStorage.setItem(LIKED, 'true'); } catch (e) {} }
-      ref.child(key).transaction(function (cur) { return (cur || 0) + 1; });
-      write();
-    };
-
-    if (useFirebase) {
-      // Load SDKs without blocking first paint
-      ['firebase-app.js', 'firebase-database.js'].forEach(function (f) {
-        var s = doc.createElement('script');
-        s.src = 'https://www.gstatic.com/firebasejs/8.10.1/' + f;
-        s.async = false;
-        doc.head.appendChild(s);
-      });
-      var last = doc.getElementsByTagName('script')[0];
-      var onReady = function () {
-        if (!win.firebase) { setTimeout(onReady, 120); return; }
-        if (!firebase.apps.length) firebase.initializeApp(cfg);
-        var ref = firebase.database().ref('stats');
-        ref.on('value', function (snap) {
-          var d = snap.val() || {};
-          state.views = d.views || 0;
-          state.likes = d.likes || 0;
-          write();
-        });
-        if (!sessionStorage.getItem(VIEWED)) {
-          sessionStorage.setItem(VIEWED, '1');
-          bump(ref, 'views');
-        }
-        likeBtn.addEventListener('click', function () { bump(ref, 'likes'); });
-      };
-      onReady();
-    } else {
-      var stored = { views: 0, likes: 0 };
-      try { stored = JSON.parse(localStorage.getItem(KEY)) || stored; } catch (e) {}
-      state.views = stored.views || 0;
-      state.likes = stored.likes || 0;
-      write();
-      if (!sessionStorage.getItem(VIEWED)) {
-        sessionStorage.setItem(VIEWED, '1');
-        state.views++;
-        try { localStorage.setItem(KEY, JSON.stringify({ views: state.views, likes: state.likes })); } catch (e) {}
-        write();
-      }
-      likeBtn.addEventListener('click', function () {
-        if (state.liked) return;
-        state.liked = true;
-        try { localStorage.setItem(LIKED, 'true'); } catch (e) {}
-        state.likes++;
-        try { localStorage.setItem(KEY, JSON.stringify({ views: state.views, likes: state.likes })); } catch (e) {}
-        write();
-      });
-    }
-  });
-
   /* ---------- 11 CONTACT FORM ---------- */
   guard('contact', function () {
     var form = $('#contact-form');
@@ -462,18 +334,24 @@
         form.reset();
         return;
       }
+      var LOGO = 'https://kbjsstudios.qzz.io/logos/kbjslogo.png';
+      var tid = 'T-' + payload.date.slice(2, 10).replace(/-/g, '') + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
       fetch(hook, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          username: 'KBJS Studios \u2014 Contact Form',
+          username: 'KBJS Studios \u2014 Tickets',
           embeds: [{
-            title: 'New Inquiry', color: 0xd8b478,
+            title: 'New Ticket \u2014 ' + tid,
+            description: 'A visitor submitted the Get Started form on kbjsstudios.qzz.io.',
+            color: 0x6C5CE7,
+            thumbnail: { url: LOGO },
             fields: [
               { name: 'Name', value: nv, inline: true },
               { name: 'Email', value: ev, inline: true },
               { name: 'Message', value: mv.slice(0, 1024) || '\u2014' }
             ],
+            footer: { text: 'KBJS Studios \u00b7 Delete ticket: right-click \u2192 Delete Message', icon_url: LOGO },
             timestamp: payload.date
           }]
         })
@@ -813,7 +691,169 @@
     setTimeout(step, 600);
   });
 
-  /* ---------- 19 GAME LEADERBOARD ---------- */
+  /* ---------- 19 HERO CUBES ----------
+     Lightweight 2D field of small drifting gradient cubes behind the
+     homepage headline — a nod to Minecraft blocks. Mouse position
+     applies a gentle parallax. Pauses off-screen, on tab hide, and
+     entirely under prefers-reduced-motion. No dependencies. */
+  guard('herocubes', function () {
+    var canvas = $('#hero-canvas');
+    if (!canvas) return;
+    if (win.matchMedia && win.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    var hero = canvas.closest('.hero') || doc.body;
+
+    var W = 0, H = 0, raf = 0, running = false;
+    var mx = 0.5, my = 0.5;
+    var COLORS = ['46,124,246', '124,92,255', '244,92,166', '16,180,200'];
+    var cubes = [];
+    var N = 34;
+
+    var resize = function () {
+      var r = hero.getBoundingClientRect();
+      var dpr = Math.min(win.devicePixelRatio || 1, 2);
+      W = Math.max(1, Math.round(r.width));
+      H = Math.max(1, Math.round(r.height));
+      canvas.width = Math.round(W * dpr);
+      canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    var spawn = function (i) {
+      return {
+        x: Math.random() * W, y: Math.random() * H,
+        s: 5 + Math.random() * 13,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.18,
+        c: COLORS[i % COLORS.length],
+        a: 0.25 + Math.random() * 0.4,
+        depth: 0.4 + Math.random() * 0.6,
+        rot: Math.random() * Math.PI,
+        vr: (Math.random() - 0.5) * 0.004,
+      };
+    };
+
+    var frame = function () {
+      if (!running) return;
+      ctx.clearRect(0, 0, W, H);
+      var px = (mx - 0.5) * 26, py = (my - 0.5) * 20;
+      for (var i = 0; i < cubes.length; i++) {
+        var c = cubes[i];
+        c.x += c.vx; c.y += c.vy; c.rot += c.vr;
+        if (c.x < -24) c.x = W + 24; if (c.x > W + 24) c.x = -24;
+        if (c.y < -24) c.y = H + 24; if (c.y > H + 24) c.y = -24;
+        var x = c.x + px * c.depth, y = c.y + py * c.depth;
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(c.rot);
+        ctx.globalAlpha = c.a;
+        var g = ctx.createLinearGradient(-c.s / 2, -c.s / 2, c.s / 2, c.s / 2);
+        g.addColorStop(0, 'rgba(' + c.c + ',0.85)');
+        g.addColorStop(1, 'rgba(' + c.c + ',0.25)');
+        ctx.fillStyle = g;
+        var r = Math.min(3, c.s * 0.28);
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(-c.s / 2, -c.s / 2, c.s, c.s, r);
+        else ctx.rect(-c.s / 2, -c.s / 2, c.s, c.s);
+        ctx.fill();
+        ctx.restore();
+      }
+      raf = win.requestAnimationFrame(frame);
+    };
+
+    var start = function () {
+      if (running) return;
+      running = true;
+      raf = win.requestAnimationFrame(frame);
+    };
+    var stop = function () {
+      running = false;
+      if (raf) win.cancelAnimationFrame(raf);
+      raf = 0;
+    };
+
+    resize();
+    for (var i = 0; i < N; i++) cubes.push(spawn(i));
+
+    hero.addEventListener('mousemove', function (e) {
+      var r = hero.getBoundingClientRect();
+      mx = (e.clientX - r.left) / Math.max(1, r.width);
+      my = (e.clientY - r.top) / Math.max(1, r.height);
+    }, { passive: true });
+
+    if ('IntersectionObserver' in win) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { resize(); start(); }
+        else stop();
+      }, { threshold: 0 });
+      io.observe(hero);
+      TEARDOWN.push(function () { io.disconnect(); });
+    } else {
+      start();
+    }
+    win.addEventListener('resize', resize);
+    doc.addEventListener('visibilitychange', function () {
+      if (doc.hidden) stop();
+    });
+    TEARDOWN.push(function () { stop(); win.removeEventListener('resize', resize); });
+  });
+
+  /* ---------- 19B LIVE SWEEPER ----------
+     LIVE cards are baked at build time (see tools/update_videos.py).
+     If the stream's VOD was later deleted or made private, its
+     thumbnail 404s — in that case the stale card is removed instead
+     of linking nowhere. An <img> probe is used because image loads
+     ignore CORS, where fetch() cannot go. Skipped offline so a dead
+     connection can never wipe the board. */
+  guard('livecheck', function () {
+    if (!('onLine' in navigator) || !navigator.onLine) return;
+    var cards = $$('[data-live-id]');
+    if (!cards.length) return;
+    cards.forEach(function (card) {
+      var id = card.getAttribute('data-live-id');
+      var probe = new Image();
+      probe.onerror = function () {
+        if (card.parentNode) card.parentNode.removeChild(card);
+      };
+      probe.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg';
+    });
+  });
+
+  /* ---------- 20 TABS SHOWCASE ----------
+     Services tabs. Buttons are natively keyboard-operable; arrow keys
+     move between tabs Antigravity-style. */
+  guard('tabs', function () {
+    $$('.tabs').forEach(function (root) {
+      var btns = $$('.tab-btn', root);
+      var panels = $$('.tab-panel', root);
+      if (!btns.length || !panels.length) return;
+
+      var select = function (btn, focus) {
+        btns.forEach(function (b) { b.setAttribute('aria-selected', 'false'); });
+        panels.forEach(function (p) { p.classList.remove('open'); });
+        btn.setAttribute('aria-selected', 'true');
+        var panel = doc.getElementById(btn.getAttribute('aria-controls'));
+        if (panel) panel.classList.add('open');
+        if (focus) btn.focus();
+      };
+
+      btns.forEach(function (btn, i) {
+        btn.addEventListener('click', function () { select(btn, false); });
+        btn.addEventListener('keydown', function (e) {
+          var j = -1;
+          if (e.key === 'ArrowRight') j = (i + 1) % btns.length;
+          else if (e.key === 'ArrowLeft') j = (i - 1 + btns.length) % btns.length;
+          else if (e.key === 'Home') j = 0;
+          else if (e.key === 'End') j = btns.length - 1;
+          if (j >= 0) { e.preventDefault(); select(btns[j], true); }
+        });
+      });
+    });
+  });
+
+  /* ---------- 21 GAME LEADERBOARD ---------- */
   guard('leaderboard', function () {
     var GAME = doc.body.getAttribute('data-game');
     if (!GAME) return;
@@ -967,7 +1007,7 @@
     TEARDOWN.push(function () { doc.body.style.overflow = ''; });
   });
 
-  /* ---------- 20 DISCORD EMOJI COPY ---------- */
+  /* ---------- 22 DISCORD EMOJI COPY ---------- */
   guard('emojis', function () {
     var grid = $('.emoji-grid');
     if (!grid) return;
@@ -996,28 +1036,13 @@
     });
   });
 
-  /* ---------- 21 SPACE BACKGROUND (WebGL galaxy) ----------
-     galaxy/index.js is an ES module and self-boots on DOMContentLoaded,
-     publishing window.__galaxy. This block only keeps a handle so the
-     pagehide teardown below can stop the render loop cleanly. Module
-     execution order means the module may not have run yet when this
-     executes, so the handle is resolved lazily at teardown. */
-  guard('galaxy', function () {
-    window.KBJSGalaxy = {
-      get instance() { return window.__galaxy || null; },
-      pause() { var g = window.__galaxy; if (g && g.setPaused) g.setPaused(true); },
-      resume() { var g = window.__galaxy; if (g && g.setPaused) g.setPaused(false); },
-      dispose() { var g = window.__galaxy; if (g && g.dispose) g.dispose(); },
-    };
-  });
+  /* ---------- 23 RETIRED SPACE BACKGROUND ----------
+     Removed with the reskin: pages sit on a flat canvas now, so there
+     is no render loop to own. */
 
   /* ---------- TEARDOWN ---------- */
   win.addEventListener('pagehide', function () {
     TEARDOWN.forEach(function (fn) { try { fn(); } catch (e) {} });
     TEARDOWN.length = 0;
-    if (win.KBJSGalaxy) { try { win.KBJSGalaxy.dispose(); } catch (e) {} }
-    var gw = doc.getElementById('galaxy-widget');
-    if (gw) gw.remove();
-    delete win.__galaxy;
   });
 })();

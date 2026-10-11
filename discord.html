@@ -6,10 +6,10 @@
 <title>Discord Server Setup &amp; Community Development | KBJS</title>
 <meta name="description" content="Discord server creation, community design, bot setup and infrastructure by KBJS Studios — roles, channels, tickets, music and custom emoji packs.">
 <link rel="canonical" href="https://kbjsstudios.qzz.io/discord.html">
-<meta name="theme-color" content="#070912" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f6f8fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#F6F8FC">
+<meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="light dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KBJS Studios">
 <meta property="og:locale" content="en_US">
@@ -27,20 +27,19 @@
 <meta name="twitter:image" content="https://kbjsstudios.qzz.io/logos/og-image.jpg">
 <link rel="icon" type="image/png" href="logos/kbjslogo.png">
 <link rel="apple-touch-icon" href="logos/kbjslogo.png">
-<link rel="preload" href="fonts/Inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preload" href="logos/webp/kbjslogo.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="style.css">
-<script>try{var k=localStorage.getItem('kbjs_theme');if(k==='light'||(!k&&matchMedia('(prefers-color-scheme: light)').matches))document.documentElement.classList.add('theme-light');}catch(e){}</script>
+<link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "@id": "https://kbjsstudios.qzz.io/#organization", "name": "KBJS Studios", "url": "https://kbjsstudios.qzz.io/", "logo": {"@type": "ImageObject", "url": "https://kbjsstudios.qzz.io/logos/kbjslogo.png", "width": 1254, "height": 1254}, "description": "Creative digital studio building gaming thumbnails, Minecraft servers, Discord communities and video editing for creators.", "email": "kbjsstudios@gmail.com", "founder": [{"@type": "Person", "name": "Knockbackkk", "url": "https://youtube.com/@knockbackkk"}, {"@type": "Person", "name": "JustSlayer", "url": "https://youtube.com/@justslayer0"}], "sameAs": ["https://youtube.com/@knockbackkk", "https://youtube.com/@justslayer0", "https://discord.gg/2QPMk6jvpV"], "knowsAbout": ["Minecraft server development", "Custom Minecraft plugins", "Discord server setup", "YouTube thumbnail design", "Short-form video editing"]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "@id": "https://kbjsstudios.qzz.io/#website", "name": "KBJS Studios", "url": "https://kbjsstudios.qzz.io/", "publisher": {"@id": "https://kbjsstudios.qzz.io/#organization"}, "inLanguage": "en-US"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://kbjsstudios.qzz.io/"}, {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://kbjsstudios.qzz.io/index.html#services"}, {"@type": "ListItem", "position": 3, "name": "Discord Servers", "item": "https://kbjsstudios.qzz.io/"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Discord Server Setup", "description": "Custom Discord server development including bots, moderation, roles and community management.", "url": "https://kbjsstudios.qzz.io/discord.html", "provider": {"@id": "https://kbjsstudios.qzz.io/#organization"}, "areaServed": "Worldwide", "serviceType": "Discord Server Setup"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do you set up bots and moderation?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Music, ticket, welcomer, YouTube notifier and moderation bots, with permissions tuned to your server rather than left at defaults."}}, {"@type": "Question", "name": "Can you revamp my existing server?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Full overhauls of layout, roles and automation, keeping your members, messages and history intact."}}, {"@type": "Question", "name": "Do you build custom emoji packs?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Community builds ship with a bespoke animated emoji set in your colours. You can see the KBJS pack on this page."}}, {"@type": "Question", "name": "How do I start?", "acceptedAnswer": {"@type": "Answer", "text": "Send us your community size, what it is for, and anything you already have set up via the contact page or Discord."}}]}</script>
 </head>
-<body class="dark-theme" data-galaxy="pending">
+<body>
 <a class="skip-link" href="#main">Skip to content</a>
-<canvas id="galaxy-canvas" aria-hidden="true"></canvas>
-<div class="galaxy-vignette" aria-hidden="true"></div>
 
 <header class="site-header">
 <div class="nav-shell" data-scrolled="false">
@@ -55,12 +54,17 @@
 <li><a class="nav-link" href="discord.html">Discord</a></li>
 <li><a class="nav-link" href="minecraft.html">Minecraft</a></li>
 <li><a class="nav-link" href="video.html">Video</a></li>
-<li><a class="nav-link" href="about.html">About</a></li></ul>
+<li><a class="nav-link" href="about.html">About</a></li>
+<li class="mega-wrap">
+<div class="mega-wrap">
+  <button class="mega-btn" id="mega-btn" type="button"
+          aria-expanded="false" aria-controls="mega-panel" aria-haspopup="true">More<span class="mega-chev" aria-hidden="true">&#9662;</span></button>
+  <div class="mega-panel" id="mega-panel" role="menu" aria-label="More pages"><div class="mega-group"><p class="mega-group-title">Downloads</p><p class="mega-group-desc">Resource packs, assets, and tools.</p><div class="mega-group-links"><a href="resource-packs.html" class="mega-link">Resource Packs</a><a href="free-assets.html" class="mega-link">Free Assets</a><a href="minecraft-plugins.html" class="mega-link">Minecraft Plugins</a></div></div>
+<div class="mega-group"><p class="mega-group-title">Mini Games</p><p class="mega-group-desc">Mini Games, Aim Trainer, Target Rush, Reaction Shot, Precision Range, Tracking Trial.</p><div class="mega-group-links"><a href="mini-games.html" class="mega-link">Mini Games</a><a href="aim-trainer.html" class="mega-link">Aim Trainer</a><a href="target-rush.html" class="mega-link">Target Rush</a><a href="reaction-shot.html" class="mega-link">Reaction Shot</a><a href="precision-range.html" class="mega-link">Precision Range</a><a href="tracking-trial.html" class="mega-link">Tracking Trial</a></div></div>
+<div class="mega-group"><p class="mega-group-title">Company</p><p class="mega-group-desc">YT Stuff, About KBJS, Contact Us, Privacy Policy, Terms of Service.</p><div class="mega-group-links"><a href="yt-stuff.html" class="mega-link">YT Stuff</a><a href="about.html" class="mega-link">About KBJS</a><a href="contact.html" class="mega-link">Contact Us</a><a href="privacy.html" class="mega-link">Privacy Policy</a><a href="terms.html" class="mega-link">Terms of Service</a></div></div></div>
+</div>
+</li></ul>
     <div class="nav-actions">
-      <button class="icon-btn theme-toggle-btn" type="button" aria-label="Toggle colour theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
-      <button class="icon-btn" id="more-sidebar-toggle" type="button"
-              aria-label="Downloads and more" title="Downloads &amp; more"
-              aria-expanded="false" aria-controls="more-sidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11"/><path d="m7 10 5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></button>
       <a class="btn btn-primary" href="contact.html">Get Started</a>
       <button class="icon-btn mobile-toggle" id="mobile-toggle" type="button"
               aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
@@ -69,12 +73,16 @@
 </div>
 
 <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+  <button class="nav-drawer-close" id="nav-drawer-close" type="button" aria-label="Close menu">&times;</button>
   <ul class="nav-drawer-list"><li><a href="index.html">Home</a></li>
 <li><a href="thumbnails.html">Thumbnails</a></li>
 <li><a href="discord.html" aria-current="page">Discord</a></li>
 <li><a href="minecraft.html">Minecraft</a></li>
 <li><a href="video.html">Video</a></li>
 <li><a href="about.html">About</a></li></ul>
+  <div class="nav-drawer-groups"><div class="mega-group"><p class="mega-group-title">Downloads</p><div class="mega-group-links"><a href="resource-packs.html" class="mega-link">Resource Packs</a><a href="free-assets.html" class="mega-link">Free Assets</a><a href="minecraft-plugins.html" class="mega-link">Minecraft Plugins</a></div></div>
+<div class="mega-group"><p class="mega-group-title">Mini Games</p><div class="mega-group-links"><a href="mini-games.html" class="mega-link">Mini Games</a><a href="aim-trainer.html" class="mega-link">Aim Trainer</a><a href="target-rush.html" class="mega-link">Target Rush</a><a href="reaction-shot.html" class="mega-link">Reaction Shot</a><a href="precision-range.html" class="mega-link">Precision Range</a><a href="tracking-trial.html" class="mega-link">Tracking Trial</a></div></div>
+<div class="mega-group"><p class="mega-group-title">Company</p><div class="mega-group-links"><a href="yt-stuff.html" class="mega-link">YT Stuff</a><a href="about.html" class="mega-link">About KBJS</a><a href="contact.html" class="mega-link">Contact Us</a><a href="privacy.html" class="mega-link">Privacy Policy</a><a href="terms.html" class="mega-link">Terms of Service</a></div></div></div>
   <a class="btn btn-primary" href="contact.html">Get Started</a>
 </div>
 </header>
@@ -94,7 +102,7 @@
 
 <section class="section"><div class="container">
   <div class="section-head"><p class="section-subtitle">What we offer</p>
-  <h2 class="section-title" data-ghost="Server features" style="--ghost-size:10.34vw">Server <span class="gradient-text">features</span></h2></div>
+  <h2 class="section-title">Server <span class="gradient-text">features</span></h2></div>
   <div class="grid grid-3"><article class="service-card">
 <div class="service-icon"><img width="30" height="30" loading="lazy" decoding="async" src="logos/emojis/kbjs-live.svg" alt="" aria-hidden="true"></div>
 <h3 class="service-title">YT Notifier</h3><p class="service-desc">Auto-posts YouTube uploads to your server the moment a video goes live.</p></article><article class="service-card">
@@ -119,7 +127,7 @@
 </div></section>
 <section class="section" id="emojis"><div class="container">
   <div class="section-head center"><p class="section-subtitle">Custom emojis</p>
-  <h2 class="section-title" data-ghost="An emoji pack that matches your server" style="--ghost-size:4.08vw">An emoji pack that <span class="gradient-text">matches your server</span></h2>
+  <h2 class="section-title">An emoji pack that <span class="gradient-text">matches your server</span></h2>
   <p class="lead">Every community build ships with a bespoke emoji set. Below is the KBJS pack —
   click any emoji to copy its name, then upload the files under Server Settings &rarr; Emoji.</p></div>
   <div class="emoji-grid"><button type="button" class="emoji-card" data-emoji=":kbjs_gg:" aria-label="Copy :kbjs_gg: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-gg.svg" alt="KBJS Studios custom GG — celebrate a win emoji"><span class="emoji-code">:kbjs_gg:</span><span class="emoji-label">GG — celebrate a win</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_w:" aria-label="Copy :kbjs_w: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-w.svg" alt="KBJS Studios custom W — take the dub emoji"><span class="emoji-code">:kbjs_w:</span><span class="emoji-label">W — take the dub</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_l:" aria-label="Copy :kbjs_l: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-l.svg" alt="KBJS Studios custom L — playful roast emoji"><span class="emoji-code">:kbjs_l:</span><span class="emoji-label">L — playful roast</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_ez:" aria-label="Copy :kbjs_ez: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-ez.svg" alt="KBJS Studios custom EZ — easy clutch emoji"><span class="emoji-code">:kbjs_ez:</span><span class="emoji-label">EZ — easy clutch</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_hype:" aria-label="Copy :kbjs_hype: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-hype.svg" alt="KBJS Studios custom HYPE — start the party emoji"><span class="emoji-code">:kbjs_hype:</span><span class="emoji-label">HYPE — start the party</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_live:" aria-label="Copy :kbjs_live: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-live.svg" alt="KBJS Studios custom LIVE — stream is on emoji"><span class="emoji-code">:kbjs_live:</span><span class="emoji-label">LIVE — stream is on</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_welcome:" aria-label="Copy :kbjs_welcome: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-welcome.svg" alt="KBJS Studios custom Welcome new members emoji"><span class="emoji-code">:kbjs_welcome:</span><span class="emoji-label">Welcome new members</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_ticket:" aria-label="Copy :kbjs_ticket: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-ticket.svg" alt="KBJS Studios custom Support tickets emoji"><span class="emoji-code">:kbjs_ticket:</span><span class="emoji-label">Support tickets</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_music:" aria-label="Copy :kbjs_music: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-music.svg" alt="KBJS Studios custom Music queue emoji"><span class="emoji-code">:kbjs_music:</span><span class="emoji-label">Music queue</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_mod:" aria-label="Copy :kbjs_mod: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-mod.svg" alt="KBJS Studios custom Mod approved emoji"><span class="emoji-code">:kbjs_mod:</span><span class="emoji-label">Mod approved</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_clip:" aria-label="Copy :kbjs_clip: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-clip.svg" alt="KBJS Studios custom Clip it emoji"><span class="emoji-code">:kbjs_clip:</span><span class="emoji-label">Clip it</span></button><button type="button" class="emoji-card" data-emoji=":kbjs_grind:" aria-label="Copy :kbjs_grind: emoji"><img width="56" height="56" loading="lazy" decoding="async" src="logos/emojis/kbjs-grind.svg" alt="KBJS Studios custom Grind mode emoji"><span class="emoji-code">:kbjs_grind:</span><span class="emoji-label">Grind mode</span></button></div>
@@ -128,7 +136,7 @@
 </div></section>
 <section class="section"><div class="container">
   <div class="section-head center"><p class="section-subtitle">Process</p>
-  <h2 class="section-title" data-ghost="Our workflow" style="--ghost-size:11.5vw">Our <span class="gradient-text">workflow</span></h2></div>
+  <h2 class="section-title">Our <span class="gradient-text">workflow</span></h2></div>
   <div class="grid grid-3">
     <div class="workflow-step"><span class="step-num">01</span><h3>Plan</h3>
       <p>Tell us what the community is for — gaming, a YouTube audience, or a creator hub — and we map roles, channels and bots.</p></div>
@@ -146,7 +154,7 @@
       <p class="section-subtitle">FAQ</p>
       <h2 class="section-title">Discord FAQs</h2>
     </div>
-    <div class="faq-list"><div class="faq-item"><h3 class="faq-question"><span>Do you set up bots and moderation?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></h3><div class="faq-answer"><p>Yes. Music, ticket, welcomer, YouTube notifier and moderation bots, with permissions tuned to your server rather than left at defaults.</p></div></div><div class="faq-item"><h3 class="faq-question"><span>Can you revamp my existing server?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></h3><div class="faq-answer"><p>Yes. Full overhauls of layout, roles and automation, keeping your members, messages and history intact.</p></div></div><div class="faq-item"><h3 class="faq-question"><span>Do you build custom emoji packs?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></h3><div class="faq-answer"><p>Yes. Community builds ship with a bespoke animated emoji set in your colours. You can see the KBJS pack on this page.</p></div></div><div class="faq-item"><h3 class="faq-question"><span>How do I start?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></h3><div class="faq-answer"><p>Send us your community size, what it is for, and anything you already have set up via the <a href="contact.html">contact page</a> or Discord.</p></div></div></div>
+    <div class="faq-list"><div class="faq-item"><button type="button" class="faq-question" aria-expanded="false"><span>Do you set up bots and moderation?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></button><div class="faq-answer"><p>Yes. Music, ticket, welcomer, YouTube notifier and moderation bots, with permissions tuned to your server rather than left at defaults.</p></div></div><div class="faq-item"><button type="button" class="faq-question" aria-expanded="false"><span>Can you revamp my existing server?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></button><div class="faq-answer"><p>Yes. Full overhauls of layout, roles and automation, keeping your members, messages and history intact.</p></div></div><div class="faq-item"><button type="button" class="faq-question" aria-expanded="false"><span>Do you build custom emoji packs?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></button><div class="faq-answer"><p>Yes. Community builds ship with a bespoke animated emoji set in your colours. You can see the KBJS pack on this page.</p></div></div><div class="faq-item"><button type="button" class="faq-question" aria-expanded="false"><span>How do I start?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></button><div class="faq-answer"><p>Send us your community size, what it is for, and anything you already have set up via the <a href="contact.html">contact page</a> or Discord.</p></div></div></div>
   </div>
 </section>
 
@@ -160,23 +168,13 @@
         <a class="btn btn-primary" href="contact.html">Start a project</a>
         
       </div>
+      <span class="cta-wordmark" aria-hidden="true">KBJS</span>
     </div>
   </div>
 </section>
 
 
 </main>
-
-<div class="more-sidebar-overlay" id="more-sidebar-overlay"></div>
-<aside class="more-sidebar" id="more-sidebar" aria-hidden="true" aria-label="More links">
-  <div class="more-sidebar-header">
-    <p class="more-sidebar-header-title">More</p>
-    <button class="more-sidebar-close" id="more-sidebar-close" type="button" aria-label="Close menu">&times;</button>
-  </div>
-  <div class="more-sidebar-body"><div class="more-sidebar-section"><p class="more-sidebar-section-title">Downloads</p><p class="more-sidebar-desc">Resource packs, assets, and tools.</p><div class="more-sidebar-links"><a href="resource-packs.html" class="more-sidebar-link">Resource Packs</a><a href="free-assets.html" class="more-sidebar-link">Free Assets</a><a href="minecraft-plugins.html" class="more-sidebar-link">Minecraft Plugins</a></div></div>
-<div class="more-sidebar-section"><p class="more-sidebar-section-title">Mini Games</p><p class="more-sidebar-desc">Free browser games, no download.</p><div class="more-sidebar-links"><a href="mini-games.html" class="more-sidebar-link">Mini Games</a><a href="aim-trainer.html" class="more-sidebar-link">Aim Trainer</a><a href="target-rush.html" class="more-sidebar-link">Target Rush</a><a href="reaction-shot.html" class="more-sidebar-link">Reaction Shot</a><a href="precision-range.html" class="more-sidebar-link">Precision Range</a><a href="tracking-trial.html" class="more-sidebar-link">Tracking Trial</a></div></div>
-<div class="more-sidebar-section"><p class="more-sidebar-section-title">More</p><p class="more-sidebar-desc">Company and legal.</p><div class="more-sidebar-links"><a href="yt-stuff.html" class="more-sidebar-link">YT Stuff</a><a href="about.html" class="more-sidebar-link">About KBJS</a><a href="contact.html" class="more-sidebar-link">Contact Us</a><a href="privacy.html" class="more-sidebar-link">Privacy Policy</a><a href="terms.html" class="more-sidebar-link">Terms of Service</a></div></div></div>
-</aside>
 
 <footer class="site-footer">
   <div class="footer-grid">
@@ -212,7 +210,6 @@
 <div class="toast-container" id="toast-container"></div>
 
 <script src="firebase-config.js" defer></script>
-<script type="module" src="galaxy/index.js"></script>
-<script src="app.js" defer></script>
+<script src="script.js" defer></script>
 </body>
 </html>

@@ -159,7 +159,7 @@ err = f"""
   <div class="container">
     <div class="page-hero-content">
       <p class="section-subtitle">Error 404</p>
-      <h1 class="page-hero-title">Lost in <span class="gradient-text">space</span>.</h1>
+      <h1 class="page-hero-title">This page <span class="gradient-text">does not exist</span>.</h1>
       <p class="page-hero-desc">That page does not exist or has moved. Here is the way back.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="index.html">Back home</a>
@@ -184,19 +184,18 @@ err = f"""
 
 # 404: noindex, absolute paths (served for any missing URL)
 import re as _re
-c = head("Page Not Found (404) — Lost in Space | KBJS Studios",
+c = head("Page Not Found (404) | KBJS Studios",
          "That page could not be found. Head back to KBJS Studios for Minecraft servers, Discord setup, gaming thumbnails and video editing.",
          "404.html", [ORG, WEBSITE])
 c = c.replace('href="fonts/', 'href="/fonts/').replace('href="logos/', 'href="/logos/')
-c = c.replace('href="style.css"', 'href="/style.css"')
+c = c.replace('href="styles.css"', 'href="/styles.css"')
 c = c.replace('</head>', '<meta name="robots" content="noindex, follow">\n</head>', 1)
-c += '<body class="dark-theme" data-galaxy-max="medium" data-galaxy="pending">'
-c += nav("404.html") + resources_drawer()
+c += '<body>'
+c += nav("404.html")
 c += f'\n<main id="main">\n{err}\n</main>\n' + footer()
 c += """
 <script src="/firebase-config.js" defer></script>
-<script type="module" src="/galaxy/index.js"></script>
-<script src="/app.js" defer></script>
+<script src="/script.js" defer></script>
 </body>
 </html>
 """

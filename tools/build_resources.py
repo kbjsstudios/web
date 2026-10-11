@@ -181,19 +181,80 @@ YS_FAQ = [
     ("Can you help with my channel's thumbnails?",
      "Absolutely. <a href=\"thumbnails.html\">Gaming thumbnail design</a> is one of our core services."),
 ]
-ys_videos = "".join(f"""<a class="yt-video-item" href="{YT_KNOCK}" rel="noopener" target="_blank">
-<span class="yt-video-thumb"><img width="26" height="26" loading="lazy" decoding="async" src="logos/icons/play.svg" alt="" aria-hidden="true"></span>
-<span class="yt-video-info"><span class="yt-video-title">KBJS Studios &mdash; latest uploads</span>
-<span class="yt-video-meta">Gaming, Minecraft and editing</span></span></a>""" for _ in range(1))
+YS_HELPERS = True
+
+def _fmt_date(iso):
+    from datetime import date as _d
+    try:
+        return _d.fromisoformat(iso).strftime("%b %-d, %Y")
+    except Exception:
+        return iso
+
+def _video_card(vid, title, meta, live=False):
+    watch = f"https://www.youtube.com/watch?v={vid}"
+    badge = '<span class="live-badge" aria-hidden="true"><i></i>LIVE</span>' if live else ""
+    cls = "video-card is-live" if live else "video-card"
+    extra = f' data-live-id="{vid}"' if live else ""
+    btn = (f'<a class="btn btn-primary" href="{watch}" rel="noopener" target="_blank">Watch live</a>'
+           if live else "")
+    return f"""<article class="{cls}"{extra}>
+<a class="video-thumb" href="{watch}" rel="noopener" target="_blank" aria-label="Watch {html.escape(title, quote=True)} on YouTube">
+<img width="480" height="360" loading="lazy" decoding="async" src="https://i.ytimg.com/vi/{vid}/hqdefault.jpg" alt="">{badge}</a>
+<div class="video-body"><h3 class="video-title">{html.escape(title)}</h3>
+<p class="video-meta">{meta}</p>{btn}</div>
+</article>"""
+
+VCHANNELS = [
+    ("Knockback", "@knockbackkk", YT_KNOCK, "logos/knockbackkk.png", "logos/webp/knockbackkk.webp"),
+    ("JustSlayer", "@justslayer0", YT_SLAYER, "logos/justslayer.png", "logos/webp/justslayer.webp"),
+]
+
+try:
+    VDATA = json.loads((pathlib.Path(__file__).resolve().parent / "videos.json").read_text())
+except Exception:
+    VDATA = {"checked_at": "", "channels": {}}
+
+ys_live = ""
+ys_boards = ""
+for cname, handle, curl, icon, icon_webp in VCHANNELS:
+    key = "knockback" if "knock" in handle else "justslayer"
+    ch = VDATA.get("channels", {}).get(key, {})
+    if ch.get("live_video_id"):
+        ys_live += _video_card(ch["live_video_id"], ch.get("live_title") or f"{cname} is live now",
+                               f"{cname} &middot; streaming now", live=True)
+    cards = "".join(
+        _video_card(v["id"], v["title"], f"{cname} &middot; {_fmt_date(v['published'])}")
+        for v in ch.get("videos", []))
+    if not cards:
+        cards = (f'<p class="video-empty">Fresh uploads will appear here. '
+                 f'Meanwhile, <a href="{curl}" rel="noopener" target="_blank">open {cname} on YouTube</a>.</p>')
+    ys_boards += f"""
+<div class="video-channel">
+  <div class="video-channel-head">
+    <picture><source srcset="{icon_webp}" type="image/webp">
+    <img width="44" height="44" loading="lazy" decoding="async" src="{icon}" alt="" aria-hidden="true"></picture>
+    <div><h3>{cname}</h3><p>{handle}</p></div>
+    <a class="btn btn-secondary" href="{curl}" rel="noopener" target="_blank">Subscribe</a>
+  </div>
+  <div class="video-grid">{cards}</div>
+</div>"""
+
+ys_live_block = (f"""
+<section class="section section-tight"><div class="container">
+  <div class="section-head center"><p class="section-subtitle">Happening now</p>
+  <h2><span class="gradient-text">Live</span> on YouTube</h2></div>
+  <div class="video-grid video-grid-live">{ys_live}</div>
+</div></section>""" if ys_live else "")
+
 ys = f"""{H.crumbs_nav([("Home","index.html"),("Resources",None),("YT Stuff",None)])}
 {H.page_hero("Resources", 'YT Stuff <span class="gradient-text">&amp; More</span>',
   "Latest videos, Shorts and behind-the-scenes from the KBJS Studios team.")}
+{ys_live_block}
 <section class="section"><div class="container">
   <div class="section-head center"><p class="section-subtitle">YouTube</p>
-  <h2>Latest <span class="gradient-text">videos</span></h2></div>
-  <div style="max-width:820px;margin-inline:auto">
-    <div class="yt-video-list">{ys_videos}</div>
-  </div>
+  <h2>Latest <span class="gradient-text">videos</span></h2>
+  <p class="lead">Every recent upload from both channels, refreshed automatically.</p></div>
+  {ys_boards}
 </div></section>
 <section class="section section-tight"><div class="container">
   <div class="section-head center"><p class="section-subtitle">Content</p>

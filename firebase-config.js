@@ -39,7 +39,7 @@ window.FIREBASE_CONFIG = {
    3. Contact form submissions will post straight to your channel
    Leave empty to keep the current local-storage behaviour.
    ============================================================ */
-window.CONTACT_WEBHOOK_URL = "";
+window.CONTACT_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1558960358872584196/YdCmFGcn83SVLcNPyTFlzj06aBXwdcendAvpWzr5e4m4Vlj2uEVbFeRiW1PcTwPOi34z";
 
 /* ============================================================
    If Firebase is not configured, stats fall back to localStorage

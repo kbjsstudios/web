@@ -6,10 +6,10 @@
 <title>KBJS Studios — Minecraft, Discord &amp; Thumbnail Design</title>
 <meta name="description" content="KBJS Studios builds Minecraft servers and custom Paper plugins, sets up Discord communities, designs gaming YouTube thumbnails and edits YouTube Shorts.">
 <link rel="canonical" href="https://kbjsstudios.qzz.io/index.html">
-<meta name="theme-color" content="#070912" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f6f8fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#F6F8FC">
+<meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="light dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KBJS Studios">
 <meta property="og:locale" content="en_US">
@@ -27,18 +27,17 @@
 <meta name="twitter:image" content="https://kbjsstudios.qzz.io/logos/og-image.jpg">
 <link rel="icon" type="image/png" href="logos/kbjslogo.png">
 <link rel="apple-touch-icon" href="logos/kbjslogo.png">
-<link rel="preload" href="fonts/Inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preload" href="logos/webp/kbjslogo.webp" as="image" type="image/webp">
-<link rel="stylesheet" href="style.css">
-<script>try{var k=localStorage.getItem('kbjs_theme');if(k==='light'||(!k&&matchMedia('(prefers-color-scheme: light)').matches))document.documentElement.classList.add('theme-light');}catch(e){}</script>
+<link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "@id": "https://kbjsstudios.qzz.io/#organization", "name": "KBJS Studios", "url": "https://kbjsstudios.qzz.io/", "logo": {"@type": "ImageObject", "url": "https://kbjsstudios.qzz.io/logos/kbjslogo.png", "width": 1254, "height": 1254}, "description": "Creative digital studio building gaming thumbnails, Minecraft servers, Discord communities and video editing for creators.", "email": "kbjsstudios@gmail.com", "founder": [{"@type": "Person", "name": "Knockbackkk", "url": "https://youtube.com/@knockbackkk"}, {"@type": "Person", "name": "JustSlayer", "url": "https://youtube.com/@justslayer0"}], "sameAs": ["https://youtube.com/@knockbackkk", "https://youtube.com/@justslayer0", "https://discord.gg/2QPMk6jvpV"], "knowsAbout": ["Minecraft server development", "Custom Minecraft plugins", "Discord server setup", "YouTube thumbnail design", "Short-form video editing"]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "@id": "https://kbjsstudios.qzz.io/#website", "name": "KBJS Studios", "url": "https://kbjsstudios.qzz.io/", "publisher": {"@id": "https://kbjsstudios.qzz.io/#organization"}, "inLanguage": "en-US"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What services does KBJS Studios offer?", "acceptedAnswer": {"@type": "Answer", "text": "Gaming YouTube thumbnail design, Minecraft server development with custom plugins, Discord server setup and community development, and short-form video editing focused on YouTube Shorts."}}, {"@type": "Question", "name": "How do I start a project?", "acceptedAnswer": {"@type": "Answer", "text": "Use our contact page and tell us your service and goal. We reply within 24 hours on business days with scope and pricing."}}, {"@type": "Question", "name": "Do you build complete Minecraft servers?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Full builds including spawns and arenas, bespoke Paper and Spigot plugins, MOTDs, bots, hosting setup and handover documentation. See Minecraft server development."}}, {"@type": "Question", "name": "Can you set up or revamp my Discord?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. From brand-new setups to full overhauls with roles, channels, permissions and automation, keeping your members and history intact. See Discord server setup."}}, {"@type": "Question", "name": "Is long-form video editing available?", "acceptedAnswer": {"@type": "Answer", "text": "Not yet. YouTube Shorts editing is available now with hooks, captions and sound design. Join the waitlist for long-form."}}]}</script>
 </head>
-<body class="dark-theme" data-galaxy="pending">
+<body>
 <a class="skip-link" href="#main">Skip to content</a>
-<canvas id="galaxy-canvas" aria-hidden="true"></canvas>
-<div class="galaxy-vignette" aria-hidden="true"></div>
 
 <header class="site-header">
 <div class="nav-shell" data-scrolled="false">
@@ -53,12 +52,17 @@
 <li><a class="nav-link" href="discord.html">Discord</a></li>
 <li><a class="nav-link" href="minecraft.html">Minecraft</a></li>
 <li><a class="nav-link" href="video.html">Video</a></li>
-<li><a class="nav-link" href="about.html">About</a></li></ul>
+<li><a class="nav-link" href="about.html">About</a></li>
+<li class="mega-wrap">
+<div class="mega-wrap">
+  <button class="mega-btn" id="mega-btn" type="button"
+          aria-expanded="false" aria-controls="mega-panel" aria-haspopup="true">More<span class="mega-chev" aria-hidden="true">&#9662;</span></button>
+  <div class="mega-panel" id="mega-panel" role="menu" aria-label="More pages"><div class="mega-group"><p class="mega-group-title">Downloads</p><p class="mega-group-desc">Resource packs, assets, and tools.</p><div class="mega-group-links"><a href="resource-packs.html" class="mega-link">Resource Packs</a><a href="free-assets.html" class="mega-link">Free Assets</a><a href="minecraft-plugins.html" class="mega-link">Minecraft Plugins</a></div></div>
+<div class="mega-group"><p class="mega-group-title">Mini Games</p><p class="mega-group-desc">Mini Games, Aim Trainer, Target Rush, Reaction Shot, Precision Range, Tracking Trial.</p><div class="mega-group-links"><a href="mini-games.html" class="mega-link">Mini Games</a><a href="aim-trainer.html" class="mega-link">Aim Trainer</a><a href="target-rush.html" class="mega-link">Target Rush</a><a href="reaction-shot.html" class="mega-link">Reaction Shot</a><a href="precision-range.html" class="mega-link">Precision Range</a><a href="tracking-trial.html" class="mega-link">Tracking Trial</a></div></div>
+<div class="mega-group"><p class="mega-group-title">Company</p><p class="mega-group-desc">YT Stuff, About KBJS, Contact Us, Privacy Policy, Terms of Service.</p><div class="mega-group-links"><a href="yt-stuff.html" class="mega-link">YT Stuff</a><a href="about.html" class="mega-link">About KBJS</a><a href="contact.html" class="mega-link">Contact Us</a><a href="privacy.html" class="mega-link">Privacy Policy</a><a href="terms.html" class="mega-link">Terms of Service</a></div></div></div>
+</div>
+</li></ul>
     <div class="nav-actions">
-      <button class="icon-btn theme-toggle-btn" type="button" aria-label="Toggle colour theme" title="Toggle theme"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
-      <button class="icon-btn" id="more-sidebar-toggle" type="button"
-              aria-label="Downloads and more" title="Downloads &amp; more"
-              aria-expanded="false" aria-controls="more-sidebar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v11"/><path d="m7 10 5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></button>
       <a class="btn btn-primary" href="contact.html">Get Started</a>
       <button class="icon-btn mobile-toggle" id="mobile-toggle" type="button"
               aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
@@ -67,12 +71,16 @@
 </div>
 
 <div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+  <button class="nav-drawer-close" id="nav-drawer-close" type="button" aria-label="Close menu">&times;</button>
   <ul class="nav-drawer-list"><li><a href="index.html" aria-current="page">Home</a></li>
 <li><a href="thumbnails.html">Thumbnails</a></li>
 <li><a href="discord.html">Discord</a></li>
 <li><a href="minecraft.html">Minecraft</a></li>
 <li><a href="video.html">Video</a></li>
 <li><a href="about.html">About</a></li></ul>
+  <div class="nav-drawer-groups"><div class="mega-group"><p class="mega-group-title">Downloads</p><div class="mega-group-links"><a href="resource-packs.html" class="mega-link">Resource Packs</a><a href="free-assets.html" class="mega-link">Free Assets</a><a href="minecraft-plugins.html" class="mega-link">Minecraft Plugins</a></div></div>
+<div class="mega-group"><p class="mega-group-title">Mini Games</p><div class="mega-group-links"><a href="mini-games.html" class="mega-link">Mini Games</a><a href="aim-trainer.html" class="mega-link">Aim Trainer</a><a href="target-rush.html" class="mega-link">Target Rush</a><a href="reaction-shot.html" class="mega-link">Reaction Shot</a><a href="precision-range.html" class="mega-link">Precision Range</a><a href="tracking-trial.html" class="mega-link">Tracking Trial</a></div></div>
+<div class="mega-group"><p class="mega-group-title">Company</p><div class="mega-group-links"><a href="yt-stuff.html" class="mega-link">YT Stuff</a><a href="about.html" class="mega-link">About KBJS</a><a href="contact.html" class="mega-link">Contact Us</a><a href="privacy.html" class="mega-link">Privacy Policy</a><a href="terms.html" class="mega-link">Terms of Service</a></div></div></div>
   <a class="btn btn-primary" href="contact.html">Get Started</a>
 </div>
 </header>
@@ -80,10 +88,12 @@
 <main id="main">
 
 <section class="hero">
+  <div class="hero-blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="container hero-inner">
     <div class="enter">
       <p class="section-subtitle">Content &middot; Code &middot; Community</p>
-      <h1 class="hero-title">Build worlds.<br><span class="gradient-text">Earn attention.</span></h1>
+      <h1 class="hero-title"><span class="line"><span>Build worlds.</span></span><span class="line"><span class="gradient-text">Earn attention.</span></span></h1>
       <p class="hero-lead">KBJS Studios designs gaming thumbnails, develops Minecraft servers and custom
       plugins, builds Discord communities, and edits short-form video for creators who need the
       technical side handled properly.</p>
@@ -98,13 +108,6 @@
         <li class="trust-item"><span class="trust-value">5</span><span class="trust-label">Free browser games</span></li>
       </ul>
     </div>
-    <div class="console-card" aria-hidden="true">
-      <div class="console-head">
-        <span class="console-dots"><span class="console-dot red"></span><span class="console-dot yellow"></span><span class="console-dot green"></span></span>
-        <span class="console-title">kbjs@studio</span>
-      </div>
-      <div class="console-body" id="console-body"></div>
-    </div>
   </div>
 </section>
 
@@ -112,70 +115,105 @@
   <div class="container">
     <div class="section-head center">
       <p class="section-subtitle">What we do</p>
-      <h2 class="section-title" data-ghost="Four services, one studio" style="--ghost-size:6.21vw">Four services, <span class="gradient-text">one studio</span></h2>
+      <h2 class="section-title">Four services, <span class="gradient-text">one studio</span></h2>
       <p class="lead">Everything is commissioned directly to the two people who will do the work.</p>
     </div>
-
-    <div class="service-group">
-      <p class="service-group-label">Minecraft</p>
-      <div class="grid grid-3">
-        <a class="service-card" href="minecraft.html">
-          <h3 class="service-title">Server development</h3>
-          <p class="service-desc">Full server builds — spawns, arenas, worlds, hosting setup and ongoing management.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a class="service-card" href="minecraft-plugins.html">
-          <h3 class="service-title">Custom plugins</h3>
-          <p class="service-desc">Bespoke Paper and Spigot plugins written from scratch, plus modifications to existing ones.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a class="service-card" href="minecraft.html">
-          <h3 class="service-title">Design &amp; MOTDs</h3>
-          <p class="service-desc">Spawns, lobbies and animated server MOTDs that make a server look established on day one.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
+    <div class="tabs">
+      <div class="tab-list" role="tablist" aria-label="Service categories">
+        <button type="button" class="tab-btn" role="tab" id="tab-mc" aria-selected="true" aria-controls="panel-mc">Minecraft</button>
+        <button type="button" class="tab-btn" role="tab" id="tab-dc" aria-selected="false" aria-controls="panel-dc">Discord</button>
+        <button type="button" class="tab-btn" role="tab" id="tab-vc" aria-selected="false" aria-controls="panel-vc">Visual content</button>
       </div>
-    </div>
-
-    <div class="service-group">
-      <p class="service-group-label">Discord</p>
-      <div class="grid grid-3">
-        <a class="service-card" href="discord.html">
-          <h3 class="service-title">Server creation</h3>
-          <p class="service-desc">Fresh setups and full overhauls with categories, channels and clean permissions.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a class="service-card" href="discord.html">
-          <h3 class="service-title">Bot setup</h3>
-          <p class="service-desc">Music, tickets, welcomers and YouTube notifiers — configured and tested.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a class="service-card" href="discord.html">
-          <h3 class="service-title">Community infrastructure</h3>
-          <p class="service-desc">Roles, hierarchies and moderation tooling that survives a growing member count.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
+      <div class="tab-panel open" id="panel-mc" role="tabpanel" aria-labelledby="tab-mc" tabindex="0">
+        <div class="tab-panel-grid">
+          <div class="tab-cards">
+            <a class="service-card" href="minecraft.html">
+              <h3 class="service-title">Server development</h3>
+              <p class="service-desc">Full server builds — spawns, arenas, worlds, hosting setup and ongoing management.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="service-card" href="minecraft-plugins.html">
+              <h3 class="service-title">Custom plugins</h3>
+              <p class="service-desc">Bespoke Paper and Spigot plugins written from scratch, plus modifications to existing ones.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="service-card" href="minecraft.html">
+              <h3 class="service-title">Design &amp; MOTDs</h3>
+              <p class="service-desc">Spawns, lobbies and animated server MOTDs that make a server look established on day one.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+          <div class="browser-frame" aria-hidden="true">
+            <div class="browser-bar"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-url">Servers — live list</span></div>
+            <div class="browser-body">
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#2e7cf6,#7c5cff)"></span><div><b>Outdoor SMP S4</b><span>Survival multiplayer · 48 online</span></div><span class="pill">Online</span></div>
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#7c5cff,#f45ca6)"></span><div><b>Lifesteal SMP</b><span>High-stakes survival · 112 online</span></div><span class="pill">Online</span></div>
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#10b4c8,#2e7cf6)"></span><div><b>Danger PVP</b><span>Arena kits · 23 online</span></div><span class="pill">Online</span></div>
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#8a8f9c,#5f6368)"></span><div><b>Skyblock</b><span>Co-op islands · restarting</span></div><span class="pill">Soon</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="service-group">
-      <p class="service-group-label">Visual content</p>
-      <div class="grid grid-3">
-        <a class="service-card" href="thumbnails.html">
-          <h3 class="service-title">Thumbnail design</h3>
-          <p class="service-desc">Gaming thumbnails for Minecraft, Valorant, Fortnite and Roblox channels, built for the mobile feed.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a class="service-card" href="video.html">
-          <h3 class="service-title">Short-form editing</h3>
-          <p class="service-desc">YouTube Shorts with hook-first cuts, dynamic captions and layered sound design.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a class="service-card" href="free-assets.html">
-          <h3 class="service-title">Creator assets</h3>
-          <p class="service-desc">Free resource packs, templates and tools to speed up your own workflow.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
+      <div class="tab-panel" id="panel-dc" role="tabpanel" aria-labelledby="tab-dc" tabindex="0">
+        <div class="tab-panel-grid">
+          <div class="tab-cards">
+            <a class="service-card" href="discord.html">
+              <h3 class="service-title">Server creation</h3>
+              <p class="service-desc">Fresh setups and full overhauls with categories, channels and clean permissions.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="service-card" href="discord.html">
+              <h3 class="service-title">Bot setup</h3>
+              <p class="service-desc">Music, tickets, welcomers and YouTube notifiers — configured and tested.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="service-card" href="discord.html">
+              <h3 class="service-title">Community infrastructure</h3>
+              <p class="service-desc">Roles, hierarchies and moderation tooling that survives a growing member count.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+          <div class="browser-frame" aria-hidden="true">
+            <div class="browser-bar"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-url">Community — channel list</span></div>
+            <div class="browser-body">
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#2e7cf6,#10b4c8)"></span><div><b># announcements</b><span>Read-only · staff ping</span></div><span class="pill">3 new</span></div>
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#7c5cff,#2e7cf6)"></span><div><b># general</b><span>1,204 members chatting</span></div><span class="pill">Live</span></div>
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#f45ca6,#7c5cff)"></span><div><b># clips &amp; media</b><span>Best plays of the week</span></div><span class="pill">Live</span></div>
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#8a8f9c,#5f6368)"></span><div><b>Lobby — Voice</b><span>12 connected</span></div><span class="pill">Voice</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" id="panel-vc" role="tabpanel" aria-labelledby="tab-vc" tabindex="0">
+        <div class="tab-panel-grid">
+          <div class="tab-cards">
+            <a class="service-card" href="thumbnails.html">
+              <h3 class="service-title">Thumbnail design</h3>
+              <p class="service-desc">Gaming thumbnails for Minecraft, Valorant, Fortnite and Roblox channels, built for the mobile feed.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="service-card" href="video.html">
+              <h3 class="service-title">Short-form editing</h3>
+              <p class="service-desc">YouTube Shorts with hook-first cuts, dynamic captions and layered sound design.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="service-card" href="free-assets.html">
+              <h3 class="service-title">Creator assets</h3>
+              <p class="service-desc">Free resource packs, templates and tools to speed up your own workflow.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+          <div class="browser-frame" aria-hidden="true">
+            <div class="browser-bar"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-url">Portfolio — recent work</span></div>
+            <div class="browser-body">
+              <div class="mock-grid">
+                <img width="480" height="270" loading="lazy" decoding="async" src="thumbnails/Valorant1.png" alt="">
+                <img width="480" height="270" loading="lazy" decoding="async" src="thumbnails/Minecraft2.png" alt="">
+                <img width="480" height="270" loading="lazy" decoding="async" src="thumbnails/Misc1.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -185,23 +223,23 @@
   <div class="container">
     <div class="section-head center">
       <p class="section-subtitle">Selected work</p>
-      <h2 class="section-title" data-ghost="Things we have shipped" style="--ghost-size:7.05vw">Things we have <span class="gradient-text">shipped</span></h2>
+      <h2 class="section-title">Things we have <span class="gradient-text">shipped</span></h2>
       <p class="lead">Real projects, not mockups. More case studies land here as we finish them.</p>
     </div>
     <div class="grid grid-3">
       <a class="work-card" href="thumbnails.html">
         <div class="work-thumb"><picture><source srcset="thumbnails/webp/Valorant1.webp" type="image/webp">
-        <img width="1280" height="720" loading="lazy" decoding="async" src="thumbnails/Valorant1.png" alt="Valorant gaming YouTube thumbnail designed by KBJS Studios"></picture></div>
+        <img width="1280" height="720" loading="lazy" decoding="async" src="thumbnails/Valorant1.png" alt="Valorant gaming YouTube thumbnail designed by KBJS Studios"></picture><span class="work-view" aria-hidden="true">View</span></div>
         <div class="work-body"><span class="work-tag">Thumbnails</span>
         <h3 class="work-title">Valorant thumbnail set</h3><p class="work-meta">Six-part thumbnail series built for a competitive FPS channel.</p></div>
       </a><a class="work-card" href="thumbnails.html">
         <div class="work-thumb"><picture><source srcset="thumbnails/webp/Minecraft2.webp" type="image/webp">
-        <img width="1280" height="720" loading="lazy" decoding="async" src="thumbnails/Minecraft2.png" alt="Minecraft survival YouTube thumbnail designed by KBJS Studios"></picture></div>
+        <img width="1280" height="720" loading="lazy" decoding="async" src="thumbnails/Minecraft2.png" alt="Minecraft survival YouTube thumbnail designed by KBJS Studios"></picture><span class="work-view" aria-hidden="true">View</span></div>
         <div class="work-body"><span class="work-tag">Thumbnails</span>
         <h3 class="work-title">Minecraft survival thumbnails</h3><p class="work-meta">High-contrast survival edits tuned for the mobile feed.</p></div>
       </a><a class="work-card" href="thumbnails.html">
         <div class="work-thumb"><picture><source srcset="thumbnails/webp/Misc1.webp" type="image/webp">
-        <img width="1280" height="720" loading="lazy" decoding="async" src="thumbnails/Misc1.png" alt="Custom gaming YouTube thumbnail designed by KBJS Studios"></picture></div>
+        <img width="1280" height="720" loading="lazy" decoding="async" src="thumbnails/Misc1.png" alt="Custom gaming YouTube thumbnail designed by KBJS Studios"></picture><span class="work-view" aria-hidden="true">View</span></div>
         <div class="work-body"><span class="work-tag">Thumbnails</span>
         <h3 class="work-title">Mixed-niche design work</h3><p class="work-meta">Cross-genre thumbnails that keep one channel identity.</p></div>
       </a>
@@ -225,14 +263,14 @@
   <div class="container">
     <div class="section-head center">
       <p class="section-subtitle">How it works</p>
-      <h2 class="section-title" data-ghost="A process that does not waste your time" style="--ghost-size:3.98vw">A process that <span class="gradient-text">does not waste your time</span></h2>
+      <h2 class="section-title">A process that <span class="gradient-text">does not waste your time</span></h2>
     </div>
-    <div class="grid grid-4">
-      <div class="workflow-step"><span class="step-num">01</span><h3>Discuss</h3><p>Tell us the goal and the constraint. We reply within 24 hours on business days.</p></div>
-      <div class="workflow-step"><span class="step-num">02</span><h3>Plan</h3><p>Scope, price and timeline agreed in writing before anything starts.</p></div>
-      <div class="workflow-step"><span class="step-num">03</span><h3>Design</h3><p>Concepts built around your actual content, not a template with your logo dropped in.</p></div>
-      <div class="workflow-step"><span class="step-num">04</span><h3>Build</h3><p>Servers, plugins and communities configured, tested and documented.</p></div>
-      <div class="workflow-step"><span class="step-num">05</span><h3>Deliver</h3><p>Handover with files, docs and support. You own everything we make.</p></div>
+    <div class="steps">
+      <div class="step"><span class="step-dot" aria-hidden="true">01</span><div><h3>Discuss</h3><p>Tell us the goal and the constraint. We reply within 24 hours on business days.</p></div></div>
+      <div class="step"><span class="step-dot" aria-hidden="true">02</span><div><h3>Plan</h3><p>Scope, price and timeline agreed in writing before anything starts.</p></div></div>
+      <div class="step"><span class="step-dot" aria-hidden="true">03</span><div><h3>Design</h3><p>Concepts built around your actual content, not a template with your logo dropped in.</p></div></div>
+      <div class="step"><span class="step-dot" aria-hidden="true">04</span><div><h3>Build</h3><p>Servers, plugins and communities configured, tested and documented.</p></div></div>
+      <div class="step"><span class="step-dot" aria-hidden="true">05</span><div><h3>Deliver</h3><p>Handover with files, docs and support. You own everything we make.</p></div></div>
     </div>
   </div>
 </section>
@@ -241,7 +279,7 @@
   <div class="container">
     <div class="section-head center">
       <p class="section-subtitle">Why KBJS</p>
-      <h2 class="section-title" data-ghost="Small studio, direct access" style="--ghost-size:5.75vw">Small studio, <span class="gradient-text">direct access</span></h2>
+      <h2 class="section-title">Small studio, <span class="gradient-text">direct access</span></h2>
     </div>
     <div class="grid grid-3">
       <div class="why-card"><p class="why-number">01</p><h3 class="why-title">You talk to the builder</h3><p>No account managers and no handoffs. The person who writes your plugin or designs your thumbnail is the person you reply to.</p></div>
@@ -261,7 +299,7 @@
       <p class="section-subtitle">FAQ</p>
       <h2 class="section-title">Questions people actually ask</h2>
     </div>
-    <div class="faq-list"><div class="faq-item"><h3 class="faq-question"><span>What services does KBJS Studios offer?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></h3><div class="faq-answer"><p>Gaming YouTube thumbnail design, Minecraft server development with custom plugins, Discord server setup and community development, and short-form video editing focused on YouTube Shorts.</p></div></div><div class="faq-item"><h3 class="faq-question"><span>How do I start a project?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></h3><div class="faq-answer"><p>Use our <a href="contact.html">contact page</a> and tell us your service and goal. We reply within 24 hours on business days with scope and pricing.</p></div></div><div class="faq-item"><h3 class="faq-question"><span>Do you build complete Minecraft servers?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></h3><div class="faq-answer"><p>Yes. Full builds including spawns and arenas, bespoke Paper and Spigot plugins, MOTDs, bots, hosting setup and handover documentation. See <a href="minecraft.html">Minecraft server development</a>.</p></div></div><div class="faq-item"><h3 class="faq-question"><span>Can you set up or revamp my Discord?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></h3><div class="faq-answer"><p>Yes. From brand-new setups to full overhauls with roles, channels, permissions and automation, keeping your members and history intact. See <a href="discord.html">Discord server setup</a>.</p></div></div><div class="faq-item"><h3 class="faq-question"><span>Is long-form video editing available?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></h3><div class="faq-answer"><p>Not yet. <a href="video.html">YouTube Shorts editing</a> is available now with hooks, captions and sound design. Join the waitlist for long-form.</p></div></div></div>
+    <div class="faq-list"><div class="faq-item"><button type="button" class="faq-question" aria-expanded="false"><span>What services does KBJS Studios offer?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></button><div class="faq-answer"><p>Gaming YouTube thumbnail design, Minecraft server development with custom plugins, Discord server setup and community development, and short-form video editing focused on YouTube Shorts.</p></div></div><div class="faq-item"><button type="button" class="faq-question" aria-expanded="false"><span>How do I start a project?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></button><div class="faq-answer"><p>Use our <a href="contact.html">contact page</a> and tell us your service and goal. We reply within 24 hours on business days with scope and pricing.</p></div></div><div class="faq-item"><button type="button" class="faq-question" aria-expanded="false"><span>Do you build complete Minecraft servers?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></button><div class="faq-answer"><p>Yes. Full builds including spawns and arenas, bespoke Paper and Spigot plugins, MOTDs, bots, hosting setup and handover documentation. See <a href="minecraft.html">Minecraft server development</a>.</p></div></div><div class="faq-item"><button type="button" class="faq-question" aria-expanded="false"><span>Can you set up or revamp my Discord?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></button><div class="faq-answer"><p>Yes. From brand-new setups to full overhauls with roles, channels, permissions and automation, keeping your members and history intact. See <a href="discord.html">Discord server setup</a>.</p></div></div><div class="faq-item"><button type="button" class="faq-question" aria-expanded="false"><span>Is long-form video editing available?</span><span class="faq-arrow" aria-hidden="true">&#9662;</span></button><div class="faq-answer"><p>Not yet. <a href="video.html">YouTube Shorts editing</a> is available now with hooks, captions and sound design. Join the waitlist for long-form.</p></div></div></div>
   </div>
 </section>
 
@@ -275,23 +313,13 @@
         <a class="btn btn-primary" href="contact.html">Get started</a>
         <a class="btn btn-secondary" href="#work">See our work</a>
       </div>
+      <span class="cta-wordmark" aria-hidden="true">KBJS</span>
     </div>
   </div>
 </section>
 
 
 </main>
-
-<div class="more-sidebar-overlay" id="more-sidebar-overlay"></div>
-<aside class="more-sidebar" id="more-sidebar" aria-hidden="true" aria-label="More links">
-  <div class="more-sidebar-header">
-    <p class="more-sidebar-header-title">More</p>
-    <button class="more-sidebar-close" id="more-sidebar-close" type="button" aria-label="Close menu">&times;</button>
-  </div>
-  <div class="more-sidebar-body"><div class="more-sidebar-section"><p class="more-sidebar-section-title">Downloads</p><p class="more-sidebar-desc">Resource packs, assets, and tools.</p><div class="more-sidebar-links"><a href="resource-packs.html" class="more-sidebar-link">Resource Packs</a><a href="free-assets.html" class="more-sidebar-link">Free Assets</a><a href="minecraft-plugins.html" class="more-sidebar-link">Minecraft Plugins</a></div></div>
-<div class="more-sidebar-section"><p class="more-sidebar-section-title">Mini Games</p><p class="more-sidebar-desc">Free browser games, no download.</p><div class="more-sidebar-links"><a href="mini-games.html" class="more-sidebar-link">Mini Games</a><a href="aim-trainer.html" class="more-sidebar-link">Aim Trainer</a><a href="target-rush.html" class="more-sidebar-link">Target Rush</a><a href="reaction-shot.html" class="more-sidebar-link">Reaction Shot</a><a href="precision-range.html" class="more-sidebar-link">Precision Range</a><a href="tracking-trial.html" class="more-sidebar-link">Tracking Trial</a></div></div>
-<div class="more-sidebar-section"><p class="more-sidebar-section-title">More</p><p class="more-sidebar-desc">Company and legal.</p><div class="more-sidebar-links"><a href="yt-stuff.html" class="more-sidebar-link">YT Stuff</a><a href="about.html" class="more-sidebar-link">About KBJS</a><a href="contact.html" class="more-sidebar-link">Contact Us</a><a href="privacy.html" class="more-sidebar-link">Privacy Policy</a><a href="terms.html" class="more-sidebar-link">Terms of Service</a></div></div></div>
-</aside>
 
 <footer class="site-footer">
   <div class="footer-grid">
@@ -327,7 +355,6 @@
 <div class="toast-container" id="toast-container"></div>
 
 <script src="firebase-config.js" defer></script>
-<script type="module" src="galaxy/index.js"></script>
-<script src="app.js" defer></script>
+<script src="script.js" defer></script>
 </body>
 </html>

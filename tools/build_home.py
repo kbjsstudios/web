@@ -27,8 +27,8 @@ def page_hero(kicker, title_html, desc):
 
 def faq_block(fid, title, pairs):
     items = "".join(
-        f'<div class="faq-item"><h3 class="faq-question"><span>{q}</span>'
-        f'<span class="faq-arrow" aria-hidden="true">&#9662;</span></h3>'
+        f'<div class="faq-item"><button type="button" class="faq-question" aria-expanded="false"><span>{q}</span>'
+        f'<span class="faq-arrow" aria-hidden="true">&#9662;</span></button>'
         f'<div class="faq-answer"><p>{a}</p></div></div>'
         for q, a in pairs)
     return f"""
@@ -55,6 +55,7 @@ def cta_block(title, copy, primary="Start a project", secondary=None):
         <a class="btn btn-primary" href="contact.html">{primary}</a>
         {sec}
       </div>
+      <span class="cta-wordmark" aria-hidden="true">KBJS</span>
     </div>
   </div>
 </section>
@@ -108,10 +109,12 @@ WORK = [
 
 home_body = f"""
 <section class="hero">
+  <div class="hero-blobs" aria-hidden="true"><i></i><i></i><i></i></div>
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="container hero-inner">
     <div class="enter">
       <p class="section-subtitle">Content &middot; Code &middot; Community</p>
-      <h1 class="hero-title">Build worlds.<br><span class="gradient-text">Earn attention.</span></h1>
+      <h1 class="hero-title"><span class="line"><span>Build worlds.</span></span><span class="line"><span class="gradient-text">Earn attention.</span></span></h1>
       <p class="hero-lead">KBJS Studios designs gaming thumbnails, develops Minecraft servers and custom
       plugins, builds Discord communities, and edits short-form video for creators who need the
       technical side handled properly.</p>
@@ -126,13 +129,6 @@ home_body = f"""
         <li class="trust-item"><span class="trust-value">5</span><span class="trust-label">Free browser games</span></li>
       </ul>
     </div>
-    <div class="console-card" aria-hidden="true">
-      <div class="console-head">
-        <span class="console-dots"><span class="console-dot red"></span><span class="console-dot yellow"></span><span class="console-dot green"></span></span>
-        <span class="console-title">kbjs@studio</span>
-      </div>
-      <div class="console-body" id="console-body"></div>
-    </div>
   </div>
 </section>
 
@@ -143,67 +139,102 @@ home_body = f"""
       <h2>Four services, <span class="gradient-text">one studio</span></h2>
       <p class="lead">Everything is commissioned directly to the two people who will do the work.</p>
     </div>
-
-    <div class="service-group">
-      <p class="service-group-label">Minecraft</p>
-      <div class="grid grid-3">
-        <a class="service-card" href="minecraft.html">
-          <h3 class="service-title">Server development</h3>
-          <p class="service-desc">Full server builds — spawns, arenas, worlds, hosting setup and ongoing management.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a class="service-card" href="minecraft-plugins.html">
-          <h3 class="service-title">Custom plugins</h3>
-          <p class="service-desc">Bespoke Paper and Spigot plugins written from scratch, plus modifications to existing ones.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a class="service-card" href="minecraft.html">
-          <h3 class="service-title">Design &amp; MOTDs</h3>
-          <p class="service-desc">Spawns, lobbies and animated server MOTDs that make a server look established on day one.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
+    <div class="tabs">
+      <div class="tab-list" role="tablist" aria-label="Service categories">
+        <button type="button" class="tab-btn" role="tab" id="tab-mc" aria-selected="true" aria-controls="panel-mc">Minecraft</button>
+        <button type="button" class="tab-btn" role="tab" id="tab-dc" aria-selected="false" aria-controls="panel-dc">Discord</button>
+        <button type="button" class="tab-btn" role="tab" id="tab-vc" aria-selected="false" aria-controls="panel-vc">Visual content</button>
       </div>
-    </div>
-
-    <div class="service-group">
-      <p class="service-group-label">Discord</p>
-      <div class="grid grid-3">
-        <a class="service-card" href="discord.html">
-          <h3 class="service-title">Server creation</h3>
-          <p class="service-desc">Fresh setups and full overhauls with categories, channels and clean permissions.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a class="service-card" href="discord.html">
-          <h3 class="service-title">Bot setup</h3>
-          <p class="service-desc">Music, tickets, welcomers and YouTube notifiers — configured and tested.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a class="service-card" href="discord.html">
-          <h3 class="service-title">Community infrastructure</h3>
-          <p class="service-desc">Roles, hierarchies and moderation tooling that survives a growing member count.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
+      <div class="tab-panel open" id="panel-mc" role="tabpanel" aria-labelledby="tab-mc" tabindex="0">
+        <div class="tab-panel-grid">
+          <div class="tab-cards">
+            <a class="service-card" href="minecraft.html">
+              <h3 class="service-title">Server development</h3>
+              <p class="service-desc">Full server builds — spawns, arenas, worlds, hosting setup and ongoing management.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="service-card" href="minecraft-plugins.html">
+              <h3 class="service-title">Custom plugins</h3>
+              <p class="service-desc">Bespoke Paper and Spigot plugins written from scratch, plus modifications to existing ones.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="service-card" href="minecraft.html">
+              <h3 class="service-title">Design &amp; MOTDs</h3>
+              <p class="service-desc">Spawns, lobbies and animated server MOTDs that make a server look established on day one.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+          <div class="browser-frame" aria-hidden="true">
+            <div class="browser-bar"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-url">Servers — live list</span></div>
+            <div class="browser-body">
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#2e7cf6,#7c5cff)"></span><div><b>Outdoor SMP S4</b><span>Survival multiplayer · 48 online</span></div><span class="pill">Online</span></div>
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#7c5cff,#f45ca6)"></span><div><b>Lifesteal SMP</b><span>High-stakes survival · 112 online</span></div><span class="pill">Online</span></div>
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#10b4c8,#2e7cf6)"></span><div><b>Danger PVP</b><span>Arena kits · 23 online</span></div><span class="pill">Online</span></div>
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#8a8f9c,#5f6368)"></span><div><b>Skyblock</b><span>Co-op islands · restarting</span></div><span class="pill">Soon</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="service-group">
-      <p class="service-group-label">Visual content</p>
-      <div class="grid grid-3">
-        <a class="service-card" href="thumbnails.html">
-          <h3 class="service-title">Thumbnail design</h3>
-          <p class="service-desc">Gaming thumbnails for Minecraft, Valorant, Fortnite and Roblox channels, built for the mobile feed.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a class="service-card" href="video.html">
-          <h3 class="service-title">Short-form editing</h3>
-          <p class="service-desc">YouTube Shorts with hook-first cuts, dynamic captions and layered sound design.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
-        <a class="service-card" href="free-assets.html">
-          <h3 class="service-title">Creator assets</h3>
-          <p class="service-desc">Free resource packs, templates and tools to speed up your own workflow.</p>
-          <span class="service-arrow" aria-hidden="true">&rarr;</span>
-        </a>
+      <div class="tab-panel" id="panel-dc" role="tabpanel" aria-labelledby="tab-dc" tabindex="0">
+        <div class="tab-panel-grid">
+          <div class="tab-cards">
+            <a class="service-card" href="discord.html">
+              <h3 class="service-title">Server creation</h3>
+              <p class="service-desc">Fresh setups and full overhauls with categories, channels and clean permissions.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="service-card" href="discord.html">
+              <h3 class="service-title">Bot setup</h3>
+              <p class="service-desc">Music, tickets, welcomers and YouTube notifiers — configured and tested.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="service-card" href="discord.html">
+              <h3 class="service-title">Community infrastructure</h3>
+              <p class="service-desc">Roles, hierarchies and moderation tooling that survives a growing member count.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+          <div class="browser-frame" aria-hidden="true">
+            <div class="browser-bar"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-url">Community — channel list</span></div>
+            <div class="browser-body">
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#2e7cf6,#10b4c8)"></span><div><b># announcements</b><span>Read-only · staff ping</span></div><span class="pill">3 new</span></div>
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#7c5cff,#2e7cf6)"></span><div><b># general</b><span>1,204 members chatting</span></div><span class="pill">Live</span></div>
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#f45ca6,#7c5cff)"></span><div><b># clips &amp; media</b><span>Best plays of the week</span></div><span class="pill">Live</span></div>
+              <div class="mock-row"><span class="dot" style="background:linear-gradient(135deg,#8a8f9c,#5f6368)"></span><div><b>Lobby — Voice</b><span>12 connected</span></div><span class="pill">Voice</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" id="panel-vc" role="tabpanel" aria-labelledby="tab-vc" tabindex="0">
+        <div class="tab-panel-grid">
+          <div class="tab-cards">
+            <a class="service-card" href="thumbnails.html">
+              <h3 class="service-title">Thumbnail design</h3>
+              <p class="service-desc">Gaming thumbnails for Minecraft, Valorant, Fortnite and Roblox channels, built for the mobile feed.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="service-card" href="video.html">
+              <h3 class="service-title">Short-form editing</h3>
+              <p class="service-desc">YouTube Shorts with hook-first cuts, dynamic captions and layered sound design.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="service-card" href="free-assets.html">
+              <h3 class="service-title">Creator assets</h3>
+              <p class="service-desc">Free resource packs, templates and tools to speed up your own workflow.</p>
+              <span class="service-arrow" aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+          <div class="browser-frame" aria-hidden="true">
+            <div class="browser-bar"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-url">Portfolio — recent work</span></div>
+            <div class="browser-body">
+              <div class="mock-grid">
+                <img width="480" height="270" loading="lazy" decoding="async" src="thumbnails/Valorant1.png" alt="">
+                <img width="480" height="270" loading="lazy" decoding="async" src="thumbnails/Minecraft2.png" alt="">
+                <img width="480" height="270" loading="lazy" decoding="async" src="thumbnails/Misc1.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -219,7 +250,7 @@ home_body = f"""
     <div class="grid grid-3">
       {"".join(f'''<a class="work-card" href="thumbnails.html">
         <div class="work-thumb"><picture><source srcset="{w}" type="image/webp">
-        <img width="1280" height="720" loading="lazy" decoding="async" src="{s}" alt="{alt}"></picture></div>
+        <img width="1280" height="720" loading="lazy" decoding="async" src="{s}" alt="{alt}"></picture><span class="work-view" aria-hidden="true">View</span></div>
         <div class="work-body"><span class="work-tag">{tag}</span>
         <h3 class="work-title">{title}</h3><p class="work-meta">{desc}</p></div>
       </a>''' for s, w, tag, title, desc, alt in [
@@ -252,12 +283,12 @@ home_body = f"""
       <p class="section-subtitle">How it works</p>
       <h2>A process that <span class="gradient-text">does not waste your time</span></h2>
     </div>
-    <div class="grid grid-4">
-      <div class="workflow-step"><span class="step-num">01</span><h3>Discuss</h3><p>Tell us the goal and the constraint. We reply within 24 hours on business days.</p></div>
-      <div class="workflow-step"><span class="step-num">02</span><h3>Plan</h3><p>Scope, price and timeline agreed in writing before anything starts.</p></div>
-      <div class="workflow-step"><span class="step-num">03</span><h3>Design</h3><p>Concepts built around your actual content, not a template with your logo dropped in.</p></div>
-      <div class="workflow-step"><span class="step-num">04</span><h3>Build</h3><p>Servers, plugins and communities configured, tested and documented.</p></div>
-      <div class="workflow-step"><span class="step-num">05</span><h3>Deliver</h3><p>Handover with files, docs and support. You own everything we make.</p></div>
+    <div class="steps">
+      <div class="step"><span class="step-dot" aria-hidden="true">01</span><div><h3>Discuss</h3><p>Tell us the goal and the constraint. We reply within 24 hours on business days.</p></div></div>
+      <div class="step"><span class="step-dot" aria-hidden="true">02</span><div><h3>Plan</h3><p>Scope, price and timeline agreed in writing before anything starts.</p></div></div>
+      <div class="step"><span class="step-dot" aria-hidden="true">03</span><div><h3>Design</h3><p>Concepts built around your actual content, not a template with your logo dropped in.</p></div></div>
+      <div class="step"><span class="step-dot" aria-hidden="true">04</span><div><h3>Build</h3><p>Servers, plugins and communities configured, tested and documented.</p></div></div>
+      <div class="step"><span class="step-dot" aria-hidden="true">05</span><div><h3>Deliver</h3><p>Handover with files, docs and support. You own everything we make.</p></div></div>
     </div>
   </div>
 </section>

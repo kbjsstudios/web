@@ -13,12 +13,18 @@ python3 tools/build_company.py     # about, contact
 python3 tools/build_resources.py   # free assets, resource packs, plugins, yt-stuff
 python3 tools/build_games.py       # mini-games hub + the 5 games
 python3 tools/build_legal.py       # privacy, terms, 404
-python3 tools/ghost_headings.py    # attach data-ghost to selected headings
 ```
 
 They must run in that order — each imports `common.py` and some import
 `build_home.py`, so the first import re-runs it. Running them twice is
 harmless (output is idempotent).
+
+## Refresh YouTube uploads
+
+```bash
+python3 tools/update_videos.py   # refetch RSS feeds + live status
+python3 tools/build_resources.py # re-bake yt-stuff.html
+```
 
 ## Files
 
@@ -26,8 +32,9 @@ harmless (output is idempotent).
 |---|---|
 | `common.py` | head, nav, drawer, footer, schema graph, page assembly |
 | `build_*.py` | per-section content |
-| `ghost_headings.py` | post-pass that adds `data-ghost` + auto-fit size |
 | `data.json` | resource-pack + plugin listings extracted from the old markup |
+| `videos.json` | latest YouTube uploads + live status (written by `update_videos.py`) |
+| `update_videos.py` | fetches both channels' RSS feeds + `/live` pages, no API key |
 | `games.json` | canvas game logic + inline styles lifted out of the old pages |
 
 `games.json` matters: each mini game's canvas code lives inside its generated
