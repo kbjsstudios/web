@@ -42,6 +42,12 @@ window.FIREBASE_CONFIG = {
 window.CONTACT_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1558960358872584196/YdCmFGcn83SVLcNPyTFlzj06aBXwdcendAvpWzr5e4m4Vlj2uEVbFeRiW1PcTwPOi34z";
 
 /* ============================================================
+   Ticket Webhook (Discord) — used by the internal new-ticket.html
+   page. Leave empty to reuse CONTACT_WEBHOOK_URL above.
+   ============================================================ */
+window.TICKETS_WEBHOOK_URL = "";
+
+/* ============================================================
    If Firebase is not configured, stats fall back to localStorage
    (per-device only, not shared across users).
    ============================================================ */

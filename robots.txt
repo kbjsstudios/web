@@ -1,8 +1,10 @@
 User-agent: *
 Allow: /
 Disallow: /KBJS_Studios_SEO_Audit_Report.pdf
+Disallow: /new-ticket.html
 
 # Crawl-delay keeps the static host comfortable under crawler bursts
 Crawl-delay: 1
 
 Sitemap: https://kbjsstudios.qzz.io/sitemap.xml
+

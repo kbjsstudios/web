@@ -48,6 +48,12 @@ thumbnails/           Portfolio images
 tools/                Page generators (common shell + per-section builders)
 ```
 
+## Task tickets
+
+Reusable task tickets for handing work to coding agents live in
+[`docs/ai-tickets/`](docs/ai-tickets/README.md) — a master template, a quick
+template for small fixes, and a filled-in example.
+
 ## The design
 
 Light, airy, Antigravity-style: a soft `#F6F8FC` canvas, oversized

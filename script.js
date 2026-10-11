@@ -1040,6 +1040,192 @@
      Removed with the reskin: pages sit on a flat canvas now, so there
      is no render loop to own. */
 
+  /* ---------- 24 NEW TICKET (internal) ----------
+     new-ticket.html: compose a task ticket, post a compact
+     embed to Discord, copy the full Markdown for an agent. */
+  guard('newticket', function () {
+    var form = $('#ticket-form');
+    if (!form) return;
+
+    var LOGO = 'https://kbjsstudios.qzz.io/logos/kbjslogo.png';
+    var COLORS = { Critical: 0xE74C3C, High: 0xE67E22, Medium: 0x6C5CE7, Low: 0x95A5A6 };
+    var DEF_UIUX = [
+      'Follow the existing KBJS Studios design language.',
+      'Maintain a clean, modern, professional appearance.',
+      'Ensure responsive behavior on mobile, tablet, and desktop where relevant.',
+      'Preserve existing navigation, theme behavior, and working features unless explicitly instructed otherwise.'
+    ];
+    var DEF_TECH = [
+      'Follow the existing project architecture and coding conventions.',
+      'Reuse existing components and dependencies where practical.',
+      'Avoid unrelated code changes.',
+      'Protect API keys, credentials, and environment variables.'
+    ];
+
+    var v = function (id) { var el = $('#' + id); return el ? el.value.trim() : ''; };
+    var clip = function (s, n) { s = (s || '').trim(); return s.length > n ? s.slice(0, n - 1) + '\u2026' : s; };
+    var or = function (s, fb) { s = (s || '').trim(); return s || fb; };
+    var lines = function (s, prefix) {
+      return (s || '').split('\n').map(function (l) { return l.trim(); })
+        .filter(Boolean).map(function (l) { return prefix + l; }).join('\n');
+    };
+
+    var collect = function () {
+      return {
+        id: v('t-id'), title: v('t-title'), type: v('t-type'),
+        priority: v('t-priority'), status: v('t-status'),
+        agent: v('t-agent'), branch: or(v('t-branch'), 'main'),
+        what: v('t-what'), why: v('t-why'), outcome: v('t-outcome'),
+        current: v('t-current'), problem: v('t-problem'),
+        affected: v('t-affected'), refs: v('t-refs'),
+        reqs: v('t-reqs'), uiux: v('t-uiux'), tech: v('t-tech'), ac: v('t-ac'),
+        scopeIn: v('t-scope-in'), scopeOut: v('t-scope-out'), deps: v('t-deps')
+      };
+    };
+
+    var toMarkdown = function (t) {
+      var out = '# KBJS STUDIOS \u2014 TASK TICKET\n\n';
+      out += '## 1. Ticket Information\n';
+      out += '- **Ticket ID:** ' + or(t.id, 'KBJS-000') + '\n';
+      out += '- **Task Title:** ' + or(t.title, '\u2014') + '\n';
+      out += '- **Task Type:** ' + t.type + '\n';
+      out += '- **Priority:** ' + t.priority + '\n';
+      out += '- **Assigned Agent:** ' + t.agent + '\n';
+      out += '- **Repository:** https://github.com/kbjsstudios/web\n';
+      out += '- **Working Branch:** ' + t.branch + '\n';
+      out += '- **Status:** ' + t.status + '\n\n';
+      out += '## 2. Objective\n';
+      out += '**What needs to be done?**\n\n' + or(t.what, '[Describe the task clearly.]') + '\n\n';
+      out += '**Why is this needed?**\n\n' + or(t.why, '[Explain the problem or purpose.]') + '\n\n';
+      out += '**Expected outcome:**\n\n' + or(t.outcome, '[Describe the finished result.]') + '\n\n';
+      out += '## 3. Current Situation\n';
+      out += '- **Current behavior:** ' + or(t.current, '\u2014') + '\n';
+      out += '- **Problem:** ' + or(t.problem, '\u2014') + '\n';
+      out += '- **Affected pages/components:** ' + or(t.affected, '\u2014') + '\n';
+      out += '- **Reference links/screenshots:** ' + or(t.refs, '\u2014') + '\n\n';
+      out += '## 4. Requirements\n\n### Functional Requirements\n';
+      out += lines(t.reqs, '- [ ] ') || '- [ ] \u2014\n';
+      out += '\n### UI/UX Requirements\n';
+      out += lines(t.uiux, '- [ ] ') || lines(DEF_UIUX.join('\n'), '- [ ] ') + '\n';
+      out += '\n### Technical Requirements\n';
+      out += lines(t.tech, '- [ ] ') || lines(DEF_TECH.join('\n'), '- [ ] ') + '\n';
+      out += '\n## 5. Agent Instructions\n1. Inspect the repository and relevant files before editing.\n';
+      out += '2. Check Git status and preserve existing user changes.\n3. Identify the root cause or plan the implementation.\n';
+      out += '4. Make the requested changes completely.\n5. Test the affected functionality and relevant build checks.\n';
+      out += '6. Fix issues introduced by your changes.\n7. Summarize all modifications and test results.\n';
+      out += '8. Do not delete user data, force-push, or perform destructive operations.\n';
+      out += '9. Do not deploy to production or modify live services without explicit permission.\n';
+      out += '10. If blocked, explain the issue and the safest next step.\n\n';
+      out += '## 6. Acceptance Criteria\n';
+      out += lines(t.ac, '- [ ] ') || '- [ ] All requested functionality works as specified.\n';
+      out += '\n## 7. Scope\n\n**Included:**\n' + (lines(t.scopeIn, '- ') || '- \u2014') + '\n';
+      out += '\n**Excluded:**\n' + (lines(t.scopeOut, '- ') || '- \u2014') + '\n';
+      out += '\n**Dependencies or restrictions:**\n' + (lines(t.deps, '- ') || '- \u2014') + '\n\n';
+      out += '## 8. Completion Report\n\nThe agent must provide:\n\n';
+      out += '- **Final Status:** [Completed / Partially Completed / Blocked]\n';
+      out += '- **Summary:** [What was accomplished]\n';
+      out += '- **Files Changed:** [Created, modified, or deleted files]\n';
+      out += '- **Implementation Details:** [Important technical decisions]\n';
+      out += '- **Tests Run:** [Commands and actual results]\n';
+      out += '- **Known Issues:** [Remaining problems, if any]\n';
+      out += '- **Git Commit:** [If requested and completed]\n';
+      out += '- **Deployment:** [Not deployed / Deployed and verified / Not verified]\n';
+      out += '- **Next Steps:** [Only if necessary]\n\n';
+      out += '## 9. Definition of Done\n- [ ] Acceptance criteria are met.\n';
+      out += '- [ ] Changes have been verified to the extent possible.\n';
+      out += '- [ ] No known regressions have been ignored.\n';
+      out += '- [ ] Remaining limitations are disclosed.\n';
+      out += '- [ ] The completion report is accurate.\n\n';
+      out += '**Final instruction:** Complete only the scope defined in this ticket. ';
+      out += 'Do not claim success for work that was not implemented or tested. ';
+      out += 'Preserve existing project behavior and request authorization before risky or irreversible actions.\n';
+      return out;
+    };
+
+    var buildDiscord = function (t) {
+      var fields = [
+        { name: 'Type', value: clip(t.type, 100), inline: true },
+        { name: 'Priority', value: clip(t.priority, 100), inline: true },
+        { name: 'Status', value: clip(t.status, 100), inline: true },
+        { name: 'Agent', value: clip(t.agent, 100), inline: true },
+        { name: 'Branch', value: clip(t.branch, 100), inline: true }
+      ];
+      var add = function (name, val, n) { if (val && val.trim()) fields.push({ name: name, value: clip(val, n || 300) }); };
+      add('Why needed', t.why);
+      add('Expected outcome', t.outcome);
+      add('Current behavior', t.current);
+      add('Problem', t.problem);
+      add('Affected', t.affected, 250);
+      add('References', t.refs, 250);
+      add('Requirements', lines(t.reqs, '\u2022 '), 450);
+      add('UI/UX', lines(t.uiux, '\u2022 '), 350);
+      add('Technical', lines(t.tech, '\u2022 '), 350);
+      add('Acceptance criteria', lines(t.ac, '[ ] '), 450);
+      add('Scope \u2014 included', lines(t.scopeIn, '\u2022 '), 300);
+      add('Scope \u2014 excluded', lines(t.scopeOut, '\u2022 '), 300);
+      add('Dependencies', lines(t.deps, '\u2022 '), 250);
+      return {
+        username: 'KBJS Studios \u2014 Tickets',
+        embeds: [{
+          title: clip(or(t.id, 'Ticket') + ' \u2014 ' + or(t.title, 'Untitled'), 256),
+          description: clip(or(t.what, 'No description.'), 500),
+          color: COLORS[t.priority] || 0x6C5CE7,
+          thumbnail: { url: LOGO },
+          fields: fields,
+          footer: {
+            text: 'KBJS Studios \u00b7 full ticket: Copy ticket on the site \u00b7 delete: right-click \u2192 Delete Message',
+            icon_url: LOGO
+          },
+          timestamp: new Date().toISOString()
+        }]
+      };
+    };
+
+    $('#ticket-copy') && $('#ticket-copy').addEventListener('click', function () {
+      var t = collect();
+      if (!t.id || !t.title || !t.what) {
+        return showToast('Fill Ticket ID, Task title and What needs to be done first.', 'error');
+      }
+      var md = toMarkdown(t);
+      var ok = function () { showToast('Ticket Markdown copied \u2014 paste it into your coding agent.'); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(md).then(ok, ok);
+      } else {
+        var ta = doc.createElement('textarea');
+        ta.value = md;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:-1000px';
+        doc.body.appendChild(ta);
+        ta.select();
+        try { doc.execCommand('copy'); } catch (err) {}
+        ta.remove();
+        ok();
+      }
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var t = collect();
+      if (!t.id || !t.title || !t.what) {
+        return showToast('Fill Ticket ID, Task title and What needs to be done first.', 'error');
+      }
+      var hook = win.TICKETS_WEBHOOK_URL || win.CONTACT_WEBHOOK_URL;
+      if (!hook) return showToast('No ticket webhook configured.', 'error');
+      fetch(hook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(buildDiscord(t))
+      }).then(function () {
+        showToast('Ticket ' + t.id + ' sent to Discord.');
+        form.reset();
+        var br = $('#t-branch');
+        if (br) br.value = 'main';
+      }).catch(function () {
+        showToast('Could not send right now \u2014 please try again.', 'error');
+      });
+    });
+  });
+
   /* ---------- TEARDOWN ---------- */
   win.addEventListener('pagehide', function () {
     TEARDOWN.forEach(function (fn) { try { fn(); } catch (e) {} });
