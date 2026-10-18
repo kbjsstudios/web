@@ -48,6 +48,34 @@ window.CONTACT_WEBHOOK_URL = "https://discordapp.com/api/webhooks/15589603588725
 window.TICKETS_WEBHOOK_URL = "";
 
 /* ============================================================
+   Ticket System — contact form → email + Discord ticket
+   ============================================================
+   TICKET_EMAIL — the inbox that contact tickets are delivered to.
+   Flow: the visitor's form posts to FormSubmit (formsubmit.co),
+   which emails this inbox and sends the visitor an instant
+   "nice to meet you" auto-reply. A ticket (ID, purpose, priority,
+   auto-reply status) is also posted to the Discord webhooks above.
+   NOTE: the first submission triggers a one-time activation email
+   to TICKET_EMAIL — click the link in it to switch delivery on.
+   Want a dedicated address? Two free options:
+     · Gmail alias: kbjsstudios+tickets@gmail.com (arrives in the
+       same inbox — add a Gmail filter on "to:tickets").
+     · Your own domain via Cloudflare Email Routing (tickets@…
+       forwards to Gmail).
+   Change it here and re-run the one-time activation.
+   ============================================================ */
+window.TICKET_EMAIL = "kbjsstudios@gmail.com";
+
+/* After activation FormSubmit gives you a random string (e.g.
+   "a1b2c3d4") that hides the address in the form URL. Paste it
+   here to use it instead of the plain email. Optional. */
+window.TICKET_FORM_KEY = "";
+
+/* Set true if the tickets webhook points at a Discord FORUM
+   channel — every ticket then opens as its own thread. */
+window.TICKETS_FORUM_THREADS = false;
+
+/* ============================================================
    If Firebase is not configured, stats fall back to localStorage
    (per-device only, not shared across users).
    ============================================================ */

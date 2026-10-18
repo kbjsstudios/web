@@ -316,10 +316,14 @@ home_body = f"""
            "Get started", ("See our work", "#work"))}
 """
 
-print("index.html", page(
-    "index.html",
-    "KBJS Studios — Minecraft, Discord &amp; Thumbnail Design",
-    "KBJS Studios builds Minecraft servers and custom Paper plugins, sets up Discord communities, designs gaming YouTube thumbnails and edits YouTube Shorts.",
-    home_body,
-    [faq_schema(HOME_FAQ)],
-    active="index.html"))
+if __name__ == "__main__":
+    # Only generate index.html when run directly. Other builders import this
+    # module just for its helpers (crumbs_nav, page_hero, ...) — without this
+    # guard the import side effect silently overwrites the homepage.
+    print("index.html", page(
+        "index.html",
+        "KBJS Studios — Minecraft, Discord &amp; Thumbnail Design",
+        "KBJS Studios builds Minecraft servers and custom Paper plugins, sets up Discord communities, designs gaming YouTube thumbnails and edits YouTube Shorts.",
+        home_body,
+        [faq_schema(HOME_FAQ)],
+        active="index.html"))

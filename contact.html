@@ -6,10 +6,9 @@
 <title>Contact KBJS Studios — Start Your Project</title>
 <meta name="description" content="Contact KBJS Studios for Minecraft servers, Discord setup, gaming thumbnails or YouTube Shorts editing. We reply within 24 hours on business days.">
 <link rel="canonical" href="https://kbjsstudios.qzz.io/contact.html">
-<meta name="theme-color" content="#F6F8FC">
-<meta name="theme-color" content="#0b0d12" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0a0a0a">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KBJS Studios">
 <meta property="og:locale" content="en_US">
@@ -29,8 +28,7 @@
 <link rel="apple-touch-icon" href="logos/kbjslogo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="preload" href="logos/webp/kbjslogo.webp" as="image" type="image/webp">
+<link href="https://fonts.googleapis.com/css2?family=Cactus+Classical+Serif&family=Poppins:wght@400;500;600&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "@id": "https://kbjsstudios.qzz.io/#organization", "name": "KBJS Studios", "url": "https://kbjsstudios.qzz.io/", "logo": {"@type": "ImageObject", "url": "https://kbjsstudios.qzz.io/logos/kbjslogo.png", "width": 1254, "height": 1254}, "description": "Creative digital studio building gaming thumbnails, Minecraft servers, Discord communities and video editing for creators.", "email": "kbjsstudios@gmail.com", "founder": [{"@type": "Person", "name": "Knockbackkk", "url": "https://youtube.com/@knockbackkk"}, {"@type": "Person", "name": "JustSlayer", "url": "https://youtube.com/@justslayer0"}], "sameAs": ["https://youtube.com/@knockbackkk", "https://youtube.com/@justslayer0", "https://discord.gg/2QPMk6jvpV"], "knowsAbout": ["Minecraft server development", "Custom Minecraft plugins", "Discord server setup", "YouTube thumbnail design", "Short-form video editing"]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "@id": "https://kbjsstudios.qzz.io/#website", "name": "KBJS Studios", "url": "https://kbjsstudios.qzz.io/", "publisher": {"@id": "https://kbjsstudios.qzz.io/#organization"}, "inLanguage": "en-US"}</script>
@@ -45,9 +43,9 @@
 <div class="nav-shell" data-scrolled="false">
   <nav class="navbar" aria-label="Primary">
     <a class="nav-logo" href="index.html">
-      <picture><source srcset="logos/webp/kbjslogo.webp" type="image/webp">
-      <img width="34" height="34" loading="eager" fetchpriority="high" decoding="async" src="logos/kbjslogo.png" alt="" aria-hidden="true"></picture>
-      <span>KBJS Studios</span>
+      <span class="brand-word">kbjs</span>
+        <svg class="brand-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="#ef4444"/><path d="M9 8.4l3.4 3.6L9 15.6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.6 15.6h2.9" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="brand-word">studios</span>
     </a>
     <ul class="nav-links"><li><a class="nav-link" href="index.html">Home</a></li>
 <li><a class="nav-link" href="thumbnails.html">Thumbnails</a></li>
@@ -103,8 +101,9 @@
 <section class="section"><div class="container">
   <div class="contact-grid">
     <div>
-      <h2 class="section-title">Send a brief</h2>
-      <form class="form-grid" id="contact-form" novalidate>
+      <h2 class="section-title">Open a ticket</h2>
+      <p class="form-note" style="margin-bottom:var(--sp-4)">Everything below becomes a ticket &mdash; it lands in our inbox and on Discord, you get an instant confirmation email, and a personal reply within 24 hours on business days.</p>
+      <form class="form-grid" id="contact-form" action="https://formsubmit.co/kbjsstudios@gmail.com" method="POST">
         <div class="field">
           <label for="contact-name">Your name</label>
           <input class="form-input" id="contact-name" name="name" type="text" maxlength="80" autocomplete="name" required>
@@ -112,14 +111,66 @@
         <div class="field">
           <label for="contact-email">Email</label>
           <input class="form-input" id="contact-email" name="email" type="email" maxlength="160" autocomplete="email" required>
+          <p class="form-note">Your ticket confirmation and the reply land here.</p>
+        </div>
+        <div class="field">
+          <label for="contact-purpose">What is this about?</label>
+          <select class="form-input" id="contact-purpose" name="purpose" required>
+            <option value="" selected disabled>Choose a purpose&hellip;</option>
+            <optgroup label="Minecraft">
+              <option value="minecraft-server" data-priority="Medium">Minecraft server development</option>
+              <option value="minecraft-plugin" data-priority="Medium">Custom plugin (Paper&nbsp;/&nbsp;Spigot)</option>
+              <option value="resource-pack" data-priority="Low">Resource pack</option>
+              <option value="mini-game" data-priority="Low">Mini game or map build</option>
+            </optgroup>
+            <optgroup label="Content creation">
+              <option value="thumbnail" data-priority="Medium">Gaming thumbnail</option>
+              <option value="video-edit" data-priority="Medium">Short-form video editing</option>
+              <option value="yt-stuff" data-priority="Low">YouTube &mdash; YT stuff</option>
+              <option value="free-assets" data-priority="Low">Free assets request</option>
+            </optgroup>
+            <optgroup label="Community">
+              <option value="discord" data-priority="Medium">Discord server setup</option>
+              <option value="collab" data-priority="Medium">Collaboration or sponsorship</option>
+            </optgroup>
+            <optgroup label="Other">
+              <option value="support" data-priority="Low">Support or question</option>
+              <option value="bug" data-priority="High">Report a bug</option>
+              <option value="other" data-priority="Medium">Something else</option>
+            </optgroup>
+          </select>
+          <p class="form-note">Pick the closest match &mdash; it routes your ticket to the right person.</p>
         </div>
         <div class="field">
           <label for="contact-message">What do you need?</label>
           <textarea class="form-input" id="contact-message" name="message" maxlength="2000" required></textarea>
           <p class="form-note">Mention the game or platform, your goal and any deadline.</p>
         </div>
-        <button class="btn btn-primary" type="submit">Send message</button>
+        <div class="hp-field" aria-hidden="true"><label for="contact-company">Company</label><input class="form-input" id="contact-company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+        <input type="hidden" name="_subject" value="New KBJS Studios ticket (contact page)">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_autoresponse" value="Hi and nice to meet you! &#10;&#10;Thanks for reaching out to KBJS Studios &mdash; your request is in and a ticket has been opened for it.&#10;&#10;&bull; A real person replies to this email within 24 hours on business days.&#10;&bull; If you want to get in touch sooner, join our Discord: https://discord.gg/2QPMk6jvpV&#10;&#10;Talk soon,&#10;KBJS Studios &#8212; https://kbjsstudios.qzz.io">
+        <input type="hidden" name="_next" value="https://kbjsstudios.qzz.io/contact.html?sent=1">
+        <input type="hidden" name="_honey" value="">
+        <input type="hidden" name="ticket" id="contact-ticket" value="">
+        <input type="hidden" name="priority" id="contact-priority" value="">
+        <input type="hidden" name="page" id="contact-page" value="">
+        <div class="form-actions">
+          <button class="btn btn-primary" id="contact-submit" type="submit">Open my ticket</button>
+          <p class="form-note" id="contact-status" role="status">Instant email confirmation &middot; personal reply within 24 hours.</p>
+        </div>
       </form>
+
+      <div class="receipt-card" id="ticket-receipt" hidden>
+        <p class="receipt-eyebrow">Ticket confirmed</p>
+        <h3 class="receipt-id" id="receipt-id">&mdash;</h3>
+        <p class="receipt-line" id="receipt-summary"></p>
+        <ul class="receipt-list">
+          <li><strong>Auto-reply sent</strong> &mdash; a &ldquo;nice to meet you&rdquo; confirmation is on its way to your inbox. Check spam if it hides.</li>
+          <li><strong>Personal reply</strong> &mdash; within 24 hours on business days.</li>
+          <li><strong>In a hurry?</strong> Ping us on <a href="https://discord.gg/2QPMk6jvpV" rel="noopener" target="_blank">Discord</a> and mention the ticket ID.</li>
+        </ul>
+      </div>
     </div>
     <div>
       <h2 class="section-title">Other ways to reach us</h2>
@@ -185,9 +236,9 @@
   <div class="footer-grid">
     <div class="footer-col footer-brand">
       <a class="nav-logo" href="index.html">
-        <picture><source srcset="logos/webp/kbjslogo.webp" type="image/webp">
-        <img width="34" height="34" loading="lazy" decoding="async" src="logos/kbjslogo.png" alt="" aria-hidden="true"></picture>
-        <span>KBJS Studios</span>
+        <span class="brand-word">kbjs</span>
+        <svg class="brand-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="1" y="1" width="22" height="22" rx="6" fill="#ef4444"/><path d="M9 8.4l3.4 3.6L9 15.6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.6 15.6h2.9" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="brand-word">studios</span>
       </a>
       <p>Creative digital studio building Minecraft servers, Discord communities, gaming thumbnails and video for creators.</p>
       <ul class="social-links">

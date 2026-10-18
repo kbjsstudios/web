@@ -20,58 +20,61 @@
 
 /* ---------- 01 TOKENS ---------- */
 :root {
-  --bg: #f6f8fc;
-  --bg-soft: #ffffff;
-  --surface: #ffffff;
-  --surface-2: #eef1f7;
-  --surface-solid: #ffffff;
-  --surface-raised: #ffffff;
+  /* Dark canvas — same palette as the new homepage (kbjs-theme.css). */
+  --bg: #0a0a0a;
+  --bg-soft: #0f0f10;
+  --surface: #101012;
+  --surface-2: #161618;
+  --surface-solid: #101012;
+  --surface-raised: #17171a;
 
-  --hairline: #e3e7f0;
-  --hairline-strong: #c9d0e0;
+  --hairline: #232326;
+  --hairline-strong: #35353b;
 
-  --ink: #0f1115;
-  --ink-2: #33373f;
-  --ink-3: #5f6368;
-  --ink-4: #8a8f9c;
+  --ink: #fafafa;
+  --ink-2: #d4d4d8;
+  --ink-3: #a1a1aa;
+  --ink-4: #6f6f78;
 
-  /* Accent gradient — blue → violet → pink. */
-  --accent-1: #2e7cf6;
-  --accent-2: #7c5cff;
-  --accent-3: #f45ca6;
-  --accent-gradient: linear-gradient(100deg, var(--accent-1), var(--accent-2) 52%, var(--accent-3));
-  --accent: #2e7cf6;
-  --accent-strong: #1f63d8;
-  --accent-soft: rgba(46, 124, 246, 0.1);
-  --accent-line: rgba(46, 124, 246, 0.35);
+  /* Accent — red (#ef4444) to match the new design. */
+  --accent-1: #ef4444;
+  --accent-2: #f87171;
+  --accent-3: #fca5a5;
+  --accent-gradient: linear-gradient(100deg, #ef4444, #f97316 55%, #ef4444);
+  --accent: #ef4444;
+  --accent-strong: #fca5a5;
+  --accent-soft: rgba(239, 68, 68, 0.12);
+  --accent-line: rgba(239, 68, 68, 0.4);
 
   /* Legacy token names referenced by generated markup and the game
      pages' inline styles. They resolve into this system so no page
      can ever render an unstyled token. */
   --gold: var(--ink);
-  --gold-bright: var(--ink);
+  --gold-bright: #ffffff;
   --gold-deep: var(--ink-2);
   --gold-soft: var(--accent-soft);
   --gold-line: var(--accent-line);
-  --rose: var(--accent-3);
-  --violet: var(--accent-2);
-  --violet-soft: rgba(124, 92, 255, 0.1);
-  --cyan: #0aa2c0;
-  --cyan-soft: rgba(10, 162, 192, 0.1);
+  --rose: #f87171;
+  --violet: #fb923c;
+  --violet-soft: rgba(251, 146, 60, 0.12);
+  --cyan: #f97316;
+  --cyan-soft: rgba(249, 115, 22, 0.12);
   --primary: var(--accent);
   --border: var(--hairline);
   --text-muted: var(--ink-4);
-  --bg-glass: rgba(255, 255, 255, 0.78);
-  --bg-elevated: var(--surface-solid);
-  --glass-blur: 16px;
+  --bg-glass: rgba(10, 10, 10, 0.72);
+  --bg-elevated: #141416;
+  --glass-blur: 14px;
   --radius-lg: var(--r-lg);
-  --mat-thin: rgba(255, 255, 255, 0.65);
-  --mat-reg: rgba(255, 255, 255, 0.8);
-  --mat-ultra: rgba(255, 255, 255, 0.94);
-  --specular: inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  --specular-soft: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  --mat-thin: rgba(16, 16, 18, 0.55);
+  --mat-reg: rgba(16, 16, 18, 0.78);
+  --mat-ultra: rgba(14, 14, 16, 0.94);
+  --specular: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --specular-soft: inset 0 1px 0 rgba(255, 255, 255, 0.035);
 
-  --font: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Cactus Classical Serif', Georgia, 'Times New Roman', serif;
+  --font-mono: 'Source Code Pro', 'Courier New', monospace;
   --fs-display: clamp(4rem, 8vw, 6rem);
   --fs-hero: clamp(2.75rem, 5.4vw, 4.25rem);
   --fs-h2: clamp(2.1rem, 4.2vw, 3.1rem);
@@ -85,7 +88,7 @@
   --maxw: 1200px;
   --maxw-wide: 1280px;
   --gutter: clamp(20px, 4vw, 40px);
-  --section-pad: clamp(104px, 10vw, 148px);
+  --section-pad: clamp(88px, 8.5vw, 124px);
   --r-sm: 10px;
   --r-md: 16px;
   --r-lg: 24px;
@@ -110,46 +113,12 @@
   --t-slow: 550ms;
   --t-slower: 750ms;
 
-  --sh-1: 0 1px 2px rgba(16, 24, 40, 0.05);
-  --sh-2: 0 12px 32px -12px rgba(16, 24, 40, 0.14);
-  --sh-3: 0 28px 70px -28px rgba(16, 24, 40, 0.22);
+  --sh-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --sh-2: 0 14px 34px -14px rgba(0, 0, 0, 0.6);
+  --sh-3: 0 30px 70px -30px rgba(0, 0, 0, 0.7);
   --sh-glow: 0 0 0 1px var(--hairline);
 
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0b0d12;
-    --bg-soft: #10131a;
-    --surface: #141824;
-    --surface-2: #1a2030;
-    --surface-solid: #141824;
-    --surface-raised: #1c2230;
-    --hairline: rgba(255, 255, 255, 0.1);
-    --hairline-strong: rgba(255, 255, 255, 0.22);
-    --ink: #f2f4f9;
-    --ink-2: #d3d8e3;
-    --ink-3: #a3aabd;
-    --ink-4: #6f7690;
-    --accent: #6ea1ff;
-    --accent-strong: #9dc0ff;
-    --accent-soft: rgba(110, 161, 255, 0.14);
-    --accent-line: rgba(110, 161, 255, 0.4);
-    --gold: var(--ink);
-    --gold-bright: #ffffff;
-    --gold-deep: var(--ink-2);
-    --gold-soft: rgba(110, 161, 255, 0.12);
-    --gold-line: var(--accent-line);
-    --bg-glass: rgba(13, 16, 23, 0.78);
-    --bg-elevated: var(--surface-solid);
-    --mat-thin: rgba(13, 16, 23, 0.6);
-    --mat-reg: rgba(13, 16, 23, 0.78);
-    --mat-ultra: rgba(12, 14, 20, 0.94);
-    --sh-1: 0 1px 2px rgba(0, 0, 0, 0.4);
-    --sh-2: 0 12px 32px -12px rgba(0, 0, 0, 0.55);
-    --sh-3: 0 28px 70px -28px rgba(0, 0, 0, 0.65);
-  }
+  color-scheme: dark;
 }
 
 /* ---------- 02 RESET & BASE ---------- */
@@ -180,7 +149,7 @@ a:hover { color: var(--accent-strong); }
 img { max-width: 100%; height: auto; }
 ul, ol { margin: 0; padding: 0; }
 
-::selection { background: rgba(124, 92, 255, 0.25); }
+::selection { background: rgba(239, 68, 68, 0.3); color: #fff; }
 
 :focus-visible {
   outline: none;
@@ -285,9 +254,9 @@ ul, ol { margin: 0; padding: 0; }
   background: var(--accent-gradient);
   background-size: 140% 140%;
   color: #fff;
-  box-shadow: 0 10px 26px -10px rgba(124, 92, 255, 0.55);
+  box-shadow: 0 10px 26px -12px rgba(239, 68, 68, 0.45);
 }
-.btn-primary:hover, .glow-btn:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 16px 34px -10px rgba(124, 92, 255, 0.6); }
+.btn-primary:hover, .glow-btn:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 16px 34px -12px rgba(239, 68, 68, 0.5); }
 .btn-secondary {
   background: var(--surface);
   color: var(--ink);
@@ -313,7 +282,7 @@ ul, ol { margin: 0; padding: 0; }
   cursor: pointer;
   transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
 }
-.icon-btn:hover { background: rgba(15, 17, 21, 0.06); color: var(--ink); }
+.icon-btn:hover { background: rgba(255, 255, 255, 0.08); color: var(--ink); }
 .icon-btn svg { width: 19px; height: 19px; }
 
 /* ---------- 05 NAVIGATION ---------- */
@@ -373,7 +342,7 @@ ul, ol { margin: 0; padding: 0; }
   font-weight: 550;
   transition: color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
 }
-.nav-link:hover { color: var(--ink); background: rgba(15, 17, 21, 0.05); }
+.nav-link:hover { color: var(--ink); background: rgba(255, 255, 255, 0.07); }
 .nav-link[aria-current="page"] { color: var(--ink); }
 
 .nav-actions { display: flex; align-items: center; gap: var(--sp-2); margin-left: auto; flex-shrink: 0; }
@@ -396,7 +365,7 @@ ul, ol { margin: 0; padding: 0; }
   cursor: pointer;
   transition: color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
 }
-.mega-btn:hover, .mega-btn[aria-expanded="true"] { color: var(--ink); background: rgba(15, 17, 21, 0.05); }
+.mega-btn:hover, .mega-btn[aria-expanded="true"] { color: var(--ink); background: rgba(255, 255, 255, 0.07); }
 .mega-btn .mega-chev { transition: transform var(--t-med) var(--ease); font-size: 0.7em; color: var(--ink-4); }
 .mega-btn[aria-expanded="true"] .mega-chev { transform: rotate(180deg); }
 
@@ -484,9 +453,9 @@ ul, ol { margin: 0; padding: 0; }
   filter: blur(90px);
   opacity: 0.5;
 }
-.hero-blobs i:nth-child(1) { left: -12vmax; top: -16vmax; background: radial-gradient(circle, rgba(46, 124, 246, 0.35), transparent 65%); animation: blob-drift 26s ease-in-out infinite alternate; }
-.hero-blobs i:nth-child(2) { right: -14vmax; top: -10vmax; background: radial-gradient(circle, rgba(244, 92, 166, 0.28), transparent 65%); animation: blob-drift 32s ease-in-out infinite alternate-reverse; }
-.hero-blobs i:nth-child(3) { left: 30%; bottom: -24vmax; background: radial-gradient(circle, rgba(124, 92, 255, 0.3), transparent 65%); animation: blob-drift 38s ease-in-out infinite alternate; }
+.hero-blobs i:nth-child(1) { left: -12vmax; top: -16vmax; background: radial-gradient(circle, rgba(239, 68, 68, 0.3), transparent 65%); animation: blob-drift 26s ease-in-out infinite alternate; }
+.hero-blobs i:nth-child(2) { right: -14vmax; top: -10vmax; background: radial-gradient(circle, rgba(249, 115, 22, 0.22), transparent 65%); animation: blob-drift 32s ease-in-out infinite alternate-reverse; }
+.hero-blobs i:nth-child(3) { left: 30%; bottom: -24vmax; background: radial-gradient(circle, rgba(220, 38, 38, 0.24), transparent 65%); animation: blob-drift 38s ease-in-out infinite alternate; }
 @keyframes blob-drift {
   from { transform: translate(0, 0) scale(1); }
   to { transform: translate(6vmax, 4vmax) scale(1.12); }
@@ -535,7 +504,7 @@ ul, ol { margin: 0; padding: 0; }
   background: var(--surface);
   box-shadow: var(--sh-2);
 }
-.trust-item { flex: 1 1 180px; padding: 20px 16px; text-align: center; }
+.trust-item { flex: 1 1 0; min-width: 0; padding: 20px 16px; text-align: center; }
 .trust-item + .trust-item { border-left: 1px solid var(--hairline); }
 .trust-value { display: block; font-size: 1.3rem; font-weight: 650; letter-spacing: -0.02em; color: var(--ink); }
 .trust-label { font-size: var(--fs-xs); color: var(--ink-4); }
@@ -793,7 +762,7 @@ a.service-card:hover .service-arrow { transform: translateX(5px); color: var(--a
   text-transform: uppercase;
   color: var(--accent-strong);
 }
-.soon-badge, .coming-soon {
+.soon-badge {
   display: inline-block;
   padding: 3px 11px;
   border-radius: var(--r-pill);
@@ -805,6 +774,10 @@ a.service-card:hover .service-arrow { transform: translateX(5px); color: var(--a
   text-transform: uppercase;
   color: var(--ink-4);
 }
+/* A whole card flagged "coming soon" keeps its normal type and just
+   reads as a dashed-outline card (the old shared selector shrank the
+   entire article into a badge pill). */
+.split-block.coming-soon { border-style: dashed; }
 
 /* Filter tabs */
 .filter-bar { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-6); }
@@ -822,9 +795,9 @@ a.service-card:hover .service-arrow { transform: translateX(5px); color: var(--a
 }
 .category-tab:hover, .creator-tab:hover, .gi-btn:hover { color: var(--ink); border-color: var(--ink-4); }
 .category-tab.active, .creator-tab.active, .gi-btn.active {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--bg);
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
 }
 
 /* ---------- 13 GALLERY + LIGHTBOX ---------- */
@@ -937,8 +910,8 @@ a.service-card:hover .service-arrow { transform: translateX(5px); color: var(--a
 }
 .cta-section p { position: relative; color: rgba(255, 255, 255, 0.88); max-width: 54ch; margin: 0 auto var(--sp-5); }
 .cta-section .hero-cta { position: relative; }
-.cta-section .btn-primary { background: #fff; color: var(--ink); box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.4); }
-.cta-section .btn-primary:hover { color: var(--ink); }
+.cta-section .btn-primary { background: #fff; color: #0a0a0a; box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.4); }
+.cta-section .btn-primary:hover { color: #0a0a0a; }
 .cta-section .btn-secondary { background: transparent; border-color: rgba(255, 255, 255, 0.55); color: #fff; }
 .cta-section .btn-secondary:hover { border-color: #fff; color: #fff; background: rgba(255, 255, 255, 0.12); }
 .cta-wordmark {
@@ -1094,8 +1067,8 @@ textarea.ticket-area { min-height: 88px; }
   cursor: pointer;
   transition: all var(--t-fast) var(--ease);
 }
-.cookie-btn-accept { background: var(--ink); color: var(--bg); border: 1px solid var(--ink); }
-.cookie-btn-accept:hover { opacity: 0.85; }
+.cookie-btn-accept { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+.cookie-btn-accept:hover { background: #dc2626; border-color: #dc2626; opacity: 1; }
 .cookie-btn-decline { background: transparent; color: var(--ink-2); border: 1px solid var(--hairline-strong); }
 .cookie-btn-decline:hover { border-color: var(--ink-4); }
 
@@ -1161,7 +1134,7 @@ textarea.ticket-area { min-height: 88px; }
   position: relative;
   border: 1px solid var(--hairline);
   border-radius: var(--r-lg);
-  background: #0d1020;
+  background: #0d0d0f;
   overflow: hidden;
   box-shadow: var(--sh-2);
 }
@@ -1169,7 +1142,7 @@ textarea.ticket-area { min-height: 88px; }
 .gi-overlay {
   position: absolute; inset: 0;
   display: grid; place-items: center;
-  background: rgba(246, 248, 252, 0.75);
+  background: rgba(10, 10, 10, 0.72);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   text-align: center;
@@ -1396,7 +1369,7 @@ textarea.ticket-area { min-height: 88px; }
 .custom-cursor-dot { width: 7px; height: 7px; background: var(--accent-2); }
 .custom-cursor-ring {
   width: 32px; height: 32px;
-  border: 1.5px solid rgba(124, 92, 255, 0.45);
+  border: 1.5px solid rgba(239, 68, 68, 0.45);
   transition: width var(--t-fast) var(--ease), height var(--t-fast) var(--ease),
     border-color var(--t-fast) var(--ease);
 }
@@ -1485,3 +1458,224 @@ body.js-cursor .custom-cursor-ring.cursor-click { width: 24px; height: 24px; }
   #hero-canvas { display: none !important; }
 }
 
+/* ============================================================
+   13b. REDCELL RETHEME (2026)
+   Aligns the legacy page system with the new homepage design:
+   serif display headings, red accents, centred brand nav,
+   left-aligned page heroes and a tinted footer.
+   ============================================================ */
+
+/* — Display typography — */
+h1, h2,
+.hero-title,
+.section-title, .section-head h2,
+.page-hero-title,
+.cta-section h2,
+.legal-container h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+.hero-title, .page-hero-title, .cta-section h2 { letter-spacing: -0.02em; }
+
+/* — Eyebrows: red mono — */
+.section-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+}
+
+/* — Accent words — */
+.gradient-text {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: currentColor;
+  color: var(--accent);
+}
+.cta-section .gradient-text { color: #fff; }
+
+/* — Flat red buttons (homepage style) — */
+.btn-primary, .glow-btn {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 12px 30px -14px rgba(239, 68, 68, 0.55);
+}
+.btn-primary:hover, .glow-btn:hover {
+  background: #dc2626;
+  color: #fff;
+  box-shadow: 0 16px 36px -14px rgba(239, 68, 68, 0.6);
+}
+
+/* — Nav: links left, brand centred, actions right — */
+.nav-links { order: 1; flex: 1 1 auto; margin: 0; min-width: 0; }
+.nav-logo { order: 2; }
+.nav-actions { order: 3; flex: 1 1 auto; justify-content: flex-end; margin-left: 0; }
+
+/* Keep the CTA visible on mobile, like the new pages */
+@media (max-width: 1024px) {
+  .nav-actions .btn { display: inline-flex; }
+  .nav-actions .btn-primary { padding: 10px 16px; font-size: 0.82rem; }
+  .nav-actions .icon-btn { width: 38px; height: 38px; }
+}
+
+.nav-logo { font-weight: 600; font-size: 0.95rem; letter-spacing: 0.14em; text-transform: uppercase; gap: 0.55rem; }
+.brand-word { transform: translateY(1px); }
+.brand-mark { width: 22px; height: 22px; display: block; }
+.nav-link[aria-current="page"] { color: var(--accent); }
+
+.nav-actions .btn-primary { background: var(--accent); color: #fff; padding: 11px 22px; font-size: 0.9rem; box-shadow: none; }
+.nav-actions .btn-primary:hover { background: #dc2626; color: #fff; opacity: 1; transform: translateY(-1px); }
+
+/* Navbar becomes a floating pill once scrolled */
+.nav-shell[data-scrolled="true"] {
+  background: transparent;
+  border-bottom-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.nav-shell[data-scrolled="true"] .navbar {
+  margin: 10px auto 8px;
+  height: 62px;
+  padding-inline: 20px;
+  background: rgba(10, 10, 10, 0.72);
+  border: 1px solid var(--hairline);
+  border-radius: 18px;
+  box-shadow: 0 20px 48px -26px rgba(0, 0, 0, 0.9);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+}
+@media (max-width: 760px) {
+  .nav-shell[data-scrolled="true"] .navbar { margin-inline: 10px; padding-inline: 14px; }
+}
+
+/* — Interior page hero: left-aligned with soft red glow — */
+.page-hero { text-align: left; }
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(239, 68, 68, 0.09), rgba(10, 10, 10, 0) 100%);
+}
+.page-hero .container { position: relative; }
+.page-hero-content { max-width: 780px; margin-inline: 0; }
+.page-hero-desc { margin: 0; max-width: 640px; }
+
+/* — Breadcrumbs: mono uppercase — */
+.breadcrumbs ol { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.breadcrumbs [aria-current="page"] { color: var(--ink-3); }
+
+/* — Card + FAQ hover accents — */
+a.service-card:hover, .why-card:hover, .channel-card:hover, .download-card:hover,
+.video-card:hover, .emoji-card:hover, .profile-card:hover, .work-card:hover {
+  border-color: var(--accent-line);
+}
+.faq-item.active, .faq-item.open { border-color: var(--accent-line); }
+
+/* — CTA panel: flat red — */
+.cta-section { background: linear-gradient(180deg, #ef4444, #dc2626); }
+
+/* — Footer: soft red tint — */
+.site-footer { background: linear-gradient(to top, rgba(239, 68, 68, 0.10), transparent 62%); }
+
+/* — Game pages: the DOM-based stage (Aim Trainer) needs an explicit play area — */
+.gi-stage#at-area { min-height: clamp(320px, 52vh, 440px); }
+
+/* — Respect the hidden attribute (JS un-hides via inline display) — */
+[hidden] { display: none; }
+
+/* ============================================================
+   AZURE AURA CURSOR  —  artwork © Cursors-4U.com (CC BY-NC 4.0)
+   Cyan pointer, red link, matching text / disabled cursors.
+   PNGs live in images/cursors/azure/ (converted from the .cur set).
+   ============================================================ */
+html { cursor: url("images/cursors/azure/pointer.png") 6 2, default; }
+
+a:any-link, button, [role="button"], [role="tab"], summary, label, select,
+input[type="submit"], input[type="button"], input[type="reset"],
+input[type="checkbox"], input[type="radio"], input[type="file"] {
+  cursor: url("images/cursors/azure/link.png") 6 2, pointer !important;
+}
+
+textarea, [contenteditable="true"],
+input[type="text"], input[type="search"], input[type="email"], input[type="url"],
+input[type="tel"], input[type="password"], input[type="number"], input[type="date"] {
+  cursor: url("images/cursors/azure/text.png") 16 16, text !important;
+}
+
+button:disabled, input:disabled, [aria-disabled="true"] {
+  cursor: url("images/cursors/azure/unavailable.png") 16 16, not-allowed !important;
+}
+
+/* ============================================================
+   CURSOR AMBIENCE — a soft azure glow follows the cursor across
+   layout panels only. JS adds .has-ambient / .cursor-ambient and
+   the --amb-x / --amb-y position vars; nothing else reacts.
+   ============================================================ */
+.cursor-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity .4s var(--ease, ease);
+  background: radial-gradient(300px circle at var(--amb-x, 50%) var(--amb-y, 50%),
+    rgba(26, 167, 227, .22), rgba(26, 167, 227, .08) 45%, transparent 72%);
+}
+.ambient-on > .cursor-ambient { opacity: 1; }
+
+/* Panels with a red surface read the light better as a cool white */
+.cta-section > .cursor-ambient {
+  background: radial-gradient(300px circle at var(--amb-x, 50%) var(--amb-y, 50%),
+    rgba(224, 248, 255, .35), rgba(224, 248, 255, .10) 45%, transparent 72%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-ambient { display: none; }
+}
+
+/* ---------- Contact ticket system ---------- */
+.hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-error { margin: 4px 0 0; font-size: var(--fs-xs); font-weight: 600; color: var(--accent); }
+.form-input[aria-invalid="true"] { border-color: var(--accent); }
+.form-input[aria-invalid="true"]:focus { box-shadow: 0 0 0 4px var(--accent-soft); }
+.receipt-card {
+  margin-top: var(--sp-4);
+  padding: var(--sp-4) var(--sp-4) var(--sp-3);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--r-md);
+  background: linear-gradient(180deg, rgba(239, 68, 68, 0.10), rgba(10, 10, 10, 0) 70%), var(--surface);
+}
+.receipt-eyebrow {
+  margin: 0 0 6px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+.receipt-id { margin: 0 0 8px; font-family: var(--font-mono); font-size: 1.05rem; color: var(--ink); }
+.receipt-line { margin: 0 0 var(--sp-3); color: var(--ink-2); }
+.receipt-list { margin: 0; padding-left: 1.1rem; display: grid; gap: 8px; font-size: var(--fs-sm); color: var(--ink-2); }
+.receipt-list a { color: var(--accent-2); }
+
+/* ---------- Mobile polish (games + forms) ---------- */
+@media (max-width: 640px) {
+  /* The corner "?" help button floats at the top-right of the game
+     wrap; keep the stat pills clear of it when they wrap on phones.
+     (padding, not margin — a top margin would collapse through the
+     wrapper and drag the "?" down with the pills.) */
+  .gi-hud { padding-top: 50px; }
+}
+@media (max-width: 760px) {
+  /* 16px keeps iOS Safari from zooming the page on field focus. */
+  .form-input, select.form-input, textarea.form-input { font-size: 1rem; }
+}

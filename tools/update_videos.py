@@ -24,8 +24,8 @@ HERE = pathlib.Path(__file__).resolve().parent
 UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120 Safari/537.36"}
 
 CHANNELS = {
-    "knockback": {"handle": "@knockbackkk", "channel_id": "UCSZGrX0QLXun7z6gCHRxjsg"},
-    "justslayer": {"handle": "@justslayer0", "channel_id": "UCyUBY0aoXccMRbkJVl_Wluw"},
+    "knockback": {"handle": "@knockbackkk", "channel_id": "UCCxAUry0W-c7d3mseUMhMJw"},
+    "justslayer": {"handle": "@justslayer0", "channel_id": "UCTbV0RNIKNzFBheycuiLRsQ"},
 }
 
 

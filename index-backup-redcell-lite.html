@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KBJS Studios — Minecraft, Discord & Thumbnail Design</title>
+<meta name="description" content="KBJS Studios builds Minecraft servers and custom Paper plugins, sets up Discord communities, designs gaming YouTube thumbnails and edits YouTube Shorts.">
+<link rel="canonical" href="https://kbjsstudios.qzz.io/">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="color-scheme" content="dark light">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KBJS Studios">
+<meta property="og:title" content="KBJS Studios — Minecraft, Discord & Thumbnail Design">
+<meta property="og:description" content="KBJS Studios builds Minecraft servers and custom Paper plugins, sets up Discord communities, designs gaming YouTube thumbnails and edits YouTube Shorts.">
+<meta property="og:url" content="https://kbjsstudios.qzz.io/">
+<meta property="og:image" content="https://kbjsstudios.qzz.io/logos/og-image.jpg">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="logos/kbjslogo.png">
+
+<!-- Fonts - Matching RedCell -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* RedCell-Matched Design System */
+:root {
+  --bg: #0a0a0a;
+  --bg-elevated: #121212;
+  --bg-muted: #1a1a1a;
+  --foreground: #ffffff;
+  --muted-foreground: #a1a1aa;
+  --primary: #ef4444;
+  --primary-hover: #dc2626;
+  --border: #27272a;
+  --accent: #18181b;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Crimson Pro', Georgia, serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--foreground);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container { padding: 0 1.5rem; }
+}
+
+/* Navigation */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  border-bottom: 1px solid var(--border);
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.nav-logo img {
+  width: 32px;
+  height: 32px;
+}
+
+.nav-links {
+  display: none;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+  }
+}
+
+.nav-link {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--foreground);
+  text-decoration: none;
+  border-radius: 0.375rem;
+  transition: background 0.2s;
+}
+
+.nav-link:hover {
+  background: var(--accent);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.btn-secondary:hover {
+  background: var(--accent);
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  padding: 6rem 0 3rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48rem;
+  background: linear-gradient(to bottom,
+    rgba(239, 68, 68, 0.12) 0%,
+    rgba(10, 10, 10, 0.8) 50%,
+    rgba(10, 10, 10, 1) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.hero-badge {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.25rem 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--primary);
+}
+
+@media (min-width: 640px) {
+  .hero-badge {
+    font-size: 0.875rem;
+  }
+}
+
+.hero-title {
+  max-width: 48rem;
+  margin: 0 auto 1rem;
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 3.75rem;
+  }
+}
+
+.hero-highlight {
+  color: var(--primary);
+}
+
+.hero-description {
+  max-width: 42rem;
+  margin: 0 auto 2.5rem;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: var(--muted-foreground);
+}
+
+@media (min-width: 640px) {
+  .hero-description {
+    font-size: 1rem;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+/* Terminal */
+.terminal {
+  position: relative;
+  max-width: 36rem;
+  margin: 2.5rem auto 0;
+  padding: 1rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.875rem;
+}
+
+.terminal-header {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.terminal-dot:nth-child(1) { background: #ef4444; }
+.terminal-dot:nth-child(2) { background: #f59e0b; }
+.terminal-dot:nth-child(3) { background: #22c55e; }
+
+.terminal-body {
+  color: var(--muted-foreground);
+}
+
+.terminal-prompt {
+  color: var(--primary);
+}
+
+.terminal-command {
+  color: var(--foreground);
+}
+
+/* Section */
+.section {
+  padding: 4rem 0;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 7rem 0;
+  }
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-badge {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted-foreground);
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .section-title {
+    font-size: 2.25rem;
+  }
+}
+
+.section-description {
+  max-width: 42rem;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.grid-2 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid-3 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Card */
+.card {
+  padding: 1.5rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  transition: all 0.2s;
+}
+
+.card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  background: var(--bg-muted);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  font-size: 24px;
+}
+
+.card:hover .card-icon {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.card-description {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+  margin-top: 8rem;
+  padding: 4rem 0 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.footer-grid {
+  display: grid;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.footer-heading {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-link {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--foreground);
+}
+
+.footer-bottom {
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.mb-0 { margin-bottom: 0; }
+.mb-12 { margin-bottom: 3rem; }
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="logos/kbjslogo.png" alt="">
+        <span>KBJS Studios</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#work" class="nav-link">Work</a></li>
+        <li><a href="/about.html" class="nav-link">About</a></li>
+        <li><a href="/contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="/contact.html" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-badge">Content · Code · Community</p>
+
+    <h1 class="hero-title">
+      The <span class="hero-highlight">creative studio</span> for gaming creators
+    </h1>
+
+    <p class="hero-description">
+      KBJS Studios designs gaming thumbnails, develops Minecraft servers and custom plugins,
+      builds Discord communities, and edits short-form video for creators who need the technical
+      side handled properly.
+    </p>
+
+    <div class="hero-actions">
+      <a href="/contact.html" class="btn btn-primary">Start a project</a>
+      <a href="#services" class="btn btn-secondary">See what we do</a>
+    </div>
+
+    <!-- Terminal -->
+    <div class="terminal">
+      <div class="terminal-header">
+        <span class="terminal-dot"></span>
+        <span class="terminal-dot"></span>
+        <span class="terminal-dot"></span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="terminal-prompt">$</span> <span class="terminal-command">kbjs-studios --services</span></div>
+        <div style="margin-top: 1rem; line-height: 1.8;">
+          ✓ Minecraft server development<br>
+          ✓ Custom Paper & Spigot plugins<br>
+          ✓ Discord server setup & bots<br>
+          ✓ Gaming YouTube thumbnails<br>
+          ✓ YouTube Shorts editing
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">01 / What we do</span>
+      <h2 class="section-title">Four services, one studio</h2>
+      <p class="section-description">
+        Everything is commissioned directly to the two people who will do the work.
+      </p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-icon">⛏️</div>
+        <h3 class="card-title">Minecraft Servers</h3>
+        <p class="card-description">
+          Full server builds — spawns, arenas, worlds, custom Paper and Spigot plugins written from scratch,
+          MOTDs, hosting setup and ongoing management.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💬</div>
+        <h3 class="card-title">Discord Communities</h3>
+        <p class="card-description">
+          Fresh setups and full overhauls with categories, channels, clean permissions, bot setup
+          (music, tickets, welcomers), and moderation tooling.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3 class="card-title">Gaming Thumbnails</h3>
+        <p class="card-description">
+          YouTube thumbnails for Minecraft, Valorant, Fortnite and Roblox channels, built for the
+          mobile feed with high contrast and clear focal points.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎬</div>
+        <h3 class="card-title">Short-Form Video</h3>
+        <p class="card-description">
+          YouTube Shorts editing with hook-first cuts, dynamic captions, layered sound design,
+          and pacing that keeps viewers watching until the end.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Work -->
+<section id="work" class="section" style="background: var(--bg-elevated);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">02 / Selected work</span>
+      <h2 class="section-title">Things we have shipped</h2>
+      <p class="section-description">
+        Real projects, not mockups. More case studies land here as we finish them.
+      </p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <h4 style="margin-bottom: 0.5rem; color: var(--primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">Thumbnails</h4>
+        <h3 class="card-title">Valorant thumbnail set</h3>
+        <p class="card-description">Six-part thumbnail series built for a competitive FPS channel.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="margin-bottom: 0.5rem; color: var(--primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">Minecraft</h4>
+        <h3 class="card-title">15 servers built</h3>
+        <p class="card-description">Outdoor SMP, Blood Bound Citadel, Lifesteal, Skyblock and more.</p>
+      </div>
+
+      <div class="card">
+        <h4 style="margin-bottom: 0.5rem; color: var(--primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">Discord</h4>
+        <h3 class="card-title">Custom emoji packs</h3>
+        <p class="card-description">Bespoke animated emoji sets for community builds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+  <div class="container text-center">
+    <h2 class="section-title mb-12">Have an idea? Let's build it.</h2>
+    <p class="section-description" style="margin: 0 auto 2rem;">
+      Tell us the service, the game and the goal. You will get scope and pricing back within 24 hours on business days.
+    </p>
+    <div class="hero-actions">
+      <a href="/contact.html" class="btn btn-primary">Get started</a>
+      <a href="#work" class="btn btn-secondary">See our work</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="nav-logo" style="margin-bottom: 1rem;">
+          <img src="logos/kbjslogo.png" alt="">
+          <span>KBJS Studios</span>
+        </div>
+        <p style="font-size: 0.875rem; color: var(--muted-foreground); max-width: 280px;">
+          Creative digital studio building Minecraft servers, Discord communities, gaming thumbnails
+          and video for creators.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Services</h4>
+        <ul class="footer-links">
+          <li><a href="/minecraft.html" class="footer-link">Minecraft Servers</a></li>
+          <li><a href="/discord.html" class="footer-link">Discord Setup</a></li>
+          <li><a href="/thumbnails.html" class="footer-link">Thumbnails</a></li>
+          <li><a href="/video.html" class="footer-link">Video Editing</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Resources</h4>
+        <ul class="footer-links">
+          <li><a href="/resource-packs.html" class="footer-link">Resource Packs</a></li>
+          <li><a href="/free-assets.html" class="footer-link">Free Assets</a></li>
+          <li><a href="/mini-games.html" class="footer-link">Mini Games</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Company</h4>
+        <ul class="footer-links">
+          <li><a href="/about.html" class="footer-link">About Us</a></li>
+          <li><a href="/contact.html" class="footer-link">Contact</a></li>
+          <li><a href="/privacy.html" class="footer-link">Privacy</a></li>
+          <li><a href="/terms.html" class="footer-link">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 KBJS Studios. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

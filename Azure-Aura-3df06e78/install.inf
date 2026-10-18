@@ -1,0 +1,50 @@
+[Version]
+signature="$CHICAGO$"
+
+[DefaultInstall]
+CopyFiles = Scheme.Cur
+AddReg = Scheme.Reg
+
+[DestinationDirs]
+Scheme.Cur = 25,Cursors
+
+[Scheme.Cur]
+azure-handwriting.cur
+azure-help.cur
+Azure Aura Link.cur
+azure-location.cur
+azure-move.cur
+Azure Aura Pointer.cur
+azure-person.cur
+azure-precision.cur
+azure-resize-horizontal.cur
+azure-resize-nesw.cur
+azure-resize-nwse.cur
+azure-resize-vertical.cur
+azure-text.cur
+azure-unavailable.cur
+Azure Aura Alternate_32-48-64.ani
+Azure Aura Working_32-48-64.ani
+Azure Aura Busy_32-48-64.ani
+
+[Scheme.Reg]
+HKCU,"Control Panel\Cursors","NWPen",,"%25%\Cursors\azure-handwriting.cur"
+HKCU,"Control Panel\Cursors","Help",,"%25%\Cursors\azure-help.cur"
+HKCU,"Control Panel\Cursors","Hand",,"%25%\Cursors\Azure Aura Link.cur"
+HKCU,"Control Panel\Cursors","Pin",,"%25%\Cursors\azure-location.cur"
+HKCU,"Control Panel\Cursors","SizeAll",,"%25%\Cursors\azure-move.cur"
+HKCU,"Control Panel\Cursors","Arrow",,"%25%\Cursors\Azure Aura Pointer.cur"
+HKCU,"Control Panel\Cursors","Person",,"%25%\Cursors\azure-person.cur"
+HKCU,"Control Panel\Cursors","Cross",,"%25%\Cursors\azure-precision.cur"
+HKCU,"Control Panel\Cursors","SizeWE",,"%25%\Cursors\azure-resize-horizontal.cur"
+HKCU,"Control Panel\Cursors","SizeNESW",,"%25%\Cursors\azure-resize-nesw.cur"
+HKCU,"Control Panel\Cursors","SizeNWSE",,"%25%\Cursors\azure-resize-nwse.cur"
+HKCU,"Control Panel\Cursors","SizeNS",,"%25%\Cursors\azure-resize-vertical.cur"
+HKCU,"Control Panel\Cursors","IBeam",,"%25%\Cursors\azure-text.cur"
+HKCU,"Control Panel\Cursors","No",,"%25%\Cursors\azure-unavailable.cur"
+HKCU,"Control Panel\Cursors","UpArrow",,"%25%\Cursors\Azure Aura Alternate_32-48-64.ani"
+HKCU,"Control Panel\Cursors","AppStarting",,"%25%\Cursors\Azure Aura Working_32-48-64.ani"
+HKCU,"Control Panel\Cursors","Wait",,"%25%\Cursors\Azure Aura Busy_32-48-64.ani"
+; Set scheme name
+HKCU,"Control Panel\Cursors","(Default)",,"Azure Aura"
+HKCU,"Control Panel\Cursors\Schemes","Azure Aura",,""

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KBJS Studios — Minecraft, Discord & Thumbnail Design</title>
+<meta name="description" content="KBJS Studios builds Minecraft servers and custom Paper plugins, sets up Discord communities, designs gaming YouTube thumbnails and edits YouTube Shorts.">
+<link rel="canonical" href="https://kbjsstudios.qzz.io/">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="color-scheme" content="dark light">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KBJS Studios">
+<meta property="og:title" content="KBJS Studios — Minecraft, Discord & Thumbnail Design">
+<meta property="og:description" content="KBJS Studios builds Minecraft servers and custom Paper plugins, sets up Discord communities, designs gaming YouTube thumbnails and edits YouTube Shorts.">
+<meta property="og:url" content="https://kbjsstudios.qzz.io/">
+<meta property="og:image" content="https://kbjsstudios.qzz.io/logos/og-image.jpg">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="logos/kbjslogo.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Styles -->
+<link rel="stylesheet" href="redcell-style.css">
+
+<style>
+/* Additional hero gradient for visual interest */
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Service icons */
+.service-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-4);
+  font-size: 24px;
+  transition: all var(--transition-base);
+}
+
+.card:hover .service-icon {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  transform: scale(1.1);
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-6);
+  margin: var(--space-12) 0;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-family: var(--font-display);
+  font-size: var(--text-5xl);
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.stat-label {
+  color: var(--text-tertiary);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Work Grid */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-6);
+}
+
+.work-card {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-base);
+}
+
+.work-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--accent-primary);
+}
+
+.work-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.work-content {
+  padding: var(--space-6);
+}
+
+.work-tag {
+  display: inline-block;
+  font-size: var(--text-xs);
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.work-title {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-sans);
+}
+
+.work-description {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+}
+
+/* Process Steps */
+.process-grid {
+  display: grid;
+  gap: var(--space-8);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.process-step {
+  display: flex;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  transition: all var(--transition-base);
+}
+
+.process-step:hover {
+  border-color: var(--accent-primary);
+  transform: translateX(8px);
+}
+
+.process-number {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-primary);
+  color: #ffffff;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: var(--text-lg);
+}
+
+.process-content h4 {
+  font-family: var(--font-sans);
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-2);
+}
+
+.process-content p {
+  margin-bottom: 0;
+  font-size: var(--text-sm);
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-logo">
+        <img src="logos/kbjslogo.png" alt="" width="32" height="32">
+        <span>KBJS Studios</span>
+      </a>
+
+      <ul class="navbar-links">
+        <li><a href="#services" class="navbar-link">Services</a></li>
+        <li><a href="#work" class="navbar-link">Work</a></li>
+        <li><a href="#process" class="navbar-link">Process</a></li>
+        <li><a href="/about.html" class="navbar-link">About</a></li>
+        <li><a href="/contact.html" class="btn btn-primary btn-sm">Get Started</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-gradient"></div>
+  <div class="container">
+    <h1 class="hero-title">
+      Build worlds.<br>Earn attention.
+    </h1>
+
+    <p class="hero-subtitle">
+      KBJS Studios designs gaming thumbnails, develops Minecraft servers and custom plugins,
+      builds Discord communities, and edits short-form video for creators who need the technical
+      side handled properly.
+    </p>
+
+    <div class="hero-actions">
+      <a href="/contact.html" class="btn btn-primary btn-lg">Start a project</a>
+      <a href="#services" class="btn btn-secondary btn-lg">See what we do</a>
+    </div>
+
+    <!-- Terminal Block -->
+    <div class="terminal">
+      <div class="terminal-header">
+        <span class="terminal-dot"></span>
+        <span class="terminal-dot"></span>
+        <span class="terminal-dot"></span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="terminal-prompt">$</span> <span class="terminal-command">kbjs-studios --services</span></div>
+        <div style="margin-top: var(--space-4); color: var(--text-secondary);">
+          ✓ Minecraft server development<br>
+          ✓ Custom Paper & Spigot plugins<br>
+          ✓ Discord server setup & bots<br>
+          ✓ Gaming YouTube thumbnails<br>
+          ✓ YouTube Shorts editing
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-value">15+</span>
+        <span class="stat-label">Servers Built</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">24h</span>
+        <span class="stat-label">Reply Time</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">100%</span>
+        <span class="stat-label">Bespoke Work</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">5</span>
+        <span class="stat-label">Free Mini Games</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="section">
+  <div class="container">
+    <div class="stage-header">
+      <span class="stage-number">01 /</span>
+      <h2 class="stage-title">What we do</h2>
+    </div>
+
+    <p class="text-muted mb-12" style="max-width: var(--max-w-prose);">
+      Four services, one studio. Everything is commissioned directly to the two people who will do the work.
+    </p>
+
+    <div class="grid grid-2">
+      <!-- Minecraft -->
+      <div class="card">
+        <div class="service-icon">⛏️</div>
+        <h3 class="card-title">Minecraft Servers</h3>
+        <p class="card-description">
+          Full server builds — spawns, arenas, worlds, custom Paper and Spigot plugins written from scratch,
+          MOTDs, hosting setup and ongoing management.
+        </p>
+        <a href="/minecraft.html" class="btn btn-ghost mt-4">Learn more →</a>
+      </div>
+
+      <!-- Discord -->
+      <div class="card">
+        <div class="service-icon">💬</div>
+        <h3 class="card-title">Discord Communities</h3>
+        <p class="card-description">
+          Fresh setups and full overhauls with categories, channels, clean permissions, bot setup
+          (music, tickets, welcomers), and moderation tooling.
+        </p>
+        <a href="/discord.html" class="btn btn-ghost mt-4">Learn more →</a>
+      </div>
+
+      <!-- Thumbnails -->
+      <div class="card">
+        <div class="service-icon">🎨</div>
+        <h3 class="card-title">Gaming Thumbnails</h3>
+        <p class="card-description">
+          YouTube thumbnails for Minecraft, Valorant, Fortnite and Roblox channels, built for the
+          mobile feed with high contrast and clear focal points.
+        </p>
+        <a href="/thumbnails.html" class="btn btn-ghost mt-4">Learn more →</a>
+      </div>
+
+      <!-- Video Editing -->
+      <div class="card">
+        <div class="service-icon">🎬</div>
+        <h3 class="card-title">Short-Form Video</h3>
+        <p class="card-description">
+          YouTube Shorts editing with hook-first cuts, dynamic captions, layered sound design,
+          and pacing that keeps viewers watching until the end.
+        </p>
+        <a href="/video.html" class="btn btn-ghost mt-4">Learn more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Work Section -->
+<section id="work" class="section" style="background: var(--bg-secondary);">
+  <div class="container">
+    <div class="stage-header">
+      <span class="stage-number">02 /</span>
+      <h2 class="stage-title">Selected work</h2>
+    </div>
+
+    <p class="text-muted mb-12" style="max-width: var(--max-w-prose);">
+      Real projects, not mockups. More case studies land here as we finish them.
+    </p>
+
+    <div class="work-grid">
+      <a href="/thumbnails.html" class="work-card">
+        <img src="thumbnails/Valorant1.png" alt="Valorant thumbnail" class="work-image">
+        <div class="work-content">
+          <span class="work-tag">Thumbnails</span>
+          <h3 class="work-title">Valorant thumbnail set</h3>
+          <p class="work-description">Six-part thumbnail series built for a competitive FPS channel.</p>
+        </div>
+      </a>
+
+      <a href="/thumbnails.html" class="work-card">
+        <img src="thumbnails/Minecraft2.png" alt="Minecraft thumbnail" class="work-image">
+        <div class="work-content">
+          <span class="work-tag">Thumbnails</span>
+          <h3 class="work-title">Minecraft survival thumbnails</h3>
+          <p class="work-description">High-contrast survival edits tuned for the mobile feed.</p>
+        </div>
+      </a>
+
+      <a href="/thumbnails.html" class="work-card">
+        <img src="thumbnails/Misc1.png" alt="Gaming thumbnail" class="work-image">
+        <div class="work-content">
+          <span class="work-tag">Thumbnails</span>
+          <h3 class="work-title">Mixed-niche design work</h3>
+          <p class="work-description">Cross-genre thumbnails that keep one channel identity.</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="grid grid-2 mt-12">
+      <div class="card">
+        <h4>15 Minecraft servers built</h4>
+        <p class="card-description">
+          Outdoor SMP, Blood Bound Citadel, Kitten Kraft, Lifesteal, Skyblock, Knock SMP and more.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Custom Discord emoji packs</h4>
+        <p class="card-description">
+          A bespoke animated emoji set ships with community builds — see the pack below.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process Section -->
+<section id="process" class="section">
+  <div class="container">
+    <div class="stage-header">
+      <span class="stage-number">03 /</span>
+      <h2 class="stage-title">How it works</h2>
+    </div>
+
+    <p class="text-muted mb-12 text-center" style="max-width: var(--max-w-prose); margin-left: auto; margin-right: auto;">
+      A process that does not waste your time.
+    </p>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-number">01</div>
+        <div class="process-content">
+          <h4>Discuss</h4>
+          <p>Tell us the goal and the constraint. We reply within 24 hours on business days.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-number">02</div>
+        <div class="process-content">
+          <h4>Plan</h4>
+          <p>Scope, price and timeline agreed in writing before anything starts.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-number">03</div>
+        <div class="process-content">
+          <h4>Design</h4>
+          <p>Concepts built around your actual content, not a template with your logo dropped in.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-number">04</div>
+        <div class="process-content">
+          <h4>Build</h4>
+          <p>Servers, plugins and communities configured, tested and documented.</p>
+        </div>
+      </div>
+
+      <div class="process-step">
+        <div class="process-number">05</div>
+        <div class="process-content">
+          <h4>Deliver</h4>
+          <p>Handover with files, docs and support. You own everything we make.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Section -->
+<section class="section" style="background: var(--bg-secondary);">
+  <div class="container">
+    <div class="stage-header">
+      <span class="stage-number">04 /</span>
+      <h2 class="stage-title">Why KBJS</h2>
+    </div>
+
+    <p class="text-muted mb-12" style="max-width: var(--max-w-prose);">
+      Small studio, direct access. You talk to the builder, not an account manager.
+    </p>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <h4>You talk to the builder</h4>
+        <p class="card-description">
+          No account managers and no handoffs. The person who writes your plugin or designs your
+          thumbnail is the person you reply to.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>We run our own channels</h4>
+        <p class="card-description">
+          Knockbackkk and JustSlayer are live gaming channels, so thumbnail and editing decisions
+          get tested on real audiences.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Minecraft is a speciality</h4>
+        <p class="card-description">
+          Paper and Spigot plugins, gamemode design and MOTDs are the core of what we do —
+          not a side offering.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Built to be handed over</h4>
+        <p class="card-description">
+          Plugins tested, permissions documented, configs explained. You are not left guessing
+          what a setting does.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Ships on the timeline</h4>
+        <p class="card-description">
+          Scope is agreed up front and delivered on the date you were given.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Community-first thinking</h4>
+        <p class="card-description">
+          A server or Discord is judged on whether people stay in it. Design decisions start from that.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section">
+  <div class="container text-center">
+    <h2 class="mb-6">Have an idea? Let's build it.</h2>
+    <p class="text-muted mb-8" style="max-width: var(--max-w-prose); margin-left: auto; margin-right: auto;">
+      Tell us the service, the game and the goal. You will get scope and pricing back within 24 hours on business days.
+    </p>
+    <div class="hero-actions">
+      <a href="/contact.html" class="btn btn-primary btn-lg">Get started</a>
+      <a href="#work" class="btn btn-secondary btn-lg">See our work</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <div class="navbar-logo mb-4">
+          <img src="logos/kbjslogo.png" alt="" width="32" height="32">
+          <span>KBJS Studios</span>
+        </div>
+        <p class="text-muted" style="font-size: var(--text-sm); max-width: 280px;">
+          Creative digital studio building Minecraft servers, Discord communities, gaming thumbnails
+          and video for creators.
+        </p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="/minecraft.html" class="footer-link">Minecraft Servers</a></li>
+          <li><a href="/discord.html" class="footer-link">Discord Setup</a></li>
+          <li><a href="/thumbnails.html" class="footer-link">Thumbnails</a></li>
+          <li><a href="/video.html" class="footer-link">Video Editing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="/resource-packs.html" class="footer-link">Resource Packs</a></li>
+          <li><a href="/free-assets.html" class="footer-link">Free Assets</a></li>
+          <li><a href="/minecraft-plugins.html" class="footer-link">Plugins</a></li>
+          <li><a href="/mini-games.html" class="footer-link">Mini Games</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul class="footer-links">
+          <li><a href="/about.html" class="footer-link">About Us</a></li>
+          <li><a href="/contact.html" class="footer-link">Contact</a></li>
+          <li><a href="/privacy.html" class="footer-link">Privacy</a></li>
+          <li><a href="/terms.html" class="footer-link">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 KBJS Studios. All rights reserved.</span>
+      <span>
+        <a href="mailto:kbjsstudios@gmail.com" class="footer-link">kbjsstudios@gmail.com</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Simple fade-in on scroll
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('fade-in');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.card, .work-card, .process-step').forEach(el => {
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>

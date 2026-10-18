@@ -142,8 +142,12 @@
     });
   });
 
-  /* ---------- 06 CUSTOM CURSOR (progressive enhancement) ---------- */
+  /* ---------- 06 CUSTOM CURSOR (progressive enhancement) ----------
+     Disabled: the site now ships the "Azure Aura" cursor set via CSS
+     (see styles.css) instead of the JS dot + ring. Code kept for
+     reference; remove the early return to re-enable. */
   guard('cursor', function () {
+    return;
     var fine = win.matchMedia && win.matchMedia('(hover: hover) and (pointer: fine)').matches;
     if (!fine) return;
     if (win.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -198,36 +202,42 @@
     });
   });
 
-  /* ---------- 07 POINTER-REACTIVE CARDS ---------- */
-  // Cheap: writes two CSS custom properties, no layout thrash, no rAF loop.
-  guard('cards', function () {
+  /* ---------- 07 CURSOR AMBIENCE (layout panels only) ---------- */
+  // A soft azure glow follows the cursor across panels — matching the
+  // Azure Aura cursor set. Fine pointers only, no reduced motion.
+  guard('ambience', function () {
     if (!win.matchMedia || !win.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
     if (win.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    var cards = $$('.service-card');
-    if (!cards.length) return;
+    var panels = $$('.cta-section, .faq-item, .service-card, .channel-card, .why-card, ' +
+      '.download-card, .video-card, .emoji-card, .profile-card, .split-block');
+    if (!panels.length) return;
 
-    var pending = null;
-    var flush = function () {
-      pending = null;
-      var e = flush._e;
-      for (var i = 0; i < cards.length; i++) {
-        var r = cards[i].getBoundingClientRect();
-        if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) continue;
-        cards[i].style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
-        cards[i].style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
-      }
-    };
+    panels.forEach(function (panel) {
+      if (win.getComputedStyle(panel).position === 'static') panel.style.position = 'relative';
+      panel.classList.add('has-ambient');
 
-    var onMove = function (e) {
-      flush._e = e;
-      if (pending) return;
-      pending = win.requestAnimationFrame(flush);
-    };
-    win.addEventListener('mousemove', onMove, { passive: true });
-    TEARDOWN.push(function () {
-      win.removeEventListener('mousemove', onMove);
-      if (pending) win.cancelAnimationFrame(pending);
+      var layer = doc.createElement('span');
+      layer.className = 'cursor-ambient';
+      layer.setAttribute('aria-hidden', 'true');
+      panel.appendChild(layer);
+
+      var onMove = function (e) {
+        var r = panel.getBoundingClientRect();
+        layer.style.setProperty('--amb-x', (e.clientX - r.left).toFixed(1) + 'px');
+        layer.style.setProperty('--amb-y', (e.clientY - r.top).toFixed(1) + 'px');
+      };
+      var onEnter = function () { panel.classList.add('ambient-on'); };
+      var onLeave = function () { panel.classList.remove('ambient-on'); };
+
+      panel.addEventListener('pointermove', onMove, { passive: true });
+      panel.addEventListener('pointerenter', onEnter, { passive: true });
+      panel.addEventListener('pointerleave', onLeave, { passive: true });
+      TEARDOWN.push(function () {
+        panel.removeEventListener('pointermove', onMove);
+        panel.removeEventListener('pointerenter', onEnter);
+        panel.removeEventListener('pointerleave', onLeave);
+      });
     });
   });
 
@@ -301,67 +311,337 @@
     });
   });
 
-  /* ---------- 11 CONTACT FORM ---------- */
+  /* ---------- 11 CONTACT FORM → TICKET ----------
+     Flow: validate → open a ticket (ID, purpose, priority) → post it
+     to the Discord tickets channel → hand the form to FormSubmit with
+     a native POST (required for its "nice to meet you" auto-reply).
+     When the visitor comes back, the Discord ticket is edited to show
+     that the auto-reply went out. */
   guard('contact', function () {
     var form = $('#contact-form');
     if (!form) return;
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var name = $('#contact-name'), email = $('#contact-email'), msg = $('#contact-message');
-      if (!name || !email || !msg) return;
+    var EMAIL_RE = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
+    var TYPO_FIX = {
+      'gmial.com': 'gmail.com', 'gamil.com': 'gmail.com', 'gmai.com': 'gmail.com',
+      'gmaill.com': 'gmail.com', 'gmail.co': 'gmail.com', 'gmail.con': 'gmail.com',
+      'hotmial.com': 'hotmail.com', 'hotmai.com': 'hotmail.com', 'outlok.com': 'outlook.com',
+      'outloo.com': 'outlook.com', 'yaho.com': 'yahoo.com', 'yahoo.co': 'yahoo.com',
+      'iclod.com': 'icloud.com', 'protonmial.com': 'protonmail.com'
+    };
+    var COLORS = { High: 0xEF4444, Medium: 0x6C5CE7, Low: 0x95A5A6 };
+    var LOGO = 'https://kbjsstudios.qzz.io/logos/kbjslogo.png';
 
-      var nv = name.value.trim().slice(0, 80);
-      var ev = email.value.trim().slice(0, 160);
-      var mv = msg.value.trim().slice(0, 2000);
+    var nameEl = $('#contact-name');
+    var emailEl = $('#contact-email');
+    var purposeEl = $('#contact-purpose');
+    var msgEl = $('#contact-message');
+    var submitBtn = $('#contact-submit');
+    var statusEl = $('#contact-status');
+    var receipt = $('#ticket-receipt');
+    var companyEl = $('#contact-company');
+    if (!nameEl || !emailEl || !purposeEl || !msgEl) return;
 
-      if (!nv || !ev || !mv) return showToast('Please fill in all required fields.', 'error');
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ev)) return showToast('Please enter a valid email address.', 'error');
+    var loadedAt = Date.now();
+    var submitting = false;
+    var insisted = false;
+    var fields = [nameEl, emailEl, purposeEl, msgEl];
 
-      var payload = { date: new Date().toISOString(), name: nv, email: ev, message: mv };
+    form.noValidate = true;
+    var emailTarget = win.TICKET_FORM_KEY || win.TICKET_EMAIL;
+    if (emailTarget) form.setAttribute('action', 'https://formsubmit.co/' + emailTarget);
 
-      var inq = [];
-      try {
-        inq = JSON.parse(localStorage.getItem('kbjs_inquiries') || '[]');
-        if (!Array.isArray(inq)) inq = [];
-      } catch (err) { inq = []; }
-      inq.push({ date: payload.date, name: nv, email: ev, message: mv.slice(0, 50) + '\u2026' });
-      try { localStorage.setItem('kbjs_inquiries', JSON.stringify(inq.slice(-50))); } catch (err) {}
-
-      var hook = win.CONTACT_WEBHOOK_URL;
-      if (!hook) {
-        showToast('Message sent! We will get back to you within 24 hours.');
-        form.reset();
-        return;
+    /* ---- inline field errors ---- */
+    var errorNode = function (el) {
+      var field = el.closest ? el.closest('.field') : null;
+      if (!field) return null;
+      var node = field.querySelector('.form-error');
+      if (!node) {
+        node = doc.createElement('p');
+        node.className = 'form-error';
+        field.appendChild(node);
       }
-      var LOGO = 'https://kbjsstudios.qzz.io/logos/kbjslogo.png';
-      var tid = 'T-' + payload.date.slice(2, 10).replace(/-/g, '') + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
-      fetch(hook, {
+      return node;
+    };
+    var setError = function (el, text) {
+      var node = errorNode(el);
+      if (node) { node.textContent = text; el.setAttribute('aria-invalid', 'true'); }
+    };
+    var clearError = function (el) {
+      var node = errorNode(el);
+      if (node) node.textContent = '';
+      if (el.removeAttribute) el.removeAttribute('aria-invalid');
+      if (el === emailEl) insisted = false;
+    };
+    fields.forEach(function (el) {
+      el.addEventListener('input', function () { clearError(el); });
+      el.addEventListener('change', function () { clearError(el); });
+    });
+
+    /* ---- email checks: format → common typos → DNS MX/A (best effort) ---- */
+    var emailSuggestion = function (v) {
+      var at = v.lastIndexOf('@');
+      if (at < 1) return '';
+      var fix = TYPO_FIX[v.slice(at + 1).toLowerCase()];
+      return fix ? v.slice(0, at) + '@' + fix : '';
+    };
+    var doh = function (url) {
+      return fetch(url, { headers: { accept: 'application/dns-json' } })
+        .then(function (r) { return r.json(); });
+    };
+    var lookup = function (dom, type) {
+      var q = 'name=' + encodeURIComponent(dom) + '&type=' + type;
+      return doh('https://dns.google/resolve?' + q)
+        .catch(function () { return doh('https://cloudflare-dns.com/dns-query?' + q); });
+    };
+    var emailDomainCheck = function (v) {
+      var at = v.lastIndexOf('@');
+      var dom = at > 0 ? v.slice(at + 1) : '';
+      if (!dom || !win.fetch) return Promise.resolve({ ok: true });
+      return lookup(dom, 'MX').then(function (d) {
+        if (d && d.Answer && d.Answer.length) return { ok: true };
+        if (d && d.Status === 3) return { ok: false, why: 'That email domain does not exist — check it for typos.' };
+        return lookup(dom, 'A').then(function (a) {
+          if (a && a.Answer && a.Answer.length) return { ok: true }; /* mail may fall back to the A record */
+          if (a && a.Status === 3) return { ok: false, why: 'That email domain does not exist — check it for typos.' };
+          return { ok: false, why: 'That email domain cannot receive mail — try another address.' };
+        });
+      }).catch(function () { return { ok: true }; });
+    };
+
+    /* ---- ticket identity + local log ---- */
+    var pad2 = function (n) { return (n < 10 ? '0' : '') + n; };
+    var makeTicketId = function (now) {
+      var ymd = String(now.getFullYear()).slice(2) + pad2(now.getMonth() + 1) + pad2(now.getDate());
+      var rand = Math.random().toString(36).slice(2, 8).toUpperCase().replace(/[^A-Z0-9]/g, '');
+      while (rand.length < 4) rand += 'X';
+      return 'KBJS-' + ymd + '-' + rand.slice(0, 4);
+    };
+    var readTickets = function () {
+      try {
+        var all = JSON.parse(localStorage.getItem('kbjs_tickets') || '[]');
+        return Array.isArray(all) ? all : [];
+      } catch (err) { return []; }
+    };
+    var writeTickets = function (all) {
+      try { localStorage.setItem('kbjs_tickets', JSON.stringify(all.slice(-100))); } catch (err) {}
+    };
+    var markTicket = function (id, props) {
+      var all = readTickets();
+      for (var i = all.length - 1; i >= 0; i--) {
+        if (all[i] && all[i].id === id) {
+          for (var k in props) { if (props.hasOwnProperty(k)) all[i][k] = props[k]; }
+          break;
+        }
+      }
+      writeTickets(all);
+    };
+
+    /* ---- Discord ticket ---- */
+    var webhookBase = function () {
+      return (win.TICKETS_WEBHOOK_URL || win.CONTACT_WEBHOOK_URL || '').split('?')[0];
+    };
+    var buildEmbed = function (t) {
+      return {
+        title: '🎫 ' + t.id + ' — ' + t.label,
+        description: 'New ticket from the website contact form.',
+        color: COLORS[t.priority] || 0x6C5CE7,
+        thumbnail: { url: LOGO },
+        fields: [
+          { name: 'From', value: t.name, inline: true },
+          { name: 'Email', value: '[' + t.email + '](mailto:' + t.email + ')', inline: true },
+          { name: 'Purpose', value: t.label, inline: true },
+          { name: 'Priority', value: t.priority, inline: true },
+          { name: 'Status', value: '🟢 Open — awaiting reply', inline: true },
+          { name: 'Auto-reply', value: '⏳ Pending — visitor is finishing the spam check', inline: true },
+          { name: 'Message', value: (t.message || '—').slice(0, 1024) },
+          { name: 'Source', value: t.page }
+        ],
+        footer: {
+          text: 'KBJS Studios · ⏳ = visitor did not finish the spam check · delete: right-click → Delete Message',
+          icon_url: LOGO
+        },
+        timestamp: t.date
+      };
+    };
+    var postEmbedOnce = function (embed, threadName) {
+      var base = webhookBase();
+      if (!base || !win.fetch) return Promise.reject(new Error('no webhook'));
+      var body = { username: 'KBJS Studios — Tickets', embeds: [embed] };
+      if (threadName) body.thread_name = threadName.slice(0, 100);
+      return fetch(base + '?wait=true', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: 'KBJS Studios \u2014 Tickets',
-          embeds: [{
-            title: 'New Ticket \u2014 ' + tid,
-            description: 'A visitor submitted the Get Started form on kbjsstudios.qzz.io.',
-            color: 0x6C5CE7,
-            thumbnail: { url: LOGO },
-            fields: [
-              { name: 'Name', value: nv, inline: true },
-              { name: 'Email', value: ev, inline: true },
-              { name: 'Message', value: mv.slice(0, 1024) || '\u2014' }
-            ],
-            footer: { text: 'KBJS Studios \u00b7 Delete ticket: right-click \u2192 Delete Message', icon_url: LOGO },
-            timestamp: payload.date
-          }]
-        })
-      }).then(function () {
-        showToast('Message sent! We will get back to you within 24 hours.');
-        form.reset();
-      }).catch(function () {
-        showToast('Could not send right now \u2014 please try again.', 'error');
+        body: JSON.stringify(body),
+        keepalive: true
+      }).then(function (r) {
+        if (!r.ok) throw new Error('webhook ' + r.status);
+        return r.json().catch(function () { return null; });
+      });
+    };
+    var openTicketOnDiscord = function (t) {
+      var embed = buildEmbed(t);
+      var first = win.TICKETS_FORUM_THREADS
+        ? postEmbedOnce(embed, t.id + ' — ' + t.label)
+        : postEmbedOnce(embed);
+      /* retry without a thread name in case the webhook is not a forum */
+      return first.catch(function () { return postEmbedOnce(embed); }).then(function (msg) {
+        try {
+          sessionStorage.setItem('kbjs_pending_ticket', JSON.stringify({
+            id: t.id, email: t.email, date: t.date,
+            messageId: (msg && msg.id) || '', embed: embed
+          }));
+        } catch (err) {}
+      });
+    };
+
+    /* ---- open ticket → native FormSubmit POST ---- */
+    var setField = function (name, value) {
+      var el = form.elements[name];
+      if (el && typeof el.value !== 'undefined') el.value = value;
+    };
+    var restoreButton = function () {
+      submitting = false;
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Open my ticket'; }
+    };
+    var openTicket = function (d, p) {
+      var now = new Date();
+      var t = {
+        id: makeTicketId(now), date: now.toISOString(),
+        name: d.name, email: d.email, message: d.message,
+        purpose: p.value, label: p.label, priority: p.priority,
+        page: location.href
+      };
+      setField('ticket', t.id);
+      setField('priority', t.priority);
+      setField('page', t.page);
+      setField('_subject', '🎫 ' + t.id + ' — ' + t.label + ' — ' + t.name);
+      setField('_next', location.origin + location.pathname + '?sent=1' +
+        '&t=' + encodeURIComponent(t.id) +
+        '&p=' + encodeURIComponent(t.label) +
+        '&n=' + encodeURIComponent((t.name.split(' ')[0] || t.name).slice(0, 40)));
+
+      if (statusEl) statusEl.textContent = 'Posting ' + t.id + ' to Discord…';
+      var all = readTickets();
+      all.push({
+        id: t.id, date: t.date, name: t.name, email: t.email,
+        purpose: t.label, priority: t.priority,
+        status: 'submitted', autoReply: 'pending'
+      });
+      writeTickets(all);
+
+      var go = function () {
+        if (statusEl) statusEl.textContent = 'Opening the secure email step…';
+        form.submit(); /* native POST → FormSubmit (spam check → email + auto-reply → back to _next) */
+      };
+      openTicketOnDiscord(t).then(go, go);
+    };
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (submitting) return;
+      fields.forEach(clearError);
+
+      if (companyEl && companyEl.value) return; /* honeypot — humans never fill this */
+      if (Date.now() - loadedAt < 3000) return showToast('One moment — then hit send again.', 'error');
+
+      var d = {
+        name: nameEl.value.trim().slice(0, 80),
+        email: emailEl.value.trim().slice(0, 160),
+        message: msgEl.value.trim().slice(0, 2000)
+      };
+      var opt = purposeEl.options[purposeEl.selectedIndex];
+      var p = opt && opt.value
+        ? { value: opt.value, label: (opt.textContent || '').trim(), priority: opt.getAttribute('data-priority') || 'Medium' }
+        : null;
+
+      if (d.name.length < 2) { setError(nameEl, 'Please tell us your name.'); nameEl.focus(); return showToast('Please fill in your name.', 'error'); }
+      if (!EMAIL_RE.test(d.email)) { setError(emailEl, 'That email does not look right — check it for typos.'); emailEl.focus(); return showToast('Please enter a valid email address.', 'error'); }
+      var hint = emailSuggestion(d.email);
+      if (hint && !insisted) {
+        insisted = true;
+        setError(emailEl, 'Did you mean ' + hint + '? Fix it, or press send again to keep yours.');
+        emailEl.focus();
+        return showToast('Did you mean ' + hint + '?', 'error');
+      }
+      if (!p) { setError(purposeEl, 'Pick the closest purpose so we route your ticket.'); purposeEl.focus(); return showToast('Please choose a purpose.', 'error'); }
+      if (d.message.length < 10) { setError(msgEl, 'Add a little more detail (10+ characters).'); msgEl.focus(); return showToast('Please describe what you need.', 'error'); }
+
+      submitting = true;
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Opening ticket…'; }
+      if (statusEl) statusEl.textContent = 'Checking your email…';
+
+      emailDomainCheck(d.email).then(function (check) {
+        if (!check.ok && !insisted) {
+          insisted = true;
+          restoreButton();
+          if (statusEl) statusEl.textContent = 'Email check flagged something — send again to use it anyway.';
+          setError(emailEl, check.why + ' Press send again to use it anyway.');
+          return showToast(check.why, 'error');
+        }
+        openTicket(d, p);
       });
     });
+
+    win.addEventListener('pageshow', function () {
+      if (submitting) restoreButton();
+    });
+
+    /* ---- back from FormSubmit: confirm on site + edit the Discord ticket ---- */
+    var qs = function (name) {
+      var m = location.search.match(new RegExp('[?&]' + name + '=([^&]*)'));
+      return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : '';
+    };
+    var confirmOnDiscord = function (tid) {
+      var base = webhookBase();
+      var pending = null;
+      try { pending = JSON.parse(sessionStorage.getItem('kbjs_pending_ticket') || 'null'); } catch (err) {}
+      if (!base || !win.fetch || !pending || !pending.messageId || !pending.embed) return;
+      if (tid && pending.id !== tid) return;
+
+      var embed = pending.embed;
+      if (embed.fields) {
+        for (var i = 0; i < embed.fields.length; i++) {
+          var f = embed.fields[i];
+          if (f.name === 'Auto-reply') f.value = '✅ Sent — automated "nice to meet you" reply delivered to ' + (pending.email || 'the visitor');
+          if (f.name === 'Status') f.value = '🟢 Open — reply straight to the email above';
+        }
+      }
+      embed.footer = { text: 'KBJS Studios · FormSubmit confirmed the submission · delete: right-click → Delete Message', icon_url: LOGO };
+      embed.timestamp = new Date().toISOString();
+
+      fetch(base + '/messages/' + pending.messageId, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ embeds: [embed] })
+      }).then(function () {
+        try { sessionStorage.removeItem('kbjs_pending_ticket'); } catch (err) {}
+      }).catch(function () {});
+    };
+
+    if (qs('sent') === '1') {
+      var tid = qs('t');
+      var plabel = qs('p');
+      var firstName = qs('n');
+      if (receipt) {
+        var idEl = $('#receipt-id');
+        var sumEl = $('#receipt-summary');
+        if (idEl) idEl.textContent = tid || 'Ticket received';
+        if (sumEl) {
+          sumEl.textContent = (firstName ? 'Thanks ' + firstName + '! ' : 'Thanks! ') +
+            (plabel ? 'Your ' + plabel.toLowerCase() + ' request is open' : 'Your request is open') +
+            ', and the "nice to meet you" auto-reply is heading to your inbox.';
+        }
+        receipt.hidden = false;
+        var calm = win.matchMedia && win.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        try { receipt.scrollIntoView({ block: 'center', behavior: calm ? 'auto' : 'smooth' }); }
+        catch (err) { receipt.scrollIntoView(); }
+      }
+      showToast(tid ? 'Ticket ' + tid + ' confirmed — check your inbox' : 'Ticket confirmed — check your inbox');
+      if (tid) markTicket(tid, { status: 'confirmed', autoReply: 'sent' });
+      confirmOnDiscord(tid);
+      try { history.replaceState(null, '', location.pathname + '#ticket-receipt'); } catch (err) {}
+    }
   });
 
   /* ---------- 12 COOKIE CONSENT ---------- */

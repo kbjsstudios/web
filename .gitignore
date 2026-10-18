@@ -30,4 +30,17 @@ __pycache__/
 #   ! firebase-config.js is NOT ignored — see the security notes in README.md
 #                       before adding a Discord webhook URL to it. A webhook
 #                       pasted there is readable by anyone and can be used to
-#                       spam your Discord channel.Free Assets/Logo/Minecraft GFX.zip
+#                       spam your Discord channel.
+
+# Environment variables (NEVER commit actual credentials)
+.env
+.env.local
+.env.production
+*.env
+
+# Backup of old insecure config (if you create one)
+firebase-config.old.js
+firebase-config.backup.js
+
+# Free Assets
+Free Assets/Logo/Minecraft GFX.zip
